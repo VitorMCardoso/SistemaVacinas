@@ -5,7 +5,7 @@
         <servlet-class>controller.UsuarioController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AcessoControler</servlet-name>
+        <servlet-name>AcessoController</servlet-name>
         <servlet-class>controller.AcessoController</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -13,8 +13,8 @@
         <url-pattern>/UsuarioController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AcessoControler</servlet-name>
-        <url-pattern>/AcessoControler</url-pattern>
+        <servlet-name>AcessoController</servlet-name>
+        <url-pattern>/AcessoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
