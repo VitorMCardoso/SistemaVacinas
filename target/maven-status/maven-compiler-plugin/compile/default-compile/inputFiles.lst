@@ -6,6 +6,7 @@
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/model/Paciente.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/model/Usuario.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/dao/AgendamentoDAO.java
+/home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/controller/PacientesController.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/conexaoBanco/ConectaBancoDeDados.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/model/PerfilAcesso.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/controller/UsuarioController.java

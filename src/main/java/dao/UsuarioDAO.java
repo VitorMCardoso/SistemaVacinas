@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import model.Cargo;
 
 /**
  *
@@ -31,7 +32,7 @@ public class UsuarioDAO {
     
         public void cadastrarNovoUsuario(Usuario u) throws SQLException {
         String sql = "Insert Into usuario (nome,sobrenome,login,email,senha,cargo,rg,cpf,endereco,ativo,perfil)"
-                + "Values(?,?,?,?,?,?,?,?,?,true,COMUM)";
+                + "Values(?,?,?,?,?,?,?,?,?,true,?)";
         
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
@@ -40,10 +41,11 @@ public class UsuarioDAO {
             stmt.setString(3, u.getLogin());
             stmt.setString(4, u.getEmail());
             stmt.setInt(5, 12345);
-            //stmt.setString(6, u.getCargo());
-            stmt.setString(6, u.getRg());
-            stmt.setString(7, u.getCpf());
-            stmt.setString(8, u.getEndereco());
+            stmt.setString(6, u.getCargo().toString());
+            stmt.setString(7, u.getRg());
+            stmt.setString(8, u.getCpf());
+            stmt.setString(9, u.getEndereco());
+            stmt.setString(10, u.getPerfil().toString());
             //executa o código
             stmt.execute();
             stmt.close();
