@@ -149,30 +149,30 @@ public class UsuarioDAO {
     public Usuario autenticaUsuario(Usuario u) throws SQLException {
         Usuario usuarioAutenticado = null;
         
-        String sql = "SELECT * FROM usuario WHERE nome=? AND senha=?";
-        ResultSet rsPaciente = null;
+        String sql = "SELECT * FROM usuario WHERE login=? AND senha=?";
+        ResultSet rsUsuario = null;
         
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
-            stmt.setString(1, u.getNome());
+            stmt.setString(1, u.getLogin());
             stmt.setString(2, u.getSenha());
             //executa o código
-            rsPaciente = stmt.executeQuery();
+            rsUsuario = stmt.executeQuery();
             
-            if (rsPaciente.next()) {
+            if (rsUsuario.next()) {
                 usuarioAutenticado = new Usuario();
-                usuarioAutenticado.setId(rsPaciente.getInt("id"));
-                usuarioAutenticado.setNome(rsPaciente.getString("nome"));
-                usuarioAutenticado.setSobrenome(rsPaciente.getString("sobrenome"));
-                usuarioAutenticado.setLogin(rsPaciente.getString("login"));
-                usuarioAutenticado.setEmail(rsPaciente.getString("email"));
-                usuarioAutenticado.setSenha(rsPaciente.getString("senha"));
-                usuarioAutenticado.setCargo(Cargo.valueOf(rsPaciente.getString("cargo")));
-                usuarioAutenticado.setRg(rsPaciente.getString("rg"));
-                usuarioAutenticado.setCpf(rsPaciente.getString("cpf"));
-                usuarioAutenticado.setEndereco(rsPaciente.getString("endereco"));
-                usuarioAutenticado.setAtivo(rsPaciente.getBoolean("ativo"));
-                usuarioAutenticado.setPerfil(PerfilAcesso.valueOf(rsPaciente.getString("perfil")));
+                usuarioAutenticado.setId(rsUsuario.getInt("id"));
+                usuarioAutenticado.setNome(rsUsuario.getString("nome"));
+                usuarioAutenticado.setSobrenome(rsUsuario.getString("sobrenome"));
+                usuarioAutenticado.setLogin(rsUsuario.getString("login"));
+                usuarioAutenticado.setEmail(rsUsuario.getString("email"));
+                usuarioAutenticado.setSenha(rsUsuario.getString("senha"));
+                usuarioAutenticado.setCargo(Cargo.valueOf(rsUsuario.getString("cargo")));
+                usuarioAutenticado.setRg(rsUsuario.getString("rg"));
+                usuarioAutenticado.setCpf(rsUsuario.getString("cpf"));
+                usuarioAutenticado.setEndereco(rsUsuario.getString("endereco"));
+                usuarioAutenticado.setAtivo(rsUsuario.getBoolean("ativo"));
+                usuarioAutenticado.setPerfil(PerfilAcesso.valueOf(rsUsuario.getString("perfil")));
             }
         }catch(SQLException sqlErro){
             throw new RuntimeException(sqlErro);
