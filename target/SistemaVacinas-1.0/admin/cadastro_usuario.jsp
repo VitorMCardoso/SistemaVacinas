@@ -23,7 +23,7 @@
         <%}%>
         <form action="UsuarioController" method="POST">
             Nome: <input type="text" name="txtNome"></br>
-            Sobrenome: <input type="text" name="txtSobreNome"></br>
+            Sobrenome: <input type="text" name="txtSobrenome"></br>
             Login: <input type="text" name="txtLogin"></br>
             Senha: <input type="password" name="txtSenha"></br>
             Cargo: <select name="optCargo">
