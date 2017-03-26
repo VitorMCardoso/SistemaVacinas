@@ -8,6 +8,10 @@
         <servlet-name>AcessoController</servlet-name>
         <servlet-class>controller.AcessoController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PacientesController</servlet-name>
+        <servlet-class>controller.PacientesController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/UsuarioController</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>AcessoController</servlet-name>
         <url-pattern>/AcessoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PacientesController</servlet-name>
+        <url-pattern>/PacientesController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
