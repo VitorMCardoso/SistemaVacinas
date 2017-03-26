@@ -22,8 +22,18 @@
         <font color="blue"><%=msg %></font>
         <%}%>
         <form action="UsuarioController" method="POST">
+            Nome: <input type="text" name="txtNome"></br>
+            Sobrenome: <input type="text" name="txtSobreNome"></br>
             Login: <input type="text" name="txtLogin"></br>
             Senha: <input type="password" name="txtSenha"></br>
+            Cargo: <select name="optCargo">
+                <option>GERENTE</option>
+                <option>SECRETARIA</option>
+                <option>ESTOQUISTA</option>
+            </select><br/>
+            RG: <input type="text" name="txtRg"></br>
+            CPF: <input type="text" name="txtCpf"></br>
+            Endereço: <input type="text" name="txtEndereco"></br>
             Perfil: <select name="optPerfil">
                 <option>COMUM </option>
                 <option>ADMINISTRADOR</option>
