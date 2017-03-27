@@ -14,13 +14,13 @@
     </head>
     <body>
         <%
-            Usuario usuario = (Usuario) session.getAttribute("pacienteAutenticado");
+            Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
             
             if(usuario != null){
                 %>
         <h1>Bem Vindo, <%= usuario.getNome() %> !</h1>
         <%}%>
         <a href="admin/cadastro_usuario.jsp">Area Restrita</a><br/>
-        <a href="ControleAcesso?acao=Sair">Logout</a>
+        <a href="AcessoController?acao=Sair">Logout</a>
     </body>
 </html>
