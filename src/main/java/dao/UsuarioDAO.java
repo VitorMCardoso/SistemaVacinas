@@ -40,7 +40,7 @@ public class UsuarioDAO {
             stmt.setString(2, u.getSobrenome());
             stmt.setString(3, u.getLogin());
             stmt.setString(4, u.getEmail());
-            stmt.setInt(5, 12345);
+            stmt.setString(5, u.getSenha());
             stmt.setString(6, u.getCargo().toString());
             stmt.setString(7, u.getRg());
             stmt.setString(8, u.getCpf());
