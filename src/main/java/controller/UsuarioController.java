@@ -117,7 +117,7 @@ public class UsuarioController extends HttpServlet {
         }
 
         return true;
-    }*/
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -159,8 +159,8 @@ public class UsuarioController extends HttpServlet {
                 //Chamada do metodo de inserçao de usuario
                 inserirUsuario(usuario);
                 request.setAttribute("msg", "cadastrado com sucesso");
-                RequestDispatcher rd
-                        = request.getRequestDispatcher("/admin/cadastro_usuario.jsp");
+                RequestDispatcher rd;
+                rd = request.getRequestDispatcher("../admin/cadastro_usuario.jsp");
                 rd.forward(request, response);
             }
         } catch (Exception erro) {
