@@ -21,10 +21,11 @@
         %>
         <font color="blue"><%=msg %></font>
         <%}%>
-        <form action="UsuarioController" method="POST">
+        <form action="../UsuarioController" method="POST">
             Nome: <input type="text" name="txtNome"></br>
             Sobrenome: <input type="text" name="txtSobrenome"></br>
             Login: <input type="text" name="txtLogin"></br>
+            Email: <input type="text" name="txtEmail"></br>
             Senha: <input type="password" name="txtSenha"></br>
             Cargo: <select name="optCargo">
                 <option>GERENTE</option>
