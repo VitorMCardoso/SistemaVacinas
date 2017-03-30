@@ -10,5 +10,7 @@ model/Paciente.class
 conexaoBanco/ConectaBancoDeDados.class
 controller/PacientesController.class
 controller/AcessoController.class
+autorizacaoAcesso/AcessoAdministrativo.class
+autorizacaoAcesso/AcessoLogado.class
 controller/UsuarioController.class
 model/Vacinas.class
