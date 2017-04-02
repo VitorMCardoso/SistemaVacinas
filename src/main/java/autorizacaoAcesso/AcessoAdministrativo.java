@@ -113,7 +113,7 @@ public class AcessoAdministrativo implements Filter {
         try {
             //recuperar a sessao
             HttpSession sessaoUsuario = ((HttpServletRequest) request).getSession();
-            Usuario usuario = (Usuario) sessaoUsuario.getAttribute("usuarioAUtenticado");
+            Usuario usuario = (Usuario) sessaoUsuario.getAttribute("usuarioAutenticado");
 
             if (usuario != null && usuario.getPerfil().equals(PerfilAcesso.ADMINISTRADOR)) {
                 chain.doFilter(request, response);
