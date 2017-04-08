@@ -4,6 +4,7 @@
     Author     : vitor
 --%>
 
+<%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,8 +24,8 @@
         <%}%>
         <form action="../UsuarioController" method="POST">
             Login: <input type="text" name="txtLogin"></br>
-            <input type="submit" value="Localizar" name="acaoLocalizar"></br>
-            Nome: <input type="text" name="txtNome"></br>
+            <input type="submit" value="Localizar" name="acao"></br>
+            Nome: <input type="text" value="<%=request.getParameter("nome")%>" name="txtNome"></br>
             Sobrenome: <input type="text" name="txtSobrenome"></br>
             Email: <input type="text" name="txtEmail"></br>
             Senha: <input type="password" name="txtSenha"></br>
@@ -40,8 +41,8 @@
                 <option>COMUM </option>
                 <option>ADMINISTRADOR</option>
             </select><br/>
-            <input type="submit" value="Excluir" name="acaoExcluir">
-            <input type="submit" value="Alterar" name="acaoAlterar"></br>
+            <input type="submit" value="Excluir" name="acao">
+            <input type="submit" value="Alterar" name="acao"></br>
         </form>
         <a href="../principal.jsp">Página Principal</a>
     </body>

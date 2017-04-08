@@ -72,7 +72,7 @@ public class UsuarioDAO {
     
     public void buscarUsuario(Usuario u) throws SQLException {
         
-        String query = "SELECT * FROM usuario where id=" + u.getId();
+        String query = "SELECT * FROM usuario where login=" + u.getLogin();
         try {
             
             Statement st = conexao.createStatement();

@@ -59,19 +59,18 @@ public class UsuarioController extends HttpServlet {
         return true;
     }
 
-    /*public boolean atualizarPaciente(Paciente p) throws SQLException {
+    public boolean atualizarUsuario(Usuario u) throws SQLException {
 
         final JPanel panel = new JPanel();
-        if (p.getNome() != null && p.getSobrenome() != null && p.getRg() != null && p.getCpf() != null
-                && p.getEndereco() != null && p.getEmail() != null && p.getId() == dao.selectID(p) && p.isAtivo() != dao.setAtivo(p)) {
-            p.getId();
-            p.setNome(p.getNome());
-            p.setSobrenome(p.getSobrenome());
-            p.setRg(p.getRg());
-            p.setCpf(p.getCpf());
-            p.setEndereco(p.getEndereco());
-            p.setEmail(p.getEmail());
-            dao.atualizarPaciente(p);
+        if (u.getId() == dao.selectID(u) && u.isAtivo() != dao.setAtivo(u)) {
+            u.getId();
+            u.setNome(u.getNome());
+            u.setSobrenome(u.getSobrenome());
+            u.setRg(u.getRg());
+            u.setCpf(u.getCpf());
+            u.setEndereco(u.getEndereco());
+            u.setEmail(u.getEmail());
+            dao.atualizarUsuario(u);
             JOptionPane.showMessageDialog(panel, "Paciente Atualizado", "Warning", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(panel, "Inserção Incorreta de Dados", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -80,12 +79,12 @@ public class UsuarioController extends HttpServlet {
         return true;
     }
 
-    public boolean excluirPaciente(Paciente p) throws SQLException {
+    public boolean excluirUsuario(Usuario u) throws SQLException {
 
         final JPanel panel = new JPanel();
-        if (p.getId() == dao.selectID(p) && p.isAtivo() != dao.setAtivo(p)) {
-            p.setId(p.getId());
-            dao.excluirPaciente(p);
+        if (u.getId() == dao.selectID(u) && u.isAtivo() != dao.setAtivo(u)) {
+            u.setId(u.getId());
+            dao.excluirUsuario(u);
             JOptionPane.showMessageDialog(panel, "Paciente Apagado", "Warning", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(panel, "ID não achado", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -93,19 +92,19 @@ public class UsuarioController extends HttpServlet {
         return true;
     }
 
-    public boolean mostrarPaciente(Paciente p) throws SQLException {
+    public boolean mostrarUsuario(Usuario u) throws SQLException {
 
         final JPanel panel = new JPanel();
-        if (p.getId() == dao.selectID(p) && p.isAtivo() != dao.setAtivo(p)) {
-            p.setId(p.getId());
-            dao.buscarPaciente(p);
+        if (u.getId() == dao.selectID(u) && u.isAtivo() != dao.setAtivo(u)) {
+            u.setId(u.getId());
+            dao.buscarUsuario(u);
         } else {
             JOptionPane.showMessageDialog(panel, "ID não achado", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         return true;
     }
 
-    public boolean resetarSenha(Paciente p) throws SQLException {
+    /*public boolean resetarSenha(Paciente p) throws SQLException {
 
         final JPanel panel = new JPanel();
         if (p.getId() == dao.selectID(p) && p.isAtivo() != dao.setAtivo(p)) {
@@ -162,6 +161,14 @@ public class UsuarioController extends HttpServlet {
                 RequestDispatcher rd;
                 rd = request.getRequestDispatcher("../admin/cadastro_usuario.jsp");
                 rd.forward(request, response);
+            }else if(acao.equals("Localizar")){
+                usuario = new Usuario();
+                usuario.setLogin(request.getParameter("txtLogin"));
+                mostrarUsuario(usuario);
+                request.setAttribute("txtNome", usuario.getNome());
+                
+            }else{
+                
             }
         } catch (Exception erro) {
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
