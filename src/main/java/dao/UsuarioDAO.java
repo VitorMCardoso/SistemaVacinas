@@ -8,6 +8,7 @@ package dao;
 import conexaoBanco.ConectaBancoDeDados;
 import model.Cargo;
 import model.Paciente;
+import model.Cargo;
 import model.PerfilAcesso;
 import model.Usuario;
 import static java.lang.System.out;
@@ -16,6 +17,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import model.Cargo;
 
 /**
@@ -29,11 +32,11 @@ public class UsuarioDAO {
     public UsuarioDAO() throws SQLException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
-    
-        public void cadastrarNovoUsuario(Usuario u) throws SQLException {
+
+    public void cadastrarNovoUsuario(Usuario u) throws SQLException {
         String sql = "Insert Into usuario (nome,sobrenome,login,email,senha,cargo,rg,cpf,endereco,ativo,perfil)"
                 + "Values(?,?,?,?,?,?,?,?,?,true,?)";
-        
+
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setString(1, u.getNome());
@@ -50,9 +53,9 @@ public class UsuarioDAO {
             stmt.execute();
             stmt.close();
         }
-        
+
     }
-    
+
     public void atualizarUsuario(Usuario u) throws SQLException {
         String sql = "Update usuario set nome = ? , sobrenome = ?, email = ?, rg=?, cpf=?, endereco = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -69,12 +72,45 @@ public class UsuarioDAO {
             stmt.close();
         }
     }
-    
+
+    public List<Usuario> listar() throws SQLException, ClassNotFoundException {
+        List<Usuario> usuarios = new ArrayList<Usuario>();
+        String query = "SELECT * FROM usuario";
+        try {
+
+            Statement st = conexao.createStatement();
+
+            // execute the query, and get a java resultset
+            ResultSet rs = st.executeQuery(query);
+
+            // iterate through the java resultset
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setSobrenome(rs.getString("sobrenome"));
+                usuario.setLogin(rs.getString("login"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setCargo(Cargo.valueOf(rs.getString("cargo")));
+                usuario.setRg(rs.getString("rg"));
+                usuario.setCpf(rs.getString("cpf"));
+                usuario.setEndereco(rs.getString("endereco"));
+                usuario.setAtivo(rs.getBoolean("ativo"));
+                usuario.setPerfil(PerfilAcesso.valueOf(rs.getString("perfil")));
+                usuarios.add(usuario);
+            }
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuarios;
+    }
+
     public void buscarUsuario(Usuario u) throws SQLException {
-        
+
         String query = "SELECT * FROM usuario where login=" + u.getLogin();
         try {
-            
+
             Statement st = conexao.createStatement();
 
             // execute the query, and get a java resultset
@@ -98,16 +134,16 @@ public class UsuarioDAO {
             e.printStackTrace();
         }
     }
-    
+
     public void excluirUsuario(Usuario u) throws SQLException { // implementação do método -remove-
         String sql = "update usuario set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setLong(1, u.getId());
         stmt.execute();
         stmt.close();
-        
+
     }
-    
+
     public void resetarSenha(Usuario u) throws SQLException {
         String sql = "Update usuario set senha = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -119,7 +155,7 @@ public class UsuarioDAO {
             stmt.close();
         }
     }
-    
+
     public int selectID(Usuario u) throws SQLException {
         String query = "SELECT id FROM usuario where id=" + u.getId();
         Statement st = conexao.createStatement();
@@ -132,7 +168,7 @@ public class UsuarioDAO {
         st.close();
         return id;
     }
-    
+
     public boolean setAtivo(Usuario u) throws SQLException {
         String query = "SELECT ativo FROM usuario where id=" + u.getId();
         Statement st = conexao.createStatement();
@@ -145,20 +181,20 @@ public class UsuarioDAO {
         st.close();
         return ativo;
     }
-    
+
     public Usuario autenticaUsuario(Usuario u) throws SQLException {
         Usuario usuarioAutenticado = null;
-        
+
         String sql = "SELECT * FROM usuario WHERE login=? AND senha=?";
         ResultSet rsUsuario = null;
-        
+
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setString(1, u.getLogin());
             stmt.setString(2, u.getSenha());
             //executa o código
             rsUsuario = stmt.executeQuery();
-            
+
             if (rsUsuario.next()) {
                 usuarioAutenticado = new Usuario();
                 usuarioAutenticado.setId(rsUsuario.getInt("id"));
@@ -174,13 +210,13 @@ public class UsuarioDAO {
                 usuarioAutenticado.setAtivo(rsUsuario.getBoolean("ativo"));
                 usuarioAutenticado.setPerfil(PerfilAcesso.valueOf(rsUsuario.getString("perfil")));
             }
-        }catch(SQLException sqlErro){
+        } catch (SQLException sqlErro) {
             throw new RuntimeException(sqlErro);
-        }finally{
-            if(conexao != null){
-                try{
+        } finally {
+            if (conexao != null) {
+                try {
                     conexao.close();
-                }catch(SQLException ex){
+                } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
             }

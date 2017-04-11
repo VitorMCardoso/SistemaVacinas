@@ -8,6 +8,7 @@ package controller;
 import dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -161,12 +162,10 @@ public class UsuarioController extends HttpServlet {
                 RequestDispatcher rd;
                 rd = request.getRequestDispatcher("../admin/cadastro_usuario.jsp");
                 rd.forward(request, response);
-            }else if(acao.equals("Localizar")){
-                usuario = new Usuario();
-                usuario.setLogin(request.getParameter("txtLogin"));
-                mostrarUsuario(usuario);
-                request.setAttribute("txtNome", usuario.getNome());
-                
+            }else if(acao.equals("Listar")){
+                RequestDispatcher view = request.getRequestDispatcher("");
+                request.setAttribute("usuarios", dao.listar());
+                view.forward(request, response);
             }else{
                 
             }
