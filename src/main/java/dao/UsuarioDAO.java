@@ -25,7 +25,7 @@ import model.Cargo;
  *
  * @author vitor
  */
-public class UsuarioDAO {
+public class UsuarioDAO implements UserDAO{
 
     private Connection conexao;
 
@@ -33,6 +33,7 @@ public class UsuarioDAO {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
 
+    @Override
     public void cadastrarNovoUsuario(Usuario u) throws SQLException {
         String sql = "Insert Into usuario (nome,sobrenome,login,email,senha,cargo,rg,cpf,endereco,ativo,perfil)"
                 + "Values(?,?,?,?,?,?,?,?,?,true,?)";
@@ -56,6 +57,7 @@ public class UsuarioDAO {
 
     }
 
+    @Override
     public void atualizarUsuario(Usuario u) throws SQLException {
         String sql = "Update usuario set nome = ? , sobrenome = ?, email = ?, rg=?, cpf=?, endereco = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -73,6 +75,7 @@ public class UsuarioDAO {
         }
     }
 
+    @Override
     public List<Usuario> listar() throws SQLException, ClassNotFoundException {
         List<Usuario> usuarios = new ArrayList<Usuario>();
         String query = "SELECT * FROM usuario";
@@ -106,6 +109,7 @@ public class UsuarioDAO {
         return usuarios;
     }
 
+    @Override
     public void buscarUsuario(Usuario u) throws SQLException {
 
         String query = "SELECT * FROM usuario where login=" + u.getLogin();
@@ -135,6 +139,7 @@ public class UsuarioDAO {
         }
     }
 
+    @Override
     public void excluirUsuario(Usuario u) throws SQLException { // implementação do método -remove-
         String sql = "update usuario set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -144,6 +149,7 @@ public class UsuarioDAO {
 
     }
 
+    @Override
     public void resetarSenha(Usuario u) throws SQLException {
         String sql = "Update usuario set senha = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -156,6 +162,7 @@ public class UsuarioDAO {
         }
     }
 
+    @Override
     public int selectID(Usuario u) throws SQLException {
         String query = "SELECT id FROM usuario where id=" + u.getId();
         Statement st = conexao.createStatement();
@@ -169,6 +176,7 @@ public class UsuarioDAO {
         return id;
     }
 
+    @Override
     public boolean setAtivo(Usuario u) throws SQLException {
         String query = "SELECT ativo FROM usuario where id=" + u.getId();
         Statement st = conexao.createStatement();
@@ -182,6 +190,7 @@ public class UsuarioDAO {
         return ativo;
     }
 
+    @Override
     public Usuario autenticaUsuario(Usuario u) throws SQLException {
         Usuario usuarioAutenticado = null;
 
