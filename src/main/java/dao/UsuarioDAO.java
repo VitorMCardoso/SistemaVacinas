@@ -25,7 +25,7 @@ import model.Cargo;
  *
  * @author vitor
  */
-public class UsuarioDAO implements IUsuarioDAO{
+public class UsuarioDAO implements IUsuarioDAO {
 
     private Connection conexao;
 
@@ -110,40 +110,43 @@ public class UsuarioDAO implements IUsuarioDAO{
     }
 
     @Override
-    public void buscarUsuario(Usuario u) throws SQLException {
-
-        String query = "SELECT * FROM usuario where login=" + u.getLogin();
+    public Usuario buscarUsuario(int usuarioID) throws SQLException {
+        Usuario usuario = new Usuario();
+        String query = "SELECT * FROM usuario where login=" + usuarioID;
         try {
 
             Statement st = conexao.createStatement();
 
             // execute the query, and get a java resultset
-            ResultSet rs = st.executeQuery(query);
+            ResultSet rsUsuario = st.executeQuery(query);
 
             // iterate through the java resultset
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String nome = rs.getString("nome");
-                String sobrenome = rs.getString("sobrenome");
-                String email = rs.getString("email");
-                int rg = rs.getInt("rg");
-                int cpf = rs.getInt("cpf");
-                String endereco = rs.getString("endereco");
-
-                // print the results
-                out.format("%s, %s, %s, %s, %s, %s, %s\n", id, nome, sobrenome, email, rg, cpf, endereco);
+            while (rsUsuario.next()) {
+                usuario.setId(rsUsuario.getInt("id"));
+                usuario.setNome(rsUsuario.getString("nome"));
+                usuario.setSobrenome(rsUsuario.getString("sobrenome"));
+                usuario.setLogin(rsUsuario.getString("login"));
+                usuario.setEmail(rsUsuario.getString("email"));
+                usuario.setSenha(rsUsuario.getString("senha"));
+                usuario.setCargo(Cargo.valueOf(rsUsuario.getString("cargo")));
+                usuario.setRg(rsUsuario.getString("rg"));
+                usuario.setCpf(rsUsuario.getString("cpf"));
+                usuario.setEndereco(rsUsuario.getString("endereco"));
+                usuario.setAtivo(rsUsuario.getBoolean("ativo"));
+                usuario.setPerfil(PerfilAcesso.valueOf(rsUsuario.getString("perfil")));
             }
             st.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return usuario;
     }
 
     @Override
-    public void excluirUsuario(Usuario u) throws SQLException { // implementação do método -remove-
+    public void excluirUsuario(int usuarioID) throws SQLException { // implementação do método -remove-
         String sql = "update usuario set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setLong(1, u.getId());
+        stmt.setLong(1, usuarioID);
         stmt.execute();
         stmt.close();
 

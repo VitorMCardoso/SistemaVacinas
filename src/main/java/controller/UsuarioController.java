@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,18 +31,20 @@ public class UsuarioController extends HttpServlet {
 
     private UsuarioDAO dao;
     private Usuario usuario;
+    private static String INSERT_OR_EDIT = "../usuario.jsp";
+    private static String LIST_USER = "../listarUsuario";
 
     public UsuarioController() throws SQLException {
         this.dao = new UsuarioDAO();
     }
-    
+
     public boolean inserirUsuario(Usuario u) throws SQLException {
 
         final JPanel panel = new JPanel();
         if (u.getNome() != null && u.getSobrenome() != null && u.getLogin() != null
                 && u.getEmail() != null && u.getSenha() != null
                 && u.getCargo() != null && u.getRg() != null && u.getCpf() != null
-                && u.getEndereco() != null && u.getPerfil() != null ) {
+                && u.getEndereco() != null && u.getPerfil() != null) {
             u.setNome(u.getNome());
             u.setSobrenome(u.getSobrenome());
             u.setLogin(u.getLogin());
@@ -80,12 +84,12 @@ public class UsuarioController extends HttpServlet {
         return true;
     }
 
-    public boolean excluirUsuario(Usuario u) throws SQLException {
+    /*public boolean excluirUsuario(Usuario u, int usuarioID) throws SQLException {
 
         final JPanel panel = new JPanel();
         if (u.getId() == dao.selectID(u) && u.isAtivo() != dao.setAtivo(u)) {
             u.setId(u.getId());
-            dao.excluirUsuario(u);
+            dao.excluirUsuario(usuarioID);
             JOptionPane.showMessageDialog(panel, "Paciente Apagado", "Warning", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(panel, "ID não achado", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -140,11 +144,11 @@ public class UsuarioController extends HttpServlet {
                 usuario.setEmail(request.getParameter("txtEmail"));
                 usuario.setSenha(request.getParameter("txtSenha"));
                 String cargo = request.getParameter("optCargo");
-                if(cargo.equalsIgnoreCase("gerente")){
+                if (cargo.equalsIgnoreCase("gerente")) {
                     usuario.setCargo(Cargo.GERENTE);
-                } else if(cargo.equalsIgnoreCase("secretaria")){
+                } else if (cargo.equalsIgnoreCase("secretaria")) {
                     usuario.setCargo(Cargo.SECRETARIA);
-                }else{
+                } else {
                     usuario.setCargo(Cargo.ESTOQUISTA);
                 }
                 usuario.setRg((request.getParameter("txtRg")));
@@ -162,12 +166,12 @@ public class UsuarioController extends HttpServlet {
                 RequestDispatcher rd;
                 rd = request.getRequestDispatcher("../admin/cadastro_usuario.jsp");
                 rd.forward(request, response);
-            }else if(acao.equals("Listar")){
+            } else if (acao.equals("Listar")) {
                 RequestDispatcher view = request.getRequestDispatcher("");
                 request.setAttribute("usuarios", dao.listar());
                 view.forward(request, response);
-            }else{
-                
+            } else {
+
             }
         } catch (Exception erro) {
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
@@ -189,6 +193,40 @@ public class UsuarioController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String forward = "";
+        String action = request.getParameter("action");
+
+        if (action.equalsIgnoreCase("delete")) {
+            try {
+                int usuarioID = Integer.parseInt(request.getParameter("id"));
+                dao.excluirUsuario(usuarioID);
+                forward = LIST_USER;
+                request.setAttribute("usuarios", dao.listar());
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (action.equalsIgnoreCase("edit")) {
+            forward = INSERT_OR_EDIT;
+            int usuarioID = Integer.parseInt(request.getParameter("id"));
+            try {
+                request.setAttribute("user", dao.buscarUsuario(usuarioID));
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (action.equalsIgnoreCase("listUser")) {
+            forward = LIST_USER;
+            try {
+                request.setAttribute("users", dao.listar());
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        RequestDispatcher view = request.getRequestDispatcher(forward);
+        view.forward(request, response);
     }
 
     /**
@@ -203,6 +241,53 @@ public class UsuarioController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        usuario = new Usuario();
+        usuario.setNome(request.getParameter("txtNome"));
+        usuario.setSobrenome(request.getParameter("txtNome"));
+        usuario.setLogin(request.getParameter("txtLogin"));
+        usuario.setEmail(request.getParameter("txtEmail"));
+        usuario.setSenha(request.getParameter("txtSenha"));
+        String cargo = request.getParameter("optCargo");
+        if (cargo.equalsIgnoreCase("gerente")) {
+            usuario.setCargo(Cargo.GERENTE);
+        } else if (cargo.equalsIgnoreCase("secretaria")) {
+            usuario.setCargo(Cargo.SECRETARIA);
+        } else {
+            usuario.setCargo(Cargo.ESTOQUISTA);
+        }
+        usuario.setRg((request.getParameter("txtRg")));
+        usuario.setCpf((request.getParameter("txtCpf")));
+        usuario.setEndereco((request.getParameter("txtEndereco")));
+        String perfil = request.getParameter("optPerfil");
+        if (perfil.equalsIgnoreCase("administrador")) {
+            usuario.setPerfil(PerfilAcesso.ADMINISTRADOR);
+        } else {
+            usuario.setPerfil(PerfilAcesso.COMUM);
+        }
+        String userID = request.getParameter("id");
+        if (userID == null || userID.isEmpty()) {
+            try {
+                inserirUsuario(usuario);
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            usuario.setId(Integer.parseInt(userID));
+            try {
+                dao.atualizarUsuario(usuario);
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        RequestDispatcher view = request.getRequestDispatcher(LIST_USER);
+        try {
+            request.setAttribute("usuarios", dao.listar());
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        view.forward(request, response);
     }
 
     /**

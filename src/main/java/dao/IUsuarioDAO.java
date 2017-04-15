@@ -21,9 +21,9 @@ public interface IUsuarioDAO {
 
     public List<Usuario> listar() throws SQLException, ClassNotFoundException;
 
-    public void buscarUsuario(Usuario u) throws SQLException;
+    public Usuario buscarUsuario(int usuarioID) throws SQLException;
 
-    public void excluirUsuario(Usuario u) throws SQLException;
+    public void excluirUsuario(int usuarioID) throws SQLException;
 
     public void resetarSenha(Usuario u) throws SQLException;
 
