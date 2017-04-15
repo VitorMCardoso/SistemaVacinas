@@ -13,7 +13,7 @@ import model.Usuario;
  *
  * @author vitor
  */
-public interface UserDAO {
+public interface IUsuarioDAO {
 
     public void cadastrarNovoUsuario(Usuario u) throws SQLException;
 

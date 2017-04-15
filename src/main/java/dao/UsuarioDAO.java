@@ -25,7 +25,7 @@ import model.Cargo;
  *
  * @author vitor
  */
-public class UsuarioDAO implements UserDAO{
+public class UsuarioDAO implements IUsuarioDAO{
 
     private Connection conexao;
 
