@@ -25,7 +25,7 @@ public class PacientesController extends HttpServlet {
 
     private PacientesDAO dao;
 
-    public PacientesController() throws SQLException {
+    public PacientesController() throws SQLException, IOException {
         this.dao = new PacientesDAO();
     }
 

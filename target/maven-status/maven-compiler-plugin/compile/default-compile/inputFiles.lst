@@ -1,4 +1,5 @@
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/model/Cargo.java
+/home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/dao/IUsuarioDAO.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/model/Agendamento.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/controller/AcessoController.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/dao/VacinasDAO.java

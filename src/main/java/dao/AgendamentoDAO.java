@@ -6,6 +6,7 @@
 package dao;
 
 import conexaoBanco.ConectaBancoDeDados;
+import java.io.IOException;
 import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +27,7 @@ public class AgendamentoDAO {
 
     private Connection conexao;
 
-    public AgendamentoDAO() throws SQLException {
+    public AgendamentoDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
 

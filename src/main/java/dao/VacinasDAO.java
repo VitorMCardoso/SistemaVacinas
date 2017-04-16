@@ -6,6 +6,7 @@
 package dao;
 
 import conexaoBanco.ConectaBancoDeDados;
+import java.io.IOException;
 import static java.lang.System.out;
 import java.sql.Connection;
 import java.util.Date;
@@ -28,7 +29,7 @@ public class VacinasDAO {
 
     private Connection conexao;
 
-    public VacinasDAO() throws SQLException {
+    public VacinasDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
 

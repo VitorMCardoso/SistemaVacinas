@@ -5,10 +5,13 @@
  */
 package conexaoBanco;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  *
@@ -19,26 +22,41 @@ public class ConectaBancoDeDados {
     //Início da classe de conexão//
     public static String status = "Não conectou...";
 
+
 //Método Construtor da Classe//
     public ConectaBancoDeDados() {
 
     }
 
 //Método de Conexão//
-    public static java.sql.Connection getConexaoMySQL() {
+    public static java.sql.Connection getConexaoMySQL() throws IOException {
 
         Connection connection = null;          //atributo do tipo Connection
         try {
 
+            /*Properties prop = new Properties();
+            InputStream inputStream = ConectaBancoDeDados.class.getClassLoader().getResourceAsStream("db.properties");
+            prop.load(inputStream);
 // Carregando o JDBC Driver padrão
-            String driverName = "com.mysql.jdbc.Driver";
+            String driverName = prop.getProperty("driverName");
             Class.forName(driverName);
 
 // Configurando a nossa conexão com um banco de dados//
-            String serverName = "localhost";    //caminho do servidor do BD
-            String mydatabase = "sgv";       //nome do seu banco de dados
-            String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
-            String username = "root";        //nome de um usuário de seu BD      
+            String serverName = prop.getProperty("serverName");    //caminho do servidor do BD
+            String mydatabase = prop.getProperty("mydatabase");       //nome do seu banco de dados
+            String url = prop.getProperty("url");
+            String username = prop.getProperty("username");        //nome de um usuário de seu BD      
+            String password = prop.getProperty("password"); */     //sua senha de acesso
+            
+// Carregando o JDBC Driver padrão            
+            String driverName = "com.mysql.jdbc.Driver"; 
+            Class.forName(driverName); 
+ 
+// Configurando a nossa conexão com um banco de dados// 
+            String serverName = "localhost";    //caminho do servidor do BD 
+            String mydatabase = "sgv";       //nome do seu banco de dados 
+            String url = "jdbc:mysql://" + serverName + "/" + mydatabase; 
+            String username = "root";        //nome de um usuário de seu BD       
             String password = "root";      //sua senha de acesso
             connection = DriverManager.getConnection(url, username, password);
 
@@ -70,7 +88,7 @@ public class ConectaBancoDeDados {
     }
 
     //Método que fecha sua conexão//
-    public static boolean FecharConexao() {
+    public static boolean FecharConexao() throws IOException {
 
         try {
             ConectaBancoDeDados.getConexaoMySQL().close();
@@ -82,7 +100,7 @@ public class ConectaBancoDeDados {
     }
 
     //Método que reinicia sua conexão//
-    public static java.sql.Connection ReiniciarConexao() {
+    public static java.sql.Connection ReiniciarConexao() throws IOException {
 
         FecharConexao();
         return ConectaBancoDeDados.getConexaoMySQL();

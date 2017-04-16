@@ -6,6 +6,7 @@
 package dao;
 
 import conexaoBanco.ConectaBancoDeDados;
+import java.io.IOException;
 import model.Cargo;
 import model.Paciente;
 import model.Cargo;
@@ -29,7 +30,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     private Connection conexao;
 
-    public UsuarioDAO() throws SQLException {
+    public UsuarioDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
 

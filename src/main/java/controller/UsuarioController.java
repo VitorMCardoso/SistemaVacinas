@@ -34,7 +34,7 @@ public class UsuarioController extends HttpServlet {
     private static String INSERT_OR_EDIT = "../usuario.jsp";
     private static String LIST_USER = "../listarUsuario";
 
-    public UsuarioController() throws SQLException {
+    public UsuarioController() throws SQLException, IOException {
         this.dao = new UsuarioDAO();
     }
 

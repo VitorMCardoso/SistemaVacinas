@@ -1,4 +1,5 @@
 model/Usuario.class
+dao/IUsuarioDAO.class
 model/PerfilAcesso.class
 model/Agendamento.class
 model/Cargo.class
