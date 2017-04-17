@@ -14,6 +14,7 @@ public class Paciente {
     private int id;
     private String nome;
     private String sobrenome;
+    private String login;
     private String email;
     private String senha;
     private String rg;
@@ -61,6 +62,14 @@ public class Paciente {
 
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getEmail() {

@@ -97,20 +97,25 @@ public class PacientesController extends HttpServlet {
     public boolean inserirPaciente(Paciente p) throws SQLException {
 
         final JPanel panel = new JPanel();
-        if (p.getNome() != null && p.getSobrenome() != null && p.getRg() != null && p.getCpf() != null
-                && p.getEndereco() != null && p.getEmail() != null) {
+        if (p.getNome() != null && p.getSobrenome() != null && p.getLogin() != null
+                && p.getEmail() != null && p.getSenha()
+                != null && p.getRg() != null && p.getCpf() != null
+                && p.getEndereco() != null && p.getPerfil() != null) {
             p.setNome(p.getNome());
             p.setSobrenome(p.getSobrenome());
+            p.setLogin(p.getLogin());
+            p.setEmail(p.getEmail());
+            p.setSenha(p.getSenha());
             p.setRg(p.getRg());
             p.setCpf(p.getCpf());
             p.setEndereco(p.getEndereco());
-            p.setEmail(p.getEmail());
+            p.setPerfil(p.getPerfil());
             dao.cadastrarNovoPaciente(p);
-            JOptionPane.showMessageDialog(panel, "Paciente Cadastrado", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(panel, "Usuario Cadastrado", "Warning", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(panel, "Inserção Incorreta de Dados", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-        
+        //('Vitor','d','d','f',1,2,'r',true,true);
         return true;
     }
 
@@ -135,7 +140,7 @@ public class PacientesController extends HttpServlet {
         return true;
     }
 
-    public boolean excluirPaciente(Paciente p) throws SQLException {
+    /*public boolean excluirPaciente(Paciente p) throws SQLException {
 
         final JPanel panel = new JPanel();
         if (p.getId() == dao.selectID(p) && p.isAtivo() != dao.setAtivo(p)) {
@@ -172,5 +177,5 @@ public class PacientesController extends HttpServlet {
         }
 
         return true;
-    }
+    }*/
 }

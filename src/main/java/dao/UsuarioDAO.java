@@ -29,6 +29,7 @@ import model.Cargo;
 public class UsuarioDAO implements IUsuarioDAO {
 
     private Connection conexao;
+    Usuario usuario = new Usuario();
 
     public UsuarioDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
@@ -112,7 +113,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public Usuario buscarUsuario(int usuarioID) throws SQLException {
-        Usuario usuario = new Usuario();
+        
         String query = "SELECT * FROM usuario where login=" + usuarioID;
         try {
 
