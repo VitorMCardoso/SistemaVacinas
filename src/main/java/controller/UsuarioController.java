@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -31,8 +32,6 @@ public class UsuarioController extends HttpServlet {
 
     private UsuarioDAO dao;
     private Usuario usuario;
-    private static String INSERT_OR_EDIT = "../usuario.jsp";
-    private static String LIST_USER = "../listarUsuario";
 
     public UsuarioController() throws SQLException, IOException {
         this.dao = new UsuarioDAO();
@@ -82,6 +81,14 @@ public class UsuarioController extends HttpServlet {
         }
 
         return true;
+    }
+    
+    public void listarUsuariio(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException, ClassNotFoundException {
+        List<Usuario> listUsuario = dao.listar();
+        request.setAttribute("listarUsuario", listUsuario);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listarUsuario.jsp");
+        dispatcher.forward(request, response);
     }
 
     /*public boolean excluirUsuario(Usuario u, int usuarioID) throws SQLException {
@@ -134,7 +141,7 @@ public class UsuarioController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
+        /*try {
             String acao = request.getParameter("acao");
             if (acao.equals("Cadastrar")) {
                 usuario = new Usuario();
@@ -167,7 +174,7 @@ public class UsuarioController extends HttpServlet {
                 rd = request.getRequestDispatcher("../admin/cadastro_usuario.jsp");
                 rd.forward(request, response);
             } else if (acao.equals("Listar")) {
-                RequestDispatcher view = request.getRequestDispatcher("");
+                RequestDispatcher view = request.getRequestDispatcher("listarUsuario.jsp");
                 request.setAttribute("usuarios", dao.listar());
                 view.forward(request, response);
             } else {
@@ -177,7 +184,7 @@ public class UsuarioController extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/erro.jsp");
             request.setAttribute("erro", erro);
             rd.forward(request, response);
-        }
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -193,7 +200,7 @@ public class UsuarioController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String forward = "";
+       /* String forward = "";
         String action = request.getParameter("action");
 
         if (action.equalsIgnoreCase("delete")) {
@@ -226,7 +233,22 @@ public class UsuarioController extends HttpServlet {
             }
         }
         RequestDispatcher view = request.getRequestDispatcher(forward);
-        view.forward(request, response);
+        view.forward(request, response);*/
+       String action = request.getServletPath();
+       try{
+           switch(action){
+               case "/new":
+                   //inserirUsuario(request,response);
+                   break;
+               default:
+                   listarUsuariio(request,response);
+                   break;
+           }
+       }catch(SQLException ex){
+           throw new ServletException(ex);
+       } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -241,7 +263,7 @@ public class UsuarioController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        usuario = new Usuario();
+        /*usuario = new Usuario();
         usuario.setNome(request.getParameter("txtNome"));
         usuario.setSobrenome(request.getParameter("txtNome"));
         usuario.setLogin(request.getParameter("txtLogin"));
@@ -287,7 +309,7 @@ public class UsuarioController extends HttpServlet {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        view.forward(request, response);
+        view.forward(request, response);*/
     }
 
     /**

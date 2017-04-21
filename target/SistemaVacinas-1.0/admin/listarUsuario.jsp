@@ -15,28 +15,36 @@
         <title>Show All Users</title>
     </head>
     <body>
-
+        <center>
+                    
+                    <h3>
+                            <a href="/new">Adicionar Novo Usuario</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="list">List All Usuario</a>
+                             
+                        </h3>
+                </center>
         <table border=1>
-            <thead>
+
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Login</th>
+                <th>Email</th>
+                <th>Cargo</th>
+                <th>RG</th>
+                <th>CPF</th>
+                <th>Endereço</th>
+                <th>Ativo</th>
+                <th>Perfil</th>
+                <th colspan=2>Açao</th>
+            </tr>
+
+
+            <c:forEach var="usuario" items="${listarUsuario}" >
                 <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Sobrenome</th>
-                    <th>Login</th>
-                    <th>Email</th>
-                    <th>Cargo</th>
-                    <th>RG</th>
-                    <th>CPF</th>
-                    <th>Endereço</th>
-                    <th>Ativo</th>
-                    <th>Perfil</th>
-                    <th colspan=2>Açao</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${usuarios}" var="usuario">
-                    <tr>
-                <a href="UsuarioController?action=Listar">
+
                     <td><c:out value="${usuario.id}" /></td>
                     <td><c:out value="${usuario.nome}" /></td>
                     <td><c:out value="${usuario.sobrenome}" /></td>
@@ -50,12 +58,12 @@
                     <td><c:out value="${usuario.perfil}" /></td>
                     <td><a href="UsuarioController?action=edit&userId=<c:out value="${usuario.id}"/>">Update</a></td>
                     <td><a href="UsuarioController?action=delete&userId=<c:out value="${usuario.id}"/>">Delete</a></td>
-                </a>
-            </tr>
-        </c:forEach>
-    </tbody>
-</table>
-<p><a href="cadastro_usuario.jsp">Add User</a></p>
 
-</body>
+                </tr>
+            </c:forEach>
+
+        </table>
+        <p><a href="cadastro_usuario.jsp">Add User</a></p>
+
+    </body>
 </html>
