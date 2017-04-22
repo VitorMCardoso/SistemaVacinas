@@ -56,14 +56,14 @@
                     <td><c:out value="${usuario.endereco}" /></td>
                     <td><c:out value="${usuario.ativo}" /></td>
                     <td><c:out value="${usuario.perfil}" /></td>
-                    <td><a href="UsuarioController?action=edit&userId=<c:out value="${usuario.id}"/>">Update</a></td>
+                    <td><a href="edit?id=<c:out value="${usuario.id}"/>">Update</a></td>
                     <td><a href="delete?id=<c:out value='${usuario.id}'/>">Delete</a></td>
 
                 </tr>
             </c:forEach>
 
         </table>
-        <p><a href="cadastro_usuario.jsp">Add User</a></p>
+        <p><a href="new">Add User</a></p>
 
     </body>
 </html>

@@ -61,18 +61,23 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public void atualizarUsuario(Usuario u) throws SQLException {
-        String sql = "Update usuario set nome = ? , sobrenome = ?, email = ?, rg=?, cpf=?, endereco = ? where id=?";
+        String sql = "Update usuario set nome = ? , sobrenome = ?, login = ?, email = ?, "
+                + "senha = ?, cargo = ?, rg = ?, cpf = ?, endereco = ?, perfil = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setString(1, u.getNome());
             stmt.setString(2, u.getSobrenome());
-            stmt.setString(3, u.getEmail());
-            stmt.setString(4, u.getRg());
-            stmt.setString(5, u.getCpf());
-            stmt.setString(6, u.getEndereco());
-            stmt.setInt(7, u.getId());
+            stmt.setString(3, u.getLogin());
+            stmt.setString(4, u.getEmail());
+            stmt.setString(5, u.getSenha());
+            stmt.setString(6, u.getCargo().toString());
+            stmt.setString(7, u.getRg());
+            stmt.setString(8, u.getCpf());
+            stmt.setString(9, u.getEndereco());
+            stmt.setString(10, u.getPerfil().toString());
+            stmt.setInt(11, u.getId());
             // executa o código sql
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
         }
     }
@@ -113,7 +118,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public Usuario buscarUsuario(int usuarioID) throws SQLException {
-        
+        Usuario usuario = new Usuario();
         String query = "SELECT * FROM usuario where login=" + usuarioID;
         try {
 
@@ -123,7 +128,8 @@ public class UsuarioDAO implements IUsuarioDAO {
             ResultSet rsUsuario = st.executeQuery(query);
 
             // iterate through the java resultset
-            while (rsUsuario.next()) {
+            if (rsUsuario.next()) {
+
                 usuario.setId(rsUsuario.getInt("id"));
                 usuario.setNome(rsUsuario.getString("nome"));
                 usuario.setSobrenome(rsUsuario.getString("sobrenome"));

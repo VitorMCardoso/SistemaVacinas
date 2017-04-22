@@ -41,8 +41,13 @@
                         </h2>
                     </caption>
                     <c:if test="${usuario != null}">
-                        <input type="hidden" name="id" value="<c:out value='${usuario.id}' />" />
-                    </c:if>            
+                    <tr>
+                        <th>Id:</th>
+                        <td>
+                            <input type="text" name="id" value="<c:out value='${usuario.id}' />" />
+                        </td>    
+                    </tr>
+                    </c:if>
                     <tr>
                         <th>Nome: </th>
                         <td>
