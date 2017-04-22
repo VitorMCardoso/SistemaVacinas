@@ -37,7 +37,7 @@ public class UsuarioController extends HttpServlet {
         this.dao = new UsuarioDAO();
     }
 
-    public boolean inserirUsuario(Usuario u) throws SQLException {
+    /* public boolean inserirUsuario(Usuario u) throws SQLException {
 
         final JPanel panel = new JPanel();
         if (u.getNome() != null && u.getSobrenome() != null && u.getLogin() != null
@@ -61,6 +61,34 @@ public class UsuarioController extends HttpServlet {
         }
         //('Vitor','d','d','f',1,2,'r',true,true);
         return true;
+    }*/
+    public void inserirUsuario(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        usuario = new Usuario();
+        usuario.setNome(request.getParameter("nome"));
+        usuario.setSobrenome(request.getParameter("sobrenome"));
+        usuario.setLogin(request.getParameter("login"));
+        usuario.setEmail(request.getParameter("email"));
+        usuario.setSenha(request.getParameter("senha"));
+        String cargo = request.getParameter("optCargo");
+        if (cargo.equalsIgnoreCase("gerente")) {
+            usuario.setCargo(Cargo.GERENTE);
+        } else if (cargo.equalsIgnoreCase("secretaria")) {
+            usuario.setCargo(Cargo.SECRETARIA);
+        } else {
+            usuario.setCargo(Cargo.ESTOQUISTA);
+        }
+        usuario.setRg((request.getParameter("rg")));
+        usuario.setCpf((request.getParameter("cpf")));
+        usuario.setEndereco((request.getParameter("endereco")));
+        String perfil = request.getParameter("optPerfil");
+        if (perfil.equalsIgnoreCase("administrador")) {
+            usuario.setPerfil(PerfilAcesso.ADMINISTRADOR);
+        } else {
+            usuario.setPerfil(PerfilAcesso.COMUM);
+        }
+        dao.cadastrarNovoUsuario(usuario);
+        response.sendRedirect("list");
     }
 
     public boolean atualizarUsuario(Usuario u) throws SQLException {
@@ -82,13 +110,28 @@ public class UsuarioController extends HttpServlet {
 
         return true;
     }
-    
-    public void listarUsuariio(HttpServletRequest request, HttpServletResponse response)
+
+    public void listarUsuario(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Usuario> listUsuario = dao.listar();
         request.setAttribute("listarUsuario", listUsuario);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("listarUsuario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/listarUsuario.jsp");
         dispatcher.forward(request, response);
+    }
+
+    public void showNewForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/usuarioForm.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    public void deletarUsuario(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        dao.excluirUsuario(id);
+        response.sendRedirect("list");
+
     }
 
     /*public boolean excluirUsuario(Usuario u, int usuarioID) throws SQLException {
@@ -116,7 +159,7 @@ public class UsuarioController extends HttpServlet {
         return true;
     }
 
-    /*public boolean resetarSenha(Paciente p) throws SQLException {
+    public boolean resetarSenha(Paciente p) throws SQLException {
 
         final JPanel panel = new JPanel();
         if (p.getId() == dao.selectID(p) && p.isAtivo() != dao.setAtivo(p)) {
@@ -200,53 +243,31 @@ public class UsuarioController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-       /* String forward = "";
-        String action = request.getParameter("action");
-
-        if (action.equalsIgnoreCase("delete")) {
-            try {
-                int usuarioID = Integer.parseInt(request.getParameter("id"));
-                dao.excluirUsuario(usuarioID);
-                forward = LIST_USER;
-                request.setAttribute("usuarios", dao.listar());
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        String action = request.getServletPath();
+        try {
+            switch (action) {
+                case "/new":
+                    showNewForm(request, response);
+                    break;
+                case "/insert":
+                    inserirUsuario(request, response);
+                    break;
+                case "/delete":
+                    deletarUsuario(request, response);
+                    break;
+                case "/edit":
+                    //showEditForm(request, response);
+                    break;
+                case "/update":
+                    //updateBook(request, response);
+                    break;
+                default:
+                    listarUsuario(request, response);
+                    break;
             }
-        } else if (action.equalsIgnoreCase("edit")) {
-            forward = INSERT_OR_EDIT;
-            int usuarioID = Integer.parseInt(request.getParameter("id"));
-            try {
-                request.setAttribute("user", dao.buscarUsuario(usuarioID));
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else if (action.equalsIgnoreCase("listUser")) {
-            forward = LIST_USER;
-            try {
-                request.setAttribute("users", dao.listar());
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        RequestDispatcher view = request.getRequestDispatcher(forward);
-        view.forward(request, response);*/
-       String action = request.getServletPath();
-       try{
-           switch(action){
-               case "/new":
-                   //inserirUsuario(request,response);
-                   break;
-               default:
-                   listarUsuariio(request,response);
-                   break;
-           }
-       }catch(SQLException ex){
-           throw new ServletException(ex);
-       } catch (ClassNotFoundException ex) {
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -263,53 +284,7 @@ public class UsuarioController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        /*usuario = new Usuario();
-        usuario.setNome(request.getParameter("txtNome"));
-        usuario.setSobrenome(request.getParameter("txtNome"));
-        usuario.setLogin(request.getParameter("txtLogin"));
-        usuario.setEmail(request.getParameter("txtEmail"));
-        usuario.setSenha(request.getParameter("txtSenha"));
-        String cargo = request.getParameter("optCargo");
-        if (cargo.equalsIgnoreCase("gerente")) {
-            usuario.setCargo(Cargo.GERENTE);
-        } else if (cargo.equalsIgnoreCase("secretaria")) {
-            usuario.setCargo(Cargo.SECRETARIA);
-        } else {
-            usuario.setCargo(Cargo.ESTOQUISTA);
-        }
-        usuario.setRg((request.getParameter("txtRg")));
-        usuario.setCpf((request.getParameter("txtCpf")));
-        usuario.setEndereco((request.getParameter("txtEndereco")));
-        String perfil = request.getParameter("optPerfil");
-        if (perfil.equalsIgnoreCase("administrador")) {
-            usuario.setPerfil(PerfilAcesso.ADMINISTRADOR);
-        } else {
-            usuario.setPerfil(PerfilAcesso.COMUM);
-        }
-        String userID = request.getParameter("id");
-        if (userID == null || userID.isEmpty()) {
-            try {
-                inserirUsuario(usuario);
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            usuario.setId(Integer.parseInt(userID));
-            try {
-                dao.atualizarUsuario(usuario);
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        RequestDispatcher view = request.getRequestDispatcher(LIST_USER);
-        try {
-            request.setAttribute("usuarios", dao.listar());
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        view.forward(request, response);*/
+        doGet(request, response);
     }
 
     /**

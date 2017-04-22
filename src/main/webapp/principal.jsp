@@ -21,8 +21,8 @@
         <h1>Bem Vindo, <%= usuario.getNome()%> !</h1>
        
         <%}%>
-        <a href="admin/cadastro_usuario.jsp">Area Restrita</a><br/>
-        <a href="admin/listarUsuario">Listar Usuarios</a><br/>
+        <a href="new">Area Restrita</a><br/>
+        <a href="list">Listar Usuarios</a><br/>
         <a href="AcessoController?acao=Sair">Logout</a>
     </body>
 </html>

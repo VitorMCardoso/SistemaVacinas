@@ -18,7 +18,7 @@
         <center>
                     
                     <h3>
-                            <a href="/new">Adicionar Novo Usuario</a>
+                            <a href="new">Adicionar Novo Usuario</a>
                             &nbsp;&nbsp;&nbsp;
                             <a href="list">List All Usuario</a>
                              
@@ -57,7 +57,7 @@
                     <td><c:out value="${usuario.ativo}" /></td>
                     <td><c:out value="${usuario.perfil}" /></td>
                     <td><a href="UsuarioController?action=edit&userId=<c:out value="${usuario.id}"/>">Update</a></td>
-                    <td><a href="UsuarioController?action=delete&userId=<c:out value="${usuario.id}"/>">Delete</a></td>
+                    <td><a href="delete?id=<c:out value='${usuario.id}'/>">Delete</a></td>
 
                 </tr>
             </c:forEach>
