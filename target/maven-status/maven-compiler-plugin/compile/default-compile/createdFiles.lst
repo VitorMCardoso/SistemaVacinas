@@ -13,6 +13,7 @@ conexaoBanco/ConectaBancoDeDados.class
 controller/PacientesController.class
 controller/AcessoController.class
 autorizacaoAcesso/AcessoAdministrativo.class
+controller/ControllerServlet.class
 autorizacaoAcesso/AcessoLogado.class
 controller/UsuarioController.class
 model/Vacinas.class

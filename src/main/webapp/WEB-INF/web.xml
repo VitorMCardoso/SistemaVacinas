@@ -16,30 +16,24 @@
         <filter-name>AcessoLogado</filter-name>
         <url-pattern>/principal.jsp</url-pattern>
     </filter-mapping>
-    <servlet>
-        <servlet-name>UsuarioController</servlet-name>
-        <servlet-class>controller.UsuarioController</servlet-class>
-    </servlet>
+    
     <servlet>
         <servlet-name>AcessoController</servlet-name>
         <servlet-class>controller.AcessoController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>PacientesController</servlet-name>
-        <servlet-class>controller.PacientesController</servlet-class>
+        <servlet-name>ControllerServlet</servlet-name>
+        <servlet-class>controller.ControllerServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>UsuarioController</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AcessoController</servlet-name>
         <url-pattern>/AcessoController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PacientesController</servlet-name>
-        <url-pattern>/PacientesController</url-pattern>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

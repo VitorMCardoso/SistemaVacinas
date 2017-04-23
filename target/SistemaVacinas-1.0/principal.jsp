@@ -22,7 +22,7 @@
        
         <%}%>
         <a href="new">Area Restrita - Cadastro de Usuario</a><br/>
-        <a href="list">Listar Usuarios</a><br/>
-        <a href="AcessoController?acao=Sair">Logout</a>
+        <a href="list">Manter Usuarios</a><br/>
+        <a href="listPaciente">Manter Paciente</a>
     </body>
 </html>

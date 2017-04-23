@@ -52,7 +52,6 @@
                     <td><c:out value="${paciente.cpf}" /></td>
                     <td><c:out value="${paciente.endereco}" /></td>
                     <td><c:out value="${paciente.ativo}" /></td>
-                    <td><c:out value="${paciente.perfil}" /></td>
                     <td><a href="editPaciente?id=<c:out value="${paciente.id}"/>">Update</a></td>
                     <td><a href="deletePaciente?id=<c:out value='${paciente.id}'/>">Delete</a></td>
 
