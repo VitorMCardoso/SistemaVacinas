@@ -21,8 +21,10 @@
         <h1>Bem Vindo, <%= usuario.getNome()%> !</h1>
        
         <%}%>
-        <a href="new">Area Restrita - Cadastro de Usuario</a><br/>
+        <a href="new">Cadastro de Usuario</a><br/>
         <a href="list">Manter Usuarios</a><br/>
+        
+        <a href="newPaciente">Cadastro de Paciente</a><br/>
         <a href="listPaciente">Manter Paciente</a>
     </body>
 </html>

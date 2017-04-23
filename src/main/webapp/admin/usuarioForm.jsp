@@ -44,7 +44,7 @@
                     <tr>
                         <th>Id:</th>
                         <td>
-                            <input type="text" name="id" value="<c:out value='${usuario.id}' />" />
+                            <input type="text" name="id" value="<c:out value='${usuario.id}' />"/>
                         </td>    
                     </tr>
                     </c:if>

@@ -118,8 +118,8 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public Usuario buscarUsuario(int usuarioID) throws SQLException {
-        Usuario usuario = new Usuario();
-        String query = "SELECT * FROM usuario where login=" + usuarioID;
+       
+        String query = "SELECT * FROM usuario where id=" + usuarioID;
         try {
 
             Statement st = conexao.createStatement();

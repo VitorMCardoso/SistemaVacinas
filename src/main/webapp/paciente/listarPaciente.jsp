@@ -59,7 +59,7 @@
             </c:forEach>
 
         </table>
-        <p><a href="new">Add Paciente</a></p>
+        <p><a href="newPaciente">Add Paciente</a></p>
 
     </body>
 </html>

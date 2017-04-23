@@ -45,6 +45,7 @@ public class ControllerServlet extends HttpServlet {
         String action = request.getServletPath();
         try {
             switch (action) {
+                // Usuario Controller
                 case "/new":
                     controllerUsuario.showNewForm(request, response);
                     break;
@@ -60,8 +61,24 @@ public class ControllerServlet extends HttpServlet {
                 case "/update":
                     controllerUsuario.updateUsuario(request, response);
                     break;
+                // Paciente Controller
+                case "/newPaciente":
+                    controllerPaciente.showNewForm(request, response);
+                    break;
+                case "/insertPaciente":
+                    controllerPaciente.inserirPaciente(request, response);
+                    break;
+                case "/deletePaciente":
+                    controllerPaciente.deletarPaciente(request, response);
+                    break;
+                case "/editPaciente":
+                    controllerPaciente.editPacienteForm(request, response);
+                    break;
                 case "/listPaciente":
                     controllerPaciente.listarPaciente(request, response);
+                    break;
+                case "/updatePaciente":
+                    controllerPaciente.updatePaciente(request, response);
                     break;
                 default:
                     controllerUsuario.listarUsuario(request, response);
