@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,12 @@ public class ControllerServlet extends HttpServlet {
     public ControllerServlet() throws SQLException, IOException {
         this.controllerUsuario = new UsuarioController();
         this.controllerPaciente = new PacientesController();
+    }
+    
+    public void showPrincipalForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/principal.jsp");
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,6 +68,9 @@ public class ControllerServlet extends HttpServlet {
                 case "/update":
                     controllerUsuario.updateUsuario(request, response);
                     break;
+                case "/list":
+                    controllerUsuario.listarUsuario(request, response);
+                    break;
                 // Paciente Controller
                 case "/newPaciente":
                     controllerPaciente.showNewForm(request, response);
@@ -81,7 +91,7 @@ public class ControllerServlet extends HttpServlet {
                     controllerPaciente.updatePaciente(request, response);
                     break;
                 default:
-                    controllerUsuario.listarUsuario(request, response);
+                    showPrincipalForm(request, response);
                     break;
             }
         } catch (SQLException ex) {

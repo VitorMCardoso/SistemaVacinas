@@ -10,21 +10,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Página Principal</title>
-    </head>
-    <body>
         <%
             Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
 
             if (usuario != null) {
         %>
-        <h1>Bem Vindo, <%= usuario.getNome()%> !</h1>
+        <title>Bem Vindo, <%= usuario.getNome()%> !</title>
+    </head>
+    <body>
+        
+        <div align="center">
+        <h1>Menu de Opçoes</h1>
        
         <%}%>
-        <a href="new">Cadastro de Usuario</a><br/>
-        <a href="list">Manter Usuarios</a><br/>
+        <p><a href="new"><button>Cadastro de Usuario</button></a></p>
+        <p><a href="list"><button>Manter Usuarios</button></a></p>
         
-        <a href="newPaciente">Cadastro de Paciente</a><br/>
-        <a href="listPaciente">Manter Paciente</a>
+        <p><a href="newPaciente"><button>Cadastro de Paciente</button></a></p>
+        <p><a href="listPaciente"><button>Manter Paciente</button></a></p>
+        </div>
     </body>
 </html>

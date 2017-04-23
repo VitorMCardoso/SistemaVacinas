@@ -14,13 +14,7 @@
     </head>
     <body>
     <center>
-        <h1>Gerenciamento de Usuario</h1>
-        <h2>
-            <a href="new">Adicionar Novo Usario</a>
-            &nbsp;&nbsp;&nbsp;
-            <a href="list">List All Usuario</a>
-
-        </h2>
+        <h2>Gerenciamento de Usuarios</h2>
     </center>
     <div align="center">
         <c:if test="${usuario != null}">
@@ -41,12 +35,12 @@
                         </h2>
                     </caption>
                     <c:if test="${usuario != null}">
-                    <tr>
-                        <th>Id:</th>
-                        <td>
-                            <input type="text" name="id" value="<c:out value='${usuario.id}' />"/>
-                        </td>    
-                    </tr>
+                        <tr>
+                            <th>Id:</th>
+                            <td>
+                                <input type="text" name="id" value="<c:out value='${usuario.id}' />"/>
+                            </td>    
+                        </tr>
                     </c:if>
                     <tr>
                         <th>Nome: </th>
@@ -137,10 +131,13 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
-                            <input type="submit" value="Save" />
+                            <input type="submit" value="Salvar" />
                         </td>
                     </tr>
-                </table>
+                </table><br>
+                <div>
+                    <a href="list">List All Usuarios</a>
+                </div>
             </form>
     </div>	
 </body>

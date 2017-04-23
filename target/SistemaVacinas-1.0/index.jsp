@@ -12,17 +12,20 @@
         <title>Autenticação</title>
     </head>
     <body>
-        <h1>Autenticação de Usuário!</h1>
-        <%
-            String msg = (String) request.getAttribute("msg");
-            if (msg != null) {
-        %>
-        <font color="red"> <%=msg%></font>
-        <%}%>
-        <form action="AcessoController" method="POST">
-            Login: <input type="text" name="txtLogin"><br/>
-            Senha: <input type="password" name="txtSenha"><br/>
-            <input type="submit" value="Entrar" name="acao">
-        </form>
+        <div align="center">
+            <h2>Autenticação de Usuário!</h2><br>
+            <%
+                String msg = (String) request.getAttribute("msg");
+                if (msg != null) {
+            %>
+            <font color="red"> <%=msg%></font>
+            <%}%>
+            <br>
+            <form action="AcessoController" method="POST">
+                Login: <input type="text" name="txtLogin"><br/>
+                Senha: <input type="password" name="txtSenha"><br/>
+                <input type="submit" value="Entrar" name="acao">
+                </div>
+            </form>
     </body>
 </html>

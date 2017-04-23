@@ -14,13 +14,7 @@
     </head>
     <body>
     <center>
-        <h1>Gerenciamento de Paciente</h1>
-        <h2>
-            <a href="newPaciente">Adicionar Novo Paciente</a>
-            &nbsp;&nbsp;&nbsp;
-            <a href="listPaciente">List All Paciente</a>
-
-        </h2>
+        <h2>Gerenciamento de Paciente</h2>
     </center>
     <div align="center">
         <c:if test="${paciente != null}">
@@ -31,22 +25,22 @@
                 </c:if>
                 <table border="1" cellpadding="5">
                     <caption>
-                        <h2>
+                        
                             <c:if test="${paciente != null}">
-                                Editar Paciente
+                                <h3>Editar Paciente</h3>
                             </c:if>
                             <c:if test="${paciente == null}">
-                                Adicionar Novo Paciente
+                                <h3>Adicionar Novo Paciente</h3>
                             </c:if>
-                        </h2>
+                       
                     </caption>
                     <c:if test="${paciente != null}">
-                    <tr>
-                        <th>Id:</th>
-                        <td>
-                            <input type="text" name="id" value="<c:out value='${paciente.id}' />" />
-                        </td>    
-                    </tr>
+                        <tr>
+                            <th>Id:</th>
+                            <td>
+                                <input type="text" name="id" value="<c:out value='${paciente.id}' />" />
+                            </td>    
+                        </tr>
                     </c:if>
                     <tr>
                         <th>Nome: </th>
@@ -114,10 +108,14 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
-                            <input type="submit" value="Save" />
+                            <input type="submit" value="Salvar" />
                         </td>
                     </tr>
-                </table>
+                </table><br>
+           
+                <div>
+                <a href="listPaciente">List All Paciente</a>
+                </div>
             </form>
     </div>	
 </body>
