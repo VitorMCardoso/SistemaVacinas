@@ -28,6 +28,9 @@
         
         <p><a href="newPaciente"><button>Cadastro de Paciente</button></a></p>
         <p><a href="listPaciente"><button>Manter Paciente</button></a></p>
+        
+        <p><a href="newLaboratorio"><button>Cadastro de Laboratorio</button></a></p>
+        <p><a href="listLaboratorio"><button>Manter Laboratorio</button></a></p>
         </div>
     </body>
 </html>

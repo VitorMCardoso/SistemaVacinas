@@ -74,7 +74,7 @@ public class LaboratorioDAO implements ILaboratorioDAO {
             stmt.setString(10, l.getBairro());
             stmt.setString(11, l.getCidade());
             stmt.setString(12, l.getEstado());
-            stmt.setInt(12, l.getId());
+            stmt.setInt(13, l.getId());
             // executa o código sql
             stmt.executeUpdate();
             stmt.close();

@@ -24,10 +24,12 @@ public class ControllerServlet extends HttpServlet {
 
     private final UsuarioController controllerUsuario;
     private final PacientesController controllerPaciente;
+    private final LaboratorioController controllerLaboratorio;
 
     public ControllerServlet() throws SQLException, IOException {
         this.controllerUsuario = new UsuarioController();
         this.controllerPaciente = new PacientesController();
+        this.controllerLaboratorio = new LaboratorioController();
     }
     
     public void showPrincipalForm(HttpServletRequest request, HttpServletResponse response)
@@ -89,6 +91,25 @@ public class ControllerServlet extends HttpServlet {
                     break;
                 case "/updatePaciente":
                     controllerPaciente.updatePaciente(request, response);
+                    break;
+                // Laboratorio Controller
+                case "/newLaboratorio":
+                    controllerLaboratorio.showNewForm(request, response);
+                    break;
+                case "/insertLaboratorio":
+                    controllerLaboratorio.inserirLaboratorio(request, response);
+                    break;
+                case "/deleteLaboratorio":
+                    controllerLaboratorio.deletarLaboratorio(request, response);
+                    break;
+                case "/editLaboratorio":
+                    controllerLaboratorio.editLaboratorioForm(request, response);
+                    break;
+                case "/listLaboratorio":
+                    controllerLaboratorio.listarLaboratorio(request, response);
+                    break;
+                case "/updateLaboratorio":
+                    controllerLaboratorio.updateLaboratorio(request, response);
                     break;
                 default:
                     showPrincipalForm(request, response);
