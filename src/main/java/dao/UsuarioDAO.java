@@ -7,12 +7,8 @@ package dao;
 
 import conexaoBanco.ConectaBancoDeDados;
 import java.io.IOException;
-import model.Cargo;
-import model.Paciente;
-import model.Cargo;
 import model.PerfilAcesso;
 import model.Usuario;
-import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
