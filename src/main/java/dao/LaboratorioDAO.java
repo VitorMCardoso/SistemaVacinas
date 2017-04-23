@@ -20,11 +20,8 @@ import model.Laboratorio;
  *
  * @author vitor
  */
-<<<<<<< HEAD
+
 public class LaboratorioDAO implements ILaboratorioDAO {
-=======
-public class LaboratorioDAO implements ILaboratorioDAO{
->>>>>>> Programador
 
     private Connection conexao;
     Laboratorio laboratorio = new Laboratorio();
@@ -32,11 +29,7 @@ public class LaboratorioDAO implements ILaboratorioDAO{
     public LaboratorioDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> Programador
     @Override
     public void cadastrarNovoLaboratorio(Laboratorio l) throws SQLException {
         String sql = "Insert Into laboratorio (razaoSocial,cnpj,registroEstadual,nomeFantasia,telefone,site,"
@@ -137,11 +130,7 @@ public class LaboratorioDAO implements ILaboratorioDAO{
 
             // iterate through the java resultset
             if (rs.next()) {
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> Programador
                 laboratorio.setId(rs.getInt("id"));
                 laboratorio.setRazaoSocial(rs.getString("razaoSocial"));
                 laboratorio.setCnpj(rs.getString("cnpj"));
@@ -191,9 +180,4 @@ public class LaboratorioDAO implements ILaboratorioDAO{
         st.close();
         return ativo;
     }
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> Programador
 }
