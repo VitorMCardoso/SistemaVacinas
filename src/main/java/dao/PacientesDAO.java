@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import model.Paciente;
 import model.PerfilAcesso;
@@ -157,7 +158,34 @@ public class PacientesDAO implements IPacientesDAO{
 
     @Override
     public List<Paciente> listar() throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Paciente> pacientes = new ArrayList<Paciente>();
+        String query = "SELECT * FROM paciente";
+        try {
+
+            Statement st = conexao.createStatement();
+
+            // execute the query, and get a java resultset
+            ResultSet rs = st.executeQuery(query);
+
+            // iterate through the java resultset
+            while (rs.next()) {
+                Paciente paciente = new Paciente();
+                paciente.setId(rs.getInt("id"));
+                paciente.setNome(rs.getString("nome"));
+                paciente.setSobrenome(rs.getString("sobrenome"));
+                paciente.setLogin(rs.getString("login"));
+                paciente.setEmail(rs.getString("email"));
+                paciente.setRg(rs.getString("rg"));
+                paciente.setCpf(rs.getString("cpf"));
+                paciente.setEndereco(rs.getString("endereco"));
+                paciente.setAtivo(rs.getBoolean("ativo"));
+                pacientes.add(paciente);
+            }
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pacientes;
     }
 
     @Override
