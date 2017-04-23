@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.PacientesDAO;
 import dao.UsuarioDAO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cargo;
+import model.Paciente;
 import model.PerfilAcesso;
 import model.Usuario;
 
