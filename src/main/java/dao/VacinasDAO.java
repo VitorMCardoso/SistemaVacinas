@@ -14,6 +14,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import model.Laboratorio;
 import model.Paciente;
 import model.Vacinas;
 
@@ -21,21 +24,18 @@ import model.Vacinas;
  *
  * @author Kanec
  */
-
-//teste
-//testeftftft
-        
-public class VacinasDAO {
+public class VacinasDAO implements IVacinasDAO {
 
     private Connection conexao;
+    private Vacinas vacina = new Vacinas();
 
     public VacinasDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
 
-    public void cadastrarNovasVacinas(Vacinas v) throws SQLException {
-        String sql = "Insert Into vacinas (datavalidade, datafabricacao, nome, tipo, quantidade, lote, idlaboratorio, ativo)"
-                + "Values(?,?,?,?,?,?,1,true)";
+    public void cadastrarNovaVacina(Vacinas v) throws SQLException {
+        String sql = "Insert Into vacinas (datavalidade, datafabricacao, nome, tipo, quantidade, lote, idlaboratorio)"
+                + "Values(?,?,?,?,?,?,?)";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
@@ -45,6 +45,7 @@ public class VacinasDAO {
             stmt.setString(4, v.getTipo());
             stmt.setInt(5, v.getQuantidade());
             stmt.setString(6, v.getLote());
+            stmt.setInt(7, v.getIdLaboratorio());
 
             //executa o código
             stmt.execute();
@@ -53,8 +54,9 @@ public class VacinasDAO {
 
     }
 
-    public void atualizarVacinas(Vacinas v) throws SQLException {
-        String sql = "Update vacinas set datavalidade = ? , datafabricacao=?, nome = ?, tipo = ?, quantidade=?, lote=?, idlaboratorio = ? where id=?";
+    public void atualizarVacina(Vacinas v) throws SQLException {
+        String sql = "Update vacinas set datavalidade = ? , datafabricacao=?, nome = ?, tipo = ?, "
+                + "quantidade=?, lote=?, idlaboratorio = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setDate(1, (java.sql.Date) v.getDataValidade());
@@ -63,7 +65,7 @@ public class VacinasDAO {
             stmt.setString(4, v.getTipo());
             stmt.setInt(5, v.getQuantidade());
             stmt.setString(6, v.getLote());
-            stmt.setInt(7, 1);
+            stmt.setInt(7, v.getIdLaboratorio());
             stmt.setInt(8, v.getId());
             // executa o código sql
             stmt.execute();
@@ -71,10 +73,10 @@ public class VacinasDAO {
         }
     }
 
-    public void buscarVacinas(Vacinas v) throws SQLException {
-        int z = 0;
-        z = v.getId();
-        String query = "SELECT * FROM vacinas where id=" + z;
+    @Override
+    public List<Vacinas> listar() throws SQLException, ClassNotFoundException {
+        List<Vacinas> vacinas = new ArrayList<Vacinas>();
+        String query = "SELECT * FROM usuario";
         try {
 
             Statement st = conexao.createStatement();
@@ -84,31 +86,61 @@ public class VacinasDAO {
 
             // iterate through the java resultset
             while (rs.next()) {
-                int id = rs.getInt("id");
-                Date dataValid = rs.getDate("datavalidade");
-                Date dataFabric = rs.getDate("datafabricacao");
-                String nome = rs.getString("nome");
-                String tipo = rs.getString("tipo");
-                int quantidade = rs.getInt("quantidade");
-                String lote = rs.getString("lote");
-                int idlab = rs.getInt("idlaboratorio");
 
-                // print the results
-                out.format("%s, %s, %s, %s, %s, %s, %s, %s\n", id, dataValid, dataFabric, nome, tipo, quantidade, lote, idlab);
+                vacina.setId(Integer.valueOf(rs.getString("id")));
+                vacina.setDataValidade(java.sql.Date.valueOf(rs.getString("dataValidade")));
+                vacina.setDataFabricacao(java.sql.Date.valueOf(rs.getString("dataFabricacao")));
+                vacina.setNome(rs.getString("nome"));
+                vacina.setTipo(rs.getString("tipo"));
+                vacina.setQuantidade(Integer.valueOf(rs.getString("quantidade")));
+                vacina.setLote(rs.getString("lote"));
+                vacina.setIdLaboratorio(Integer.valueOf(rs.getString("idLaboratorio")));
+                vacinas.add(vacina);
             }
             st.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return vacinas;
     }
 
-    public void excluirVacinas(Vacinas v) throws SQLException { // implementação do método -remove-
+    @Override
+    public Vacinas buscarVacina(int usuarioID) throws SQLException {
+
+        String query = "SELECT * FROM vacinas where id=" + usuarioID;
+        try {
+
+            Statement st = conexao.createStatement();
+
+            // execute the query, and get a java resultset
+            ResultSet rs = st.executeQuery(query);
+
+            // iterate through the java resultset
+            if (rs.next()) {
+
+                vacina.setId(Integer.valueOf(rs.getString("id")));
+                vacina.setDataValidade(java.sql.Date.valueOf(rs.getString("dataValidade")));
+                vacina.setDataFabricacao(java.sql.Date.valueOf(rs.getString("dataFabricacao")));
+                vacina.setNome(rs.getString("nome"));
+                vacina.setTipo(rs.getString("tipo"));
+                vacina.setQuantidade(Integer.valueOf(rs.getString("quantidade")));
+                vacina.setLote(rs.getString("lote"));
+                vacina.setIdLaboratorio(Integer.valueOf(rs.getString("idLaboratorio")));
+            }
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vacina;
+    }
+
+    @Override
+    public void excluirVacina(int vacinasID) throws SQLException {
         String sql = "update vacinas set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setLong(1, v.getId());
+        stmt.setLong(1, vacinasID);
         stmt.execute();
         stmt.close();
-
     }
 
     public int selectID(Vacinas v) throws SQLException {

@@ -12,6 +12,7 @@ import java.util.Date;
  * @author vitor
  */
 public class Vacinas {
+
     private int id;
     private Date dataValidade;
     private Date dataFabricacao;
@@ -19,11 +20,10 @@ public class Vacinas {
     private String tipo;
     private int quantidade;
     private String lote;
-    //private Laboratorio idLaboratorio;
-    private boolean ativo;
+    private int idLaboratorio;
 
     public Vacinas(int id, Date dataValidade, Date dataFabricacao, String nome,
-            String tipo, int quantidade, String lote, boolean ativo) {
+            String tipo, int quantidade, String lote, int idLaboratorio) {
         this.id = id;
         this.dataValidade = dataValidade;
         this.dataFabricacao = dataFabricacao;
@@ -31,7 +31,7 @@ public class Vacinas {
         this.tipo = tipo;
         this.quantidade = quantidade;
         this.lote = lote;
-        this.ativo = ativo;
+        this.idLaboratorio = idLaboratorio;
     }
 
     public Vacinas() {
@@ -94,11 +94,12 @@ public class Vacinas {
         this.lote = lote;
     }
 
-    public boolean isAtivo() {
-        return ativo;
+    public int getIdLaboratorio() {
+        return idLaboratorio;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setIdLaboratorio(int idLaboratorio) {
+        this.idLaboratorio = idLaboratorio;
     }
+
 }
