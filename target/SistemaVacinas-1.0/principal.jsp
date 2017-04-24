@@ -31,6 +31,9 @@
         
         <p><a href="newLaboratorio"><button>Cadastro de Laboratorio</button></a></p>
         <p><a href="listLaboratorio"><button>Manter Laboratorio</button></a></p>
+        
+        <p><a href="newVacina"><button>Cadastro de Vacinas</button></a></p>
+        <p><a href="listVacina"><button>Manter Vacina</button></a></p>
         </div>
     </body>
 </html>

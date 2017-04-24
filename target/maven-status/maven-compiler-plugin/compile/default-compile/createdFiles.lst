@@ -6,8 +6,10 @@ model/Cargo.class
 dao/PacientesDAO.class
 dao/LaboratorioDAO.class
 dao/VacinasDAO.class
+controller/LaboratorioController.class
 dao/AgendamentoDAO.class
 dao/UsuarioDAO.class
+dao/IVacinasDAO.class
 dao/IPacientesDAO.class
 dao/ILaboratorioDAO.class
 model/Paciente.class

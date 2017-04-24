@@ -76,7 +76,7 @@ public class VacinasDAO implements IVacinasDAO {
     @Override
     public List<Vacinas> listar() throws SQLException, ClassNotFoundException {
         List<Vacinas> vacinas = new ArrayList<Vacinas>();
-        String query = "SELECT * FROM usuario";
+        String query = "SELECT * FROM vacinas";
         try {
 
             Statement st = conexao.createStatement();
@@ -86,7 +86,7 @@ public class VacinasDAO implements IVacinasDAO {
 
             // iterate through the java resultset
             while (rs.next()) {
-
+                Vacinas vacina = new Vacinas();
                 vacina.setId(Integer.valueOf(rs.getString("id")));
                 vacina.setDataValidade(java.sql.Date.valueOf(rs.getString("dataValidade")));
                 vacina.setDataFabricacao(java.sql.Date.valueOf(rs.getString("dataFabricacao")));

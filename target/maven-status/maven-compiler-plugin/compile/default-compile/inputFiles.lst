@@ -9,6 +9,7 @@
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/dao/PacientesDAO.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/autorizacaoAcesso/AcessoLogado.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/dao/LaboratorioDAO.java
+/home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/dao/IVacinasDAO.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/controller/ControllerServlet.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/model/Paciente.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/model/Usuario.java

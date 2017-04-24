@@ -25,13 +25,15 @@ public class ControllerServlet extends HttpServlet {
     private final UsuarioController controllerUsuario;
     private final PacientesController controllerPaciente;
     private final LaboratorioController controllerLaboratorio;
+    private final VacinasController controllerVacina;
 
     public ControllerServlet() throws SQLException, IOException {
         this.controllerUsuario = new UsuarioController();
         this.controllerPaciente = new PacientesController();
         this.controllerLaboratorio = new LaboratorioController();
+        this.controllerVacina = new VacinasController();
     }
-    
+
     public void showPrincipalForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/principal.jsp");
@@ -110,6 +112,25 @@ public class ControllerServlet extends HttpServlet {
                     break;
                 case "/updateLaboratorio":
                     controllerLaboratorio.updateLaboratorio(request, response);
+                    break;
+                // Vacinas Controller
+                case "/newVacina":
+                    controllerVacina.showNewForm(request, response);
+                    break;
+                case "/insertVacina":
+                    controllerVacina.inserirVacina(request, response);
+                    break;
+                case "/deleteVacina":
+                    controllerVacina.deletarVacina(request, response);
+                    break;
+                case "/editVacina":
+                    controllerVacina.editVacinaForm(request, response);
+                    break;
+                case "/listVacina":
+                    controllerVacina.listarVacina(request, response);
+                    break;
+                case "/updateVacina":
+                    controllerVacina.updateVacina(request, response);
                     break;
                 default:
                     showPrincipalForm(request, response);
