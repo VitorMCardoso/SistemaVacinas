@@ -26,12 +26,14 @@ public class ControllerServlet extends HttpServlet {
     private final PacientesController controllerPaciente;
     private final LaboratorioController controllerLaboratorio;
     private final VacinasController controllerVacina;
+    private final AgendamentoController controllerAgendamento;
 
     public ControllerServlet() throws SQLException, IOException {
         this.controllerUsuario = new UsuarioController();
         this.controllerPaciente = new PacientesController();
         this.controllerLaboratorio = new LaboratorioController();
         this.controllerVacina = new VacinasController();
+        this.controllerAgendamento = new AgendamentoController();
     }
 
     public void showPrincipalForm(HttpServletRequest request, HttpServletResponse response)
@@ -131,6 +133,25 @@ public class ControllerServlet extends HttpServlet {
                     break;
                 case "/updateVacina":
                     controllerVacina.updateVacina(request, response);
+                    break;
+                //Agendamento Controller
+                case "/newAgendamento":
+                    controllerAgendamento.showNewForm(request, response);
+                    break;
+                case "/insertAgendamento":
+                    controllerAgendamento.inserirAgendamento(request, response);
+                    break;
+                case "/deleteAgendamento":
+                    controllerAgendamento.deletarAgendamento(request, response);
+                    break;
+                case "/editAgendamento":
+                    controllerAgendamento.editAgendamentoForm(request, response);
+                    break;
+                case "/listAgendamento":
+                    controllerAgendamento.listarAgendamento(request, response);
+                    break;
+                case "/updateAgendamento":
+                    controllerAgendamento.updateAgendamento(request, response);
                     break;
                 default:
                     showPrincipalForm(request, response);

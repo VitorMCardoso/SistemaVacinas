@@ -24,7 +24,7 @@ public interface IAgendamentoDAO {
 
     public Agendamento buscarAgendamento(int agendamentoID) throws SQLException;
 
-    public void excluirAgendamento(Agendamento a) throws SQLException;
+    public void excluirAgendamento(int idAgendamento) throws SQLException;
 
     public int selectID(Agendamento a) throws SQLException;
 

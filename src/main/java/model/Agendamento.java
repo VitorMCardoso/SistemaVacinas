@@ -14,12 +14,21 @@ import java.util.Date;
 public class Agendamento {
     private int id;
     private Date dataDose;
-    private int quantidade;
+    private int quantidadeVac;
     private int idPaciente;
     private int idVacinas;
     private boolean ativo;
 
     public Agendamento() {
+    }
+
+    public Agendamento(int id, Date dataDose, int quantidadeVac, int idPaciente, int idVacinas, boolean ativo) {
+        this.id = id;
+        this.dataDose = dataDose;
+        this.quantidadeVac = quantidadeVac;
+        this.idPaciente = idPaciente;
+        this.idVacinas = idVacinas;
+        this.ativo = ativo;
     }
 
     public int getId() {
@@ -39,11 +48,11 @@ public class Agendamento {
     }
 
     public int getQuantidade() {
-        return quantidade;
+        return quantidadeVac;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantidade(int quantidadeVac) {
+        this.quantidadeVac = quantidadeVac;
     }
     
     public int getPaciente() {

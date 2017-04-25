@@ -34,6 +34,9 @@
         
         <p><a href="newVacina"><button>Cadastro de Vacinas</button></a></p>
         <p><a href="listVacina"><button>Manter Vacina</button></a></p>
+        
+        <p><a href="newAgendamento"><button>Cadastro de Agendamento</button></a></p>
+        <p><a href="listAgendamento"><button>Manter Agendamento</button></a></p>
         </div>
     </body>
 </html>

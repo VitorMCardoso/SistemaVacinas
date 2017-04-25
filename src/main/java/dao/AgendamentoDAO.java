@@ -35,7 +35,7 @@ public class AgendamentoDAO implements IAgendamentoDAO {
 
     @Override
     public void cadastrarNovoAgendamento(Agendamento a) throws SQLException {
-        String sql = "Insert Into agendamento (dataDose, quantidadeVac, idPaciente, idVacinas, ativo) Values (?, ?, ?, true)";
+        String sql = "Insert Into agendamento (dataDose, quantidadeVac, idPaciente, idVacinas, ativo) Values (?, ?, ?, ?, true)";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
@@ -83,11 +83,11 @@ public class AgendamentoDAO implements IAgendamentoDAO {
             // iterate through the java resultset
             while (rs.next()) {
                 Agendamento agendamento = new Agendamento();
-                agendamento.setId(Integer.valueOf(rs.getString("id")));
+                agendamento.setId(rs.getInt("id"));
                 agendamento.setDataDose(java.sql.Date.valueOf(rs.getString("dataDose")));
-                agendamento.setQuantidade(Integer.valueOf(rs.getString("quantidadeVac")));
-                agendamento.setPaciente(Integer.valueOf(rs.getString("idPaciente")));
-                agendamento.setVacinas(Integer.valueOf(rs.getString("idVacinas")));
+                agendamento.setQuantidade(rs.getInt("quantidadeVac"));
+                agendamento.setPaciente(rs.getInt("idPaciente"));
+                agendamento.setVacinas(rs.getInt("idVacinas"));
                 agendamento.setAtivo(Boolean.valueOf(rs.getString("ativo")));
                 agendamentos.add(agendamento);
             }
@@ -127,10 +127,10 @@ public class AgendamentoDAO implements IAgendamentoDAO {
     }
 
     @Override
-    public void excluirAgendamento(Agendamento a) throws SQLException { // implementação do método -remove-
+    public void excluirAgendamento(int idAgendamento) throws SQLException { // implementação do método -remove-
         String sql = "update agendamento set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setInt(1, a.getId());
+        stmt.setInt(1, idAgendamento);
         stmt.execute();
         stmt.close();
 
