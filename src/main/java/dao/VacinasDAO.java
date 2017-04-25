@@ -134,15 +134,6 @@ public class VacinasDAO implements IVacinasDAO {
         return vacina;
     }
 
-    @Override
-    public void excluirVacina(int vacinasID) throws SQLException {
-        String sql = "update vacinas set ativo=false where id=?";
-        PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setLong(1, vacinasID);
-        stmt.execute();
-        stmt.close();
-    }
-
     public int selectID(Vacinas v) throws SQLException {
         String query = "SELECT id FROM vacinas where id=" + v.getId();
         Statement st = conexao.createStatement();
@@ -156,16 +147,23 @@ public class VacinasDAO implements IVacinasDAO {
         return id;
     }
 
-    public boolean setAtivo(Vacinas v) throws SQLException {
-        String query = "SELECT ativo FROM vacinas where id=" + v.getId();
-        Statement st = conexao.createStatement();
-        boolean ativo = true;
-        // execute the query, and get a java resultset
-        ResultSet rs = st.executeQuery(query);
-        while (rs.next()) {
-            ativo = rs.getBoolean("ativo");
-        }
-        st.close();
-        return ativo;
+    @Override
+    public void descVacina(int quantidadeAgendamento, int idVacina) throws SQLException {
+        String query = "Update vacinas set quantidade=quantidade-? where id =?";
+        PreparedStatement stmt = conexao.prepareStatement(query);
+        stmt.setInt(1, quantidadeAgendamento);
+        stmt.setInt(2, idVacina);
+        stmt.executeUpdate();
+        stmt.close();
+    }
+
+    @Override
+    public void cresVacina(int quantidadeAgendamento, int idVacina) throws SQLException {
+        String query = "Update vacinas set quantidade=quantidade-? where id =?";
+        PreparedStatement stmt = conexao.prepareStatement(query);
+        stmt.setInt(1, quantidadeAgendamento);
+        stmt.setInt(2, idVacina);
+        stmt.executeUpdate();
+        stmt.close();
     }
 }

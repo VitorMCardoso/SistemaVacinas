@@ -23,8 +23,10 @@ public interface IVacinasDAO {
 
     public Vacinas buscarVacina(int vacinasID) throws SQLException;
 
-    public void excluirVacina(int vacinasID) throws SQLException;
-
     public int selectID(Vacinas v) throws SQLException;
+    
+    public void descVacina(int quantidadeAgendamento, int vacinasId) throws SQLException;
+    
+    public void cresVacina(int quantidadeAgendamento, int idVacina) throws SQLException;
 
 }

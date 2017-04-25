@@ -121,7 +121,7 @@ public class ControllerServlet extends HttpServlet {
                     controllerVacina.inserirVacina(request, response);
                     break;
                 case "/deleteVacina":
-                    controllerVacina.deletarVacina(request, response);
+                    controllerVacina.descVacina(request, response);
                     break;
                 case "/editVacina":
                     controllerVacina.editVacinaForm(request, response);

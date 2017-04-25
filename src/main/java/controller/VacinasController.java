@@ -40,11 +40,11 @@ public class VacinasController {
         vacina.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
         vacina.setLote(request.getParameter("lote"));
         vacina.setIdLaboratorio(Integer.parseInt(request.getParameter("idLaboratorio")));
-        
+
         dao.cadastrarNovaVacina(vacina);
         response.sendRedirect("listVacina");
     }
-    
+
     public void listarVacina(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Vacinas> listVacina = dao.listar();
@@ -52,19 +52,20 @@ public class VacinasController {
         RequestDispatcher dispatcher = request.getRequestDispatcher("vacinas/listarVacinas.jsp");
         dispatcher.forward(request, response);
     }
-    
+
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("vacinas/vacinasForm.jsp");
         dispatcher.forward(request, response);
     }
 
-    public void deletarVacina(HttpServletRequest request, HttpServletResponse response)
+    public void descVacina(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-
-        dao.excluirVacina(id);
-        response.sendRedirect("list");
+        vacina = new Vacinas();
+        vacina.setId(Integer.parseInt(request.getParameter("id")));
+        dao.descVacina(5, vacina.getId());
+        response.sendRedirect("listVacina");
 
     }
 
@@ -76,7 +77,7 @@ public class VacinasController {
         dispatcher.forward(request, response);
 
     }
-    
+
     public void updateVacina(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         vacina = new Vacinas();
