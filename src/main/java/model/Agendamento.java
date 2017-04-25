@@ -14,8 +14,9 @@ import java.util.Date;
 public class Agendamento {
     private int id;
     private Date dataDose;
-    private Paciente paciente;
-    private Vacinas vacinas;
+    private int quantidade;
+    private int idPaciente;
+    private int idVacinas;
     private boolean ativo;
 
     public Agendamento() {
@@ -37,20 +38,28 @@ public class Agendamento {
         this.dataDose = dataDose;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setPaciente(Paciente idPaciente) {
-        this.paciente = idPaciente;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+    
+    public int getPaciente() {
+        return idPaciente;
     }
 
-    public Vacinas getVacinas() {
-        return vacinas;
+    public void setPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
-    public void setVacinas(Vacinas idVacinas) {
-        this.vacinas = idVacinas;
+    public int getVacinas() {
+        return idVacinas;
+    }
+
+    public void setVacinas(int idVacinas) {
+        this.idVacinas = idVacinas;
     }
 
     public boolean isAtivo() {
