@@ -1,6 +1,5 @@
 model/Usuario.class
 dao/IUsuarioDAO.class
-controller/GerarRelatorio.class
 model/PerfilAcesso.class
 model/Agendamento.class
 dao/PacientesDAO.class
