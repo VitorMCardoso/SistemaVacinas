@@ -47,16 +47,10 @@
                 </c:forEach>
 
             </table><br>
-            <div>
-<<<<<<< HEAD
+
                 <a href="newAgendamento">Adicionar Novo Agendamento</a>
             &nbsp; &nbsp;
                 <a href="listAgendamento">List All Agendamento</a>
-=======
-                <a href="newAgendamento">Adicionar Nova Vacina</a>
-            &nbsp; &nbsp;
-                <a href="listAgendamento">List All Vacinas</a>
->>>>>>> Programador
             &nbsp; &nbsp;
                 <a href="principal">Home</a>
             </div>

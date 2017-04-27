@@ -20,6 +20,7 @@
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/dao/PacientesDAO.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/dao/LaboratorioDAO.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/controller/ControllerServlet.java
+/home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/controller/GerarRelatorio.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/dao/AgendamentoDAO.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/controller/PacientesController.java
 /home/vitor/NetBeansProjects/SistemaVacinas/src/main/java/model/PerfilAcesso.java

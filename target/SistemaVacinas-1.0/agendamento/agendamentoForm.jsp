@@ -74,17 +74,6 @@
                                    />
                         </td>
                     </tr>
-<<<<<<< HEAD
-=======
-                    <tr>
-                        <th>Ativo </th>
-                        <td>
-                            <input type="text" name="ativo" size="45"
-                                   value="<c:out value='${agendamento.ativo}' />"
-                                   />
-                        </td>
-                    </tr>
->>>>>>> Programador
                     <td colspan="2" align="center">
                         <input type="submit" value="Salvar" />
                     </td>

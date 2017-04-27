@@ -28,6 +28,7 @@ public class AgendamentoDAO implements IAgendamentoDAO {
 
     private Connection conexao;
     private Agendamento agendamento = new Agendamento();
+    private VacinasDAO vacinasDAO = new VacinasDAO();
 
     public AgendamentoDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
@@ -43,7 +44,7 @@ public class AgendamentoDAO implements IAgendamentoDAO {
             stmt.setInt(2, a.getQuantidade());
             stmt.setInt(3, a.getPaciente());
             stmt.setInt(4, a.getVacinas());
-
+            vacinasDAO.descVacina(a.getQuantidade(), a.getVacinas());
             //executa o código
             stmt.execute();
             stmt.close();
@@ -54,7 +55,7 @@ public class AgendamentoDAO implements IAgendamentoDAO {
     @Override
     public void atualizarAgendamento(Agendamento a) throws SQLException {
         String sql = "Update agendamento set dataDose = ?, quantidadeVac = ?, "
-                + "idPaciente = ?, idVacinas = ?, where id=?";
+                + "idPaciente = ?, idVacinas = ? where id=?";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
@@ -62,7 +63,8 @@ public class AgendamentoDAO implements IAgendamentoDAO {
             stmt.setInt(2, a.getQuantidade());
             stmt.setInt(3, a.getPaciente());
             stmt.setInt(4, a.getVacinas());
-
+            stmt.setInt(5, a.getId());
+            vacinasDAO.descVacina(a.getQuantidade(), a.getVacinas());
             //executa o código
             stmt.executeUpdate();
             stmt.close();
@@ -162,5 +164,16 @@ public class AgendamentoDAO implements IAgendamentoDAO {
         }
         st.close();
         return ativo;
+    }
+    
+    
+    public void setQuantidadePassada(int quantidadeVacPassada, int idAgendamento) throws SQLException { // implementação do método -remove-
+        String sql = "update agendamento set quantidadeVac=? where id=?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setInt(1, quantidadeVacPassada);
+        stmt.setInt(2, idAgendamento);
+        stmt.execute();
+        stmt.close();
+
     }
 }

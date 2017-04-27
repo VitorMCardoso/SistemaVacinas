@@ -22,8 +22,10 @@
             <%}%>
             <br>
             <form action="AcessoController" method="POST">
-                Login: <input type="text" name="txtLogin"><br/>
-                Senha: <input type="password" name="txtSenha"><br/>
+                Login: <input type="text" name="txtLogin"><br>
+                <br>
+                Senha: <input type="password" name="txtSenha"><br>
+                <br>
                 <input type="submit" value="Entrar" name="acao">
                 </div>
             </form>
