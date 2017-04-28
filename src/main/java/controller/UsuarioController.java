@@ -9,6 +9,7 @@ import dao.PacientesDAO;
 import dao.UsuarioDAO;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,7 +24,7 @@ import model.Usuario;
  *
  * @author vitor
  */
-public class UsuarioController {
+public class UsuarioController extends RelatorioController {
 
     private final UsuarioDAO dao;
     private Usuario usuario;
@@ -123,6 +124,18 @@ public class UsuarioController {
 
         dao.atualizarUsuario(usuario);
         response.sendRedirect("list");
+    }
+
+    public void relatorio() throws Exception {
+        try {
+            List<Usuario> listagemResultado = dao.listar();
+
+            HashMap paramRel = new HashMap();
+            String nomeRelatorio = "relUF";
+            gerarRelatorio(nomeRelatorio, paramRel, listagemResultado);
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
 }
