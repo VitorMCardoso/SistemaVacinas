@@ -17,6 +17,7 @@ controller/ControllerServlet.class
 autorizacaoAcesso/AcessoLogado.class
 controller/UsuarioController.class
 model/Vacinas.class
+controller/RelatorioController.class
 controller/VacinasController.class
 model/Cargo.class
 controller/LaboratorioController.class

@@ -30,7 +30,7 @@ public class RelatorioController {
         HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
         ServletContext sc = (ServletContext) context.getExternalContext().getContext();
         String relPath = sc.getRealPath("/");
-        String imagemLogo = relPath + "resources/imagens/logo_mmo.jpg";
+        String imagemLogo = relPath + "resources/img/Logo.png";
         paramRel.put("imagemLogo", imagemLogo);
         paramRel.put("nmSistema","NOme");
         paramRel.put("REPORT_LOCALE", new Locale("pt", "BR"));

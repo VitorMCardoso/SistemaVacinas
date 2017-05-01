@@ -47,19 +47,14 @@ FROM
 	<group name="usuario_ativo">
 		<groupExpression><![CDATA[$F{usuario_ativo}]]></groupExpression>
 	</group>
+	<group name="Cargo">
+		<groupExpression><![CDATA[$F{usuario_cargo}]]></groupExpression>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="34" splitType="Stretch">
-			<staticText>
-				<reportElement x="263" y="8" width="288" height="20" uuid="8c1dfafe-3a93-4fe7-a47f-828ad93eb8cc"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[SISTEMA DE GERENCIAMENTO DE VACINA]]></text>
-			</staticText>
-		</band>
+		<band height="34" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="68" splitType="Stretch">
@@ -90,12 +85,12 @@ FROM
 	</pageHeader>
 	<columnHeader>
 		<band height="35" splitType="Stretch">
-			<line>
-				<reportElement x="0" y="1" width="802" height="1" uuid="c4702995-3be1-429a-aab1-8c02667cd1d0"/>
-			</line>
-			<line>
-				<reportElement x="0" y="34" width="802" height="1" uuid="99f71ef5-f9ca-40e2-806b-1c476b7a4d37"/>
-			</line>
+			<rectangle radius="10">
+				<reportElement x="0" y="5" width="799" height="20" forecolor="#CC0033" uuid="2d1984f2-590b-4a0c-89dd-2dbca31be7e4"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</rectangle>
 			<staticText>
 				<reportElement x="4" y="9" width="17" height="20" uuid="ee8595b3-e3b9-4cc2-a1e4-5285d332e427"/>
 				<text><![CDATA[ID]]></text>
@@ -144,6 +139,9 @@ FROM
 	</columnHeader>
 	<detail>
 		<band height="27" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="-1" y="1" width="800" height="20" forecolor="#990033" backcolor="#CCCCCC" uuid="0b6714a7-66f3-4995-bc3c-1bcc0e4c7351"/>
+			</rectangle>
 			<textField>
 				<reportElement x="4" y="4" width="17" height="20" uuid="b5bc9ae1-d558-4bfb-ad66-91993258aa24"/>
 				<textFieldExpression><![CDATA[$F{usuario_id}]]></textFieldExpression>
@@ -191,32 +189,20 @@ FROM
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="30" splitType="Stretch"/>
+		<band height="30" splitType="Stretch">
+			<break>
+				<reportElement x="0" y="15" width="100" height="1" uuid="ca5961be-687f-4d61-aca7-7c06377f01c1"/>
+			</break>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="27" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="264" splitType="Stretch">
-			<textField>
-				<reportElement x="98" y="10" width="38" height="20" uuid="1229eccd-e6a3-4d07-90e0-9e89b2c8e2f1"/>
-				<textFieldExpression><![CDATA[$V{usuario_ativo_COUNT}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="9" y="10" width="89" height="20" uuid="d485a85c-e8af-4960-9652-73220f4ab05a"/>
-				<text><![CDATA[Usuarios Ativos:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="9" y="30" width="135" height="20" uuid="6d81f559-5948-48fe-9f06-bc225be6c497"/>
-				<text><![CDATA[Usuarios Administradores:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="144" y="30" width="27" height="20" uuid="4756bc6e-0adf-484b-b02a-a576253993fb"/>
-				<textFieldExpression><![CDATA[$V{usuario_ativo_COUNT}]]></textFieldExpression>
-			</textField>
+		<band height="238" splitType="Stretch">
 			<stackedBar3DChart>
 				<chart>
-					<reportElement x="437" y="30" width="336" height="183" uuid="8eddcb60-1073-4098-87cf-876c7f2e29ab"/>
+					<reportElement x="436" y="30" width="337" height="183" uuid="8eddcb60-1073-4098-87cf-876c7f2e29ab"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
@@ -229,7 +215,36 @@ FROM
 					</categorySeries>
 				</categoryDataset>
 				<bar3DPlot>
-					<plot/>
+					<plot>
+						<seriesColor seriesOrder="0" color="#CC0033"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="47" y="30" width="200" height="183" uuid="c023500d-a854-4b1e-a241-7649ddc1afe3"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Dummy Series"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{usuario_ativo}]]></categoryExpression>
+						<valueExpression><![CDATA[$V{usuario_ativo_COUNT}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#CC0033"/>
+					</plot>
 					<itemLabel/>
 					<categoryAxisFormat>
 						<axisFormat/>

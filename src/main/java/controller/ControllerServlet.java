@@ -77,6 +77,9 @@ public class ControllerServlet extends HttpServlet {
                 case "/list":
                     controllerUsuario.listarUsuario(request, response);
                     break;
+                case "/relatorio":
+                    controllerUsuario.relatorio();
+                    break;
                 // Paciente Controller
                 case "/newPaciente":
                     controllerPaciente.showNewForm(request, response);
@@ -161,6 +164,8 @@ public class ControllerServlet extends HttpServlet {
             throw new ServletException(ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

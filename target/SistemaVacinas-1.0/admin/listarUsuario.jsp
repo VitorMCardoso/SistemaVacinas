@@ -58,10 +58,12 @@
             </table><br>
             <div>
                 <a href="new">Adicionar Novo Usuario</a>
-            &nbsp; &nbsp;
+                &nbsp; &nbsp;
                 <a href="list">List All Usuarios</a>
-            &nbsp; &nbsp;
+                &nbsp; &nbsp;
                 <a href="principal">Home</a>
+                &nbsp; &nbsp;
+                <p><a href="relatorio"><button>Gerar Relatorio</button></a></p>
             </div>
         </center>
     </body>

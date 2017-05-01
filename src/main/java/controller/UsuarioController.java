@@ -131,7 +131,7 @@ public class UsuarioController extends RelatorioController {
             List<Usuario> listagemResultado = dao.listar();
 
             HashMap paramRel = new HashMap();
-            String nomeRelatorio = "relUF";
+            String nomeRelatorio = "relatorioUsuario";
             gerarRelatorio(nomeRelatorio, paramRel, listagemResultado);
         } catch (Exception e) {
             e.getMessage();

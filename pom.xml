@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
+            <artifactId>javaee-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
@@ -47,9 +47,10 @@
         
         <!--  JaperReports -->
         <dependency>
-            <groupId>jasperreports</groupId>
+            <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>3.1.2</version>
+            <version>5.6.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
