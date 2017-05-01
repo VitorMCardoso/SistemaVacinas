@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1bfa6b50-c3fb-48ff-9706-616f695da734">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     vacinas.`id` AS vacinas_id,
+     vacinas.`dataValidade` AS vacinas_dataValidade,
+     vacinas.`dataFabricacao` AS vacinas_dataFabricacao,
+     vacinas.`nome` AS vacinas_nome,
+     vacinas.`tipo` AS vacinas_tipo,
+     vacinas.`quantidade` AS vacinas_quantidade,
+     vacinas.`lote` AS vacinas_lote,
+     vacinas.`idLaboratorio` AS vacinas_idLaboratorio
+FROM
+     `vacinas` vacinas]]>
+	</queryString>
+	<field name="vacinas_id" class="java.lang.Integer"/>
+	<field name="vacinas_dataValidade" class="java.sql.Date"/>
+	<field name="vacinas_dataFabricacao" class="java.sql.Date"/>
+	<field name="vacinas_nome" class="java.lang.String"/>
+	<field name="vacinas_tipo" class="java.lang.String"/>
+	<field name="vacinas_quantidade" class="java.lang.Integer"/>
+	<field name="vacinas_lote" class="java.lang.String"/>
+	<field name="vacinas_idLaboratorio" class="java.lang.Integer"/>
+	<group name="vacinas_idLaboratorio">
+		<groupExpression><![CDATA[$F{vacinas_idLaboratorio}]]></groupExpression>
+	</group>
+	<group name="vacinas_tipo">
+		<groupExpression><![CDATA[$F{vacinas_tipo}]]></groupExpression>
+	</group>
+	<group name="vacinas_lote">
+		<groupExpression><![CDATA[$F{vacinas_lote}]]></groupExpression>
+	</group>
+	<group name="vacinas_quantidade">
+		<groupExpression><![CDATA[$F{vacinas_quantidade}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="24" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="71" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="512" y="48" width="40" height="20" uuid="2418c537-a6da-4c8f-b984-22756d39f149"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="447" y="5" width="105" height="20" uuid="e36051a6-ec21-4ab7-93c0-6fcbe54f45cd"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="48" width="80" height="20" uuid="e88b636e-fc93-4b3c-966d-9d1dd5e32d36"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="209" y="23" width="131" height="20" uuid="5f6eec2e-f9b2-4f3b-8666-304f1840248c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Vacinas]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="2" y="2" width="553" height="20" forecolor="#CC0033" backcolor="#FFFFFF" uuid="66cffe96-3ff1-4785-97b2-c77c56ba3939"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="13" y="6" width="17" height="20" forecolor="#990033" uuid="6d9acea9-dae4-46c4-a659-c1530a58e37e"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="6" width="91" height="20" uuid="5ddb86ee-c195-4ca7-a7ea-5092ba10e90a"/>
+				<text><![CDATA[Data de Validade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="6" width="92" height="20" uuid="59fd0bcf-a374-4125-9855-d3b2e5f7c3ec"/>
+				<text><![CDATA[Dat de Fabricaçao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="254" y="6" width="33" height="20" uuid="632a9e00-e939-4c37-a837-53bec14defe9"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="6" width="29" height="20" uuid="cbdd3e50-6dfe-491f-9107-b493e895fb26"/>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="364" y="6" width="68" height="20" uuid="e1299f0e-de33-45fa-b0d9-2bdc8a385c8c"/>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="447" y="6" width="30" height="20" uuid="58ce853d-b19e-429c-ab91-fc9e3ddb6a8c"/>
+				<text><![CDATA[Lote]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="491" y="6" width="64" height="20" uuid="0646caac-f877-47ba-95e4-02596997aa52"/>
+				<text><![CDATA[Laboratorio]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="3" y="5" width="552" height="20" forecolor="#990033" backcolor="#CCCCCC" uuid="d3d24642-db71-413e-b31f-9ac03852b42d"/>
+			</rectangle>
+			<textField>
+				<reportElement x="13" y="10" width="24" height="20" uuid="ff2f70d1-4197-44e8-b618-3e5b61045753"/>
+				<textFieldExpression><![CDATA[$F{vacinas_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="10" width="91" height="20" uuid="a283ad60-e4bf-4146-bd7c-ac7c18a83083"/>
+				<textFieldExpression><![CDATA[$F{vacinas_dataValidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="10" width="100" height="20" uuid="2cd349f1-9c1b-4ca5-8266-4b951e9d7fe6"/>
+				<textFieldExpression><![CDATA[$F{vacinas_dataFabricacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="10" width="57" height="20" uuid="34e88b81-822a-4923-8a4b-3ef6bb73f6b7"/>
+				<textFieldExpression><![CDATA[$F{vacinas_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="311" y="10" width="53" height="20" uuid="029543ac-15e7-4b38-ae46-479758db7bca"/>
+				<textFieldExpression><![CDATA[$F{vacinas_tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="384" y="10" width="30" height="20" uuid="fccaeb75-43ae-4465-8caa-02df91f1e3b9"/>
+				<textFieldExpression><![CDATA[$F{vacinas_quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="10" width="44" height="20" uuid="6a3faa14-4b00-464b-881a-34c902343685"/>
+				<textFieldExpression><![CDATA[$F{vacinas_lote}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="507" y="10" width="21" height="20" uuid="56af5322-efb6-4f9d-867b-2f59f10ede4f"/>
+				<textFieldExpression><![CDATA[$F{vacinas_idLaboratorio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="25" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="338" splitType="Stretch">
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="311" y="13" width="231" height="145" uuid="71ce9787-462d-4286-876e-8b39eab98f4a"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["ID de Laboratorio"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{vacinas_idLaboratorio}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{vacinas_quantidade}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#CC0033"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="13" y="13" width="251" height="145" uuid="52d32614-b7a6-48f8-b27b-39e953e06f01"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Quantidade"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{vacinas_id}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{vacinas_quantidade}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#CC0033"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="13" y="183" width="251" height="140" uuid="18bdcd6c-e13b-4b87-8d67-30b33f44ff3e"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Lote"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{vacinas_lote}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{vacinas_id}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#CC0033"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+			<stackedAreaChart>
+				<chart>
+					<reportElement x="311" y="183" width="231" height="140" uuid="2d1139c5-3e99-41ec-811f-2f96aaa79d9b"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Dummy Series"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{vacinas_lote}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{vacinas_quantidade}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<areaPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#CC0033"/>
+					</plot>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</areaPlot>
+			</stackedAreaChart>
+		</band>
+	</summary>
+</jasperReport>
