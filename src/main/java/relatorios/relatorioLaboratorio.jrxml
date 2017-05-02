@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1033423-e974-4e66-88aa-89652729651c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     laboratorio.`id` AS laboratorio_id,
+     laboratorio.`razaoSocial` AS laboratorio_razaoSocial,
+     laboratorio.`cnpj` AS laboratorio_cnpj,
+     laboratorio.`registroEstadual` AS laboratorio_registroEstadual,
+     laboratorio.`nomeFantasia` AS laboratorio_nomeFantasia,
+     laboratorio.`telefone` AS laboratorio_telefone,
+     laboratorio.`site` AS laboratorio_site,
+     laboratorio.`cep` AS laboratorio_cep,
+     laboratorio.`logradouro` AS laboratorio_logradouro,
+     laboratorio.`numero` AS laboratorio_numero,
+     laboratorio.`bairro` AS laboratorio_bairro,
+     laboratorio.`cidade` AS laboratorio_cidade,
+     laboratorio.`estado` AS laboratorio_estado,
+     laboratorio.`ativo` AS laboratorio_ativo
+FROM
+     `laboratorio` laboratorio]]>
+	</queryString>
+	<field name="laboratorio_id" class="java.lang.Integer"/>
+	<field name="laboratorio_razaoSocial" class="java.lang.String"/>
+	<field name="laboratorio_cnpj" class="java.lang.String"/>
+	<field name="laboratorio_registroEstadual" class="java.lang.String"/>
+	<field name="laboratorio_nomeFantasia" class="java.lang.String"/>
+	<field name="laboratorio_telefone" class="java.lang.String"/>
+	<field name="laboratorio_site" class="java.lang.String"/>
+	<field name="laboratorio_cep" class="java.lang.String"/>
+	<field name="laboratorio_logradouro" class="java.lang.String"/>
+	<field name="laboratorio_numero" class="java.lang.String"/>
+	<field name="laboratorio_bairro" class="java.lang.String"/>
+	<field name="laboratorio_cidade" class="java.lang.String"/>
+	<field name="laboratorio_estado" class="java.lang.String"/>
+	<field name="laboratorio_ativo" class="java.lang.Boolean"/>
+	<group name="laboratorio_bairro">
+		<groupExpression><![CDATA[$F{laboratorio_bairro}]]></groupExpression>
+	</group>
+	<group name="laboratorio_cidade">
+		<groupExpression><![CDATA[$F{laboratorio_cidade}]]></groupExpression>
+	</group>
+	<group name="laboratorio_estado">
+		<groupExpression><![CDATA[$F{laboratorio_estado}]]></groupExpression>
+	</group>
+	<group name="laboratorio_ativo">
+		<groupExpression><![CDATA[$F{laboratorio_ativo}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="29" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="73" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="759" y="48" width="40" height="20" uuid="9fcd76b3-6632-4bb3-bb19-24c4870399fa"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="694" y="5" width="105" height="20" uuid="88fd6500-7783-4c13-80f2-0bda2641e3ab"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="679" y="48" width="80" height="20" uuid="a8e5bb35-e95e-483b-a61d-73fcf7fc4bf5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="318" y="25" width="165" height="20" uuid="354e9c54-06f5-4246-acf2-ca0229e81716"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Laboratorios]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="5" width="802" height="20" forecolor="#CC0033" backcolor="#FFFFFF" uuid="b50c4f3f-54d0-4471-98eb-ba9eb43ae7df"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="39" y="10" width="81" height="20" uuid="2f7c0cbd-346b-47a0-b53f-6d7362788822"/>
+				<text><![CDATA[Razao Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="10" width="39" height="20" uuid="82325a59-9f02-49b1-b215-42758e98dc3f"/>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="10" width="90" height="20" uuid="cc24cacf-033f-4817-aea1-d192214e947e"/>
+				<text><![CDATA[Registro Estadual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="10" width="82" height="20" uuid="840914d8-b960-4e39-88c8-73c03ce236a8"/>
+				<text><![CDATA[Nome Fantasia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="10" width="48" height="20" uuid="cc69307a-f800-46c6-9ced-2d4158cfbc66"/>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="10" width="43" height="20" uuid="31980cc7-39d1-4ae0-bb29-60a37c3a8671"/>
+				<text><![CDATA[Site]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="468" y="10" width="29" height="20" uuid="0ed38bac-f305-4d37-b6ce-58ab7311eb88"/>
+				<text><![CDATA[CEP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="505" y="10" width="61" height="20" uuid="1ef35625-aa11-49fd-b4bd-3ba218932fe0"/>
+				<text><![CDATA[Logradouro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="574" y="10" width="46" height="19" uuid="6f133867-3e3a-4099-9523-3b536dc11c81"/>
+				<text><![CDATA[Numero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="627" y="10" width="40" height="20" uuid="3a2f6822-1a2e-45ac-ada1-1355369f824c"/>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="676" y="10" width="39" height="20" uuid="f65ce6ec-b69c-448a-8e51-7fffb37fd7b7"/>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="727" y="10" width="38" height="20" uuid="167e4a88-b484-4d57-a9d5-114119ba8af2"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="10" width="17" height="20" forecolor="#990033" uuid="e2cf2b2d-89eb-41ef-bff9-9b2e24989f91"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="5" width="802" height="20" forecolor="#990033" backcolor="#CCCCCC" uuid="213a9f61-d374-4b04-9afa-65560951dbb8"/>
+			</rectangle>
+			<textField>
+				<reportElement x="15" y="10" width="17" height="20" uuid="d5077abf-ec2a-4fa8-82f8-3caaea0cdd05"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="39" y="10" width="81" height="20" uuid="741fd5bd-778d-4966-b727-c3eb7d9a2567"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_razaoSocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="10" width="39" height="20" uuid="0bf3d04b-0957-4276-a762-c1bbac948d69"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_cnpj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="10" width="90" height="20" uuid="2e0f64c1-86cc-48ab-8ccf-e46e8a808426"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_registroEstadual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="268" y="10" width="82" height="20" uuid="a6647ec7-65fa-49ed-af9c-2eabf73a94d2"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_nomeFantasia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="363" y="10" width="48" height="20" uuid="263f5431-776b-4e2b-bdec-460be52ce139"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="10" width="43" height="20" uuid="d9f1e6a9-fbcb-4be0-870d-97811f8d0bb8"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_site}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="468" y="10" width="29" height="20" uuid="f336873e-94c5-42c0-bf2b-46be16abbe76"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_cep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="10" width="61" height="20" uuid="086dfa92-9de9-401c-afdd-4ae463e308b0"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_logradouro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="574" y="10" width="46" height="20" uuid="680639c0-d67e-4134-9f21-2b05c506c4ef"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="627" y="10" width="40" height="20" uuid="a02176b1-ee6c-44a2-9875-2c5bb935d9b9"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="676" y="10" width="39" height="20" uuid="6b257a05-d780-47c0-bb7a-1249ab982a8d"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="727" y="10" width="38" height="20" uuid="291c5767-0eb5-471d-8c4e-f2b9009afc97"/>
+				<textFieldExpression><![CDATA[$F{laboratorio_estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="36" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="38" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="57" splitType="Stretch"/>
+	</summary>
+</jasperReport>
