@@ -167,7 +167,7 @@ public class AgendamentoDAO implements IAgendamentoDAO {
     }
     
     
-    public void setQuantidadePassada(int quantidadeVacPassada, int idAgendamento) throws SQLException { // implementação do método -remove-
+    public void setQuantidadePassada(int quantidadeVacPassada, int idAgendamento) throws SQLException {
         String sql = "update agendamento set quantidadeVac=? where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, quantidadeVacPassada);
