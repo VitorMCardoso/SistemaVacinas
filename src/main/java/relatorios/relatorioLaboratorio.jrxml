@@ -139,6 +139,9 @@ FROM
 			</staticText>
 			<staticText>
 				<reportElement x="15" y="10" width="17" height="20" forecolor="#990033" uuid="e2cf2b2d-89eb-41ef-bff9-9b2e24989f91"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 		</band>

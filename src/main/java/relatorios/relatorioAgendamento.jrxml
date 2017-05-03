@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="93756267-4409-48bc-80ee-062210d11587">
+	<property name="ireport.zoom" value="1.1"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     agendamento.`id` AS agendamento_id,
+     agendamento.`dataDose` AS agendamento_dataDose,
+     agendamento.`quantidadeVac` AS agendamento_quantidadeVac,
+     agendamento.`idPaciente` AS agendamento_idPaciente,
+     agendamento.`idVacinas` AS agendamento_idVacinas,
+     agendamento.`ativo` AS agendamento_ativo,
+     paciente.`id` AS paciente_id,
+     paciente.`nome` AS paciente_nome,
+     paciente.`sobrenome` AS paciente_sobrenome,
+     paciente.`login` AS paciente_login,
+     paciente.`email` AS paciente_email,
+     paciente.`senha` AS paciente_senha,
+     paciente.`rg` AS paciente_rg,
+     paciente.`cpf` AS paciente_cpf,
+     paciente.`endereco` AS paciente_endereco,
+     paciente.`ativo` AS paciente_ativo,
+     vacinas.`id` AS vacinas_id,
+     vacinas.`dataValidade` AS vacinas_dataValidade,
+     vacinas.`dataFabricacao` AS vacinas_dataFabricacao,
+     vacinas.`nome` AS vacinas_nome,
+     vacinas.`tipo` AS vacinas_tipo,
+     vacinas.`quantidade` AS vacinas_quantidade,
+     vacinas.`lote` AS vacinas_lote,
+     vacinas.`idLaboratorio` AS vacinas_idLaboratorio
+FROM
+     `paciente` paciente INNER JOIN `agendamento` agendamento ON paciente.`id` = agendamento.`idPaciente`
+     INNER JOIN `vacinas` vacinas ON agendamento.`idVacinas` = vacinas.`id`]]>
+	</queryString>
+	<field name="agendamento_id" class="java.lang.Integer"/>
+	<field name="agendamento_dataDose" class="java.sql.Date"/>
+	<field name="agendamento_quantidadeVac" class="java.lang.Integer"/>
+	<field name="agendamento_idPaciente" class="java.lang.Integer"/>
+	<field name="agendamento_idVacinas" class="java.lang.Integer"/>
+	<field name="agendamento_ativo" class="java.lang.Boolean"/>
+	<field name="paciente_id" class="java.lang.Integer"/>
+	<field name="paciente_nome" class="java.lang.String"/>
+	<field name="paciente_sobrenome" class="java.lang.String"/>
+	<field name="paciente_login" class="java.lang.String"/>
+	<field name="paciente_email" class="java.lang.String"/>
+	<field name="paciente_senha" class="java.lang.String"/>
+	<field name="paciente_rg" class="java.lang.String"/>
+	<field name="paciente_cpf" class="java.lang.String"/>
+	<field name="paciente_endereco" class="java.lang.String"/>
+	<field name="paciente_ativo" class="java.lang.Boolean"/>
+	<field name="vacinas_id" class="java.lang.Integer"/>
+	<field name="vacinas_dataValidade" class="java.sql.Date"/>
+	<field name="vacinas_dataFabricacao" class="java.sql.Date"/>
+	<field name="vacinas_nome" class="java.lang.String"/>
+	<field name="vacinas_tipo" class="java.lang.String"/>
+	<field name="vacinas_quantidade" class="java.lang.Integer"/>
+	<field name="vacinas_lote" class="java.lang.String"/>
+	<field name="vacinas_idLaboratorio" class="java.lang.Integer"/>
+	<group name="agendamento_dataDose">
+		<groupExpression><![CDATA[$F{agendamento_dataDose}]]></groupExpression>
+	</group>
+	<group name="agendamento_idPaciente">
+		<groupExpression><![CDATA[$F{agendamento_idPaciente}]]></groupExpression>
+	</group>
+	<group name="agendamento_idVacinas">
+		<groupExpression><![CDATA[$F{agendamento_idVacinas}]]></groupExpression>
+	</group>
+	<group name="agendamento_ativo">
+		<groupExpression><![CDATA[$F{agendamento_ativo}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="29" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="77" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="757" y="50" width="40" height="20" uuid="75e18f36-970a-489d-91b7-7d4cbe2d28a8"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="692" y="7" width="105" height="20" uuid="8f32d5c1-d6bd-4c18-aa47-0a92b8f529bc"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="677" y="50" width="80" height="20" uuid="3deec485-046c-4fda-b497-fbfb95a171a9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-351" y="30" width="165" height="20" uuid="7d47608f-f304-4d7c-a33e-a67845a9128a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Laboratorios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-351" y="30" width="165" height="20" uuid="30fbd623-2b9f-4bc1-9ed4-d99a03d82045"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Laboratorios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-351" y="30" width="165" height="20" uuid="af7c4eae-d4bf-4521-b95c-502a723a5eab"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Laboratorios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-351" y="30" width="165" height="20" uuid="cd56bac3-6177-4df1-909a-8bbc13a25596"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Laboratorios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-351" y="30" width="165" height="20" uuid="cec68203-7bdc-448a-8ac3-bd2b4782d6a3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Laboratorios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="29" width="172" height="20" uuid="73f1fcd6-0298-47d1-aa63-cbe515d72099"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Agendamento]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="-654" y="15" width="17" height="20" forecolor="#990033" uuid="def0fe50-839c-475b-a655-c5255b78a204"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-654" y="15" width="17" height="20" forecolor="#990033" uuid="ae96ff0f-70dc-4932-9973-069ca86a9b52"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="0" y="6" width="802" height="20" forecolor="#CC0033" backcolor="#FFFFFF" uuid="de097ee5-14a0-4a99-a64a-3f583b879c07"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="11" y="11" width="17" height="20" forecolor="#990033" uuid="940b3ea8-f39c-46a2-ab58-bf50860a31ce"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="49" y="11" width="71" height="20" uuid="f29267d0-e722-4504-a3da-349ccfed9168"/>
+				<text><![CDATA[Data da Dose]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="11" width="120" height="20" uuid="f3af586e-99d3-49f0-83c0-fc3758a3c365"/>
+				<text><![CDATA[Quantidade de Vacinas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="294" y="11" width="61" height="20" uuid="4349e836-8d94-4bf7-abf1-99d7df8f25f0"/>
+				<text><![CDATA[ID Paciente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="11" width="78" height="20" uuid="3176be43-5a7e-4c47-b653-280820789394"/>
+				<text><![CDATA[Nome Paciente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="11" width="51" height="20" uuid="709a5aed-b800-4e37-a016-b3258898f66c"/>
+				<text><![CDATA[ID Vacina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="545" y="11" width="71" height="20" uuid="f5df29a0-8592-4493-846e-d5f4c04ec694"/>
+				<text><![CDATA[Nome Vacina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="640" y="11" width="37" height="20" uuid="0a2e7caf-7d81-4c4f-b089-c08e5d9ae0e2"/>
+				<text><![CDATA[Ativo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="-654" y="15" width="17" height="20" forecolor="#990033" uuid="54ed2f43-8c0b-49f7-9f80-9872aacf62be"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-654" y="15" width="17" height="20" forecolor="#990033" uuid="8a88999f-9187-4342-a645-adda96f81745"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-654" y="15" width="17" height="20" forecolor="#990033" uuid="63cc2f1d-b449-44c2-8b62-d8f1232b3e19"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-654" y="15" width="17" height="20" forecolor="#990033" uuid="1a0bd98f-e840-48fb-b7f7-ea2f47140ab4"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-654" y="15" width="17" height="20" forecolor="#990033" uuid="cc8d153b-3f09-4100-b0bc-fa2e3836dbbb"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-654" y="15" width="17" height="20" forecolor="#990033" uuid="14e82458-fe44-47bb-9058-7890ce88c5be"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="0" y="4" width="802" height="20" forecolor="#990033" backcolor="#CCCCCC" uuid="d0567176-30c2-486a-a3ea-a69561b5b8d4"/>
+			</rectangle>
+			<textField>
+				<reportElement x="11" y="8" width="21" height="20" uuid="27f6e559-6457-45c7-b211-c7f4af523ffd"/>
+				<textFieldExpression><![CDATA[$F{agendamento_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="10" width="83" height="20" uuid="105b8298-d178-4f2b-89f5-4eae6e489714"/>
+				<textFieldExpression><![CDATA[$F{agendamento_dataDose}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="8" width="47" height="20" uuid="b490a565-b80a-4a2c-832c-f63081dd409b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{agendamento_quantidadeVac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="8" width="40" height="20" uuid="0373e9ec-7fa5-474c-8eb3-27fcc6e664d2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{paciente_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="373" y="8" width="79" height="20" uuid="6ccca3f1-05ab-44ef-abd5-848e5cd48568"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="484" y="8" width="34" height="20" uuid="3d75c745-dad9-4a18-94ec-00ff8c111cd8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{vacinas_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="547" y="8" width="70" height="20" uuid="73e831a9-ba78-4e5f-a80c-fce1b268a890"/>
+				<textFieldExpression><![CDATA[$F{vacinas_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="640" y="8" width="52" height="20" uuid="645050ac-7b62-4486-91de-7df941f29876"/>
+				<textFieldExpression><![CDATA[$F{agendamento_ativo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
