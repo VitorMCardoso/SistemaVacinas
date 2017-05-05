@@ -29,6 +29,9 @@
                     <th>RG</th>
                     <th>CPF</th>
                     <th>Endereço</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
                     <th>Ativo</th>
                     <th>Perfil</th>
                     <th colspan=2>Açao</th>
@@ -47,6 +50,9 @@
                         <td><c:out value="${usuario.rg}" /></td>
                         <td><c:out value="${usuario.cpf}" /></td>
                         <td><c:out value="${usuario.endereco}" /></td>
+                        <td><c:out value="${usuario.bairro}" /></td>
+                        <td><c:out value="${usuario.cidade}" /></td>
+                        <td><c:out value="${usuario.estado}" /></td>
                         <td><c:out value="${usuario.ativo}" /></td>
                         <td><c:out value="${usuario.perfil}" /></td>
                         <td><a href="edit?id=<c:out value="${usuario.id}"/>">Update</a></td>

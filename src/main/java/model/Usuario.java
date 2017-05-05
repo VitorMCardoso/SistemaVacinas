@@ -21,18 +21,26 @@ public class Usuario {
     private String rg;
     private String cpf;
     private String endereco;
+    private String bairro;
+    private String cidade;
+    private String estado;
     private boolean ativo;
     private PerfilAcesso perfil;
 
-    public Usuario(int id, String nome, String sobrenome, String email, String senha, String rg, String cpf, String endereco, boolean ativo, PerfilAcesso perfil) {
+    public Usuario(int id, String nome, String sobrenome, String login, String email, String senha, Cargo cargo, String rg, String cpf, String endereco, String bairro, String cidade, String estado, boolean ativo, PerfilAcesso perfil) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
+        this.login = login;
         this.email = email;
         this.senha = senha;
+        this.cargo = cargo;
         this.rg = rg;
         this.cpf = cpf;
         this.endereco = endereco;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
         this.ativo = ativo;
         this.perfil = perfil;
     }
@@ -119,6 +127,30 @@ public class Usuario {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public boolean isAtivo() {

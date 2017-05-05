@@ -119,6 +119,30 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>Bairro </th>
+                        <td>
+                            <input type="text" name="bairro" size="45"
+                                   value="<c:out value='${usuario.bairro}' />"
+                                   />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Cidade </th>
+                        <td>
+                            <input type="text" name="cidade" size="45"
+                                   value="<c:out value='${usuario.cidade}' />"
+                                   />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Estado </th>
+                        <td>
+                            <input type="text" name="estado" size="45"
+                                   value="<c:out value='${usuario.estado}' />"
+                                   />
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Perfil </th>
                         <td>
                             <select name="optPerfil">

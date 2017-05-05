@@ -10,13 +10,13 @@
     </filter>
     <filter-mapping>
         <filter-name>AcessoAdministrativo</filter-name>
-        <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/new</url-pattern>
+        <url-pattern>/list</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AcessoLogado</filter-name>
         <url-pattern>/principal.jsp</url-pattern>
     </filter-mapping>
-    
     <servlet>
         <servlet-name>AcessoController</servlet-name>
         <servlet-class>controller.AcessoController</servlet-class>
@@ -24,6 +24,10 @@
     <servlet>
         <servlet-name>ControllerServlet</servlet-name>
         <servlet-class>controller.ControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Upload</servlet-name>
+        <servlet-class>controller.Upload</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AcessoController</servlet-name>
@@ -33,7 +37,10 @@
         <servlet-name>ControllerServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>Upload</servlet-name>
+        <url-pattern>/Upload</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

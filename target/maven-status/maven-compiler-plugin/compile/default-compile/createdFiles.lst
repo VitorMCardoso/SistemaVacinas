@@ -1,8 +1,10 @@
 model/Usuario.class
 dao/IUsuarioDAO.class
+dao/IFileDAO.class
 model/PerfilAcesso.class
 model/Agendamento.class
 dao/PacientesDAO.class
+dao/FileDAO.class
 dao/LaboratorioDAO.class
 dao/VacinasDAO.class
 dao/UsuarioDAO.class
@@ -23,6 +25,8 @@ model/Cargo.class
 controller/LaboratorioController.class
 dao/IAgendamentoDAO.class
 dao/AgendamentoDAO.class
+model/File.class
 model/Paciente.class
 controller/AcessoController.class
+controller/Upload.class
 controller/AgendamentoController.class

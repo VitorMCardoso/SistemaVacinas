@@ -63,9 +63,9 @@
 
             </table><br>
             <div>
-                <a href="newLaboratorio">Adicionar Novo Paciente</a>
+                <a href="newLaboratorio">Adicionar Novo Laboratorio</a>
                 &nbsp; &nbsp;
-                <a href="listLaboratorio">List All Paciente</a>
+                <a href="listLaboratorio">List All Laboratorio</a>
                 &nbsp; &nbsp;
                 <a href="principal">Home</a>
             </div>

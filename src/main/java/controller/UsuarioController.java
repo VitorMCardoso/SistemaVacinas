@@ -52,6 +52,9 @@ public class UsuarioController extends RelatorioController {
         usuario.setRg(request.getParameter("rg"));
         usuario.setCpf(request.getParameter("cpf"));
         usuario.setEndereco(request.getParameter("endereco"));
+        usuario.setBairro(request.getParameter("bairro"));
+        usuario.setCidade(request.getParameter("cidade"));
+        usuario.setEstado(request.getParameter("estado"));
         String perfil = request.getParameter("optPerfil");
         if (perfil.equalsIgnoreCase("administrador")) {
             usuario.setPerfil(PerfilAcesso.ADMINISTRADOR);
@@ -115,6 +118,9 @@ public class UsuarioController extends RelatorioController {
         usuario.setRg(request.getParameter("rg"));
         usuario.setCpf(request.getParameter("cpf"));
         usuario.setEndereco(request.getParameter("endereco"));
+        usuario.setBairro(request.getParameter("bairro"));
+        usuario.setCidade(request.getParameter("cidade"));
+        usuario.setEstado(request.getParameter("estado"));
         String perfil = request.getParameter("optPerfil");
         if (perfil.equalsIgnoreCase("administrador")) {
             usuario.setPerfil(PerfilAcesso.ADMINISTRADOR);

@@ -33,8 +33,8 @@ public class PacientesDAO implements IPacientesDAO{
     
     @Override
     public void cadastrarNovoPaciente(Paciente p) throws SQLException {
-        String sql = "Insert Into paciente (nome,sobrenome,login,email,senha,rg,cpf,endereco,ativo)"
-                + "Values(?,?,?,?,?,?,?,?,true)";
+        String sql = "Insert Into paciente (nome,sobrenome,login,email,senha,rg,cpf,endereco,bairro,cidade,estado,ativo)"
+                + "Values(?,?,?,?,?,?,?,?,?,?,?,true)";
         
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
@@ -46,6 +46,9 @@ public class PacientesDAO implements IPacientesDAO{
             stmt.setString(6, p.getRg());
             stmt.setString(7, p.getCpf());
             stmt.setString(8, p.getEndereco());
+            stmt.setString(9, p.getBairro());
+            stmt.setString(10, p.getCidade());
+            stmt.setString(11, p.getEstado());
             //executa o código
             stmt.execute();
             stmt.close();
@@ -56,7 +59,7 @@ public class PacientesDAO implements IPacientesDAO{
     @Override
     public void atualizarPaciente(Paciente p) throws SQLException {
         String sql = "Update paciente set nome = ? , sobrenome = ?, login = ?, email = ?, "
-                + "senha = ?, rg = ?, cpf = ?, endereco = ? where id=?";
+                + "senha = ?, rg = ?, cpf = ?, endereco = ?, bairro = ?, cidade = ?, estado = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setString(1, p.getNome());
@@ -67,7 +70,10 @@ public class PacientesDAO implements IPacientesDAO{
             stmt.setString(6, p.getRg());
             stmt.setString(7, p.getCpf());
             stmt.setString(8, p.getEndereco());
-            stmt.setInt(9, p.getId());
+            stmt.setString(9, p.getBairro());
+            stmt.setString(10, p.getCidade());
+            stmt.setString(11, p.getEstado());
+            stmt.setInt(12, p.getId());
             // executa o código sql
             stmt.executeUpdate();
             stmt.close();
@@ -96,6 +102,9 @@ public class PacientesDAO implements IPacientesDAO{
                 paciente.setRg(rsPaciente.getString("rg"));
                 paciente.setCpf(rsPaciente.getString("cpf"));
                 paciente.setEndereco(rsPaciente.getString("endereco"));
+                paciente.setBairro(rsPaciente.getString("bairro"));
+                paciente.setCidade(rsPaciente.getString("cidade"));
+                paciente.setEstado(rsPaciente.getString("estado"));
                 paciente.setAtivo(rsPaciente.getBoolean("ativo"));
             }
             st.close();
@@ -178,6 +187,9 @@ public class PacientesDAO implements IPacientesDAO{
                 paciente.setRg(rs.getString("rg"));
                 paciente.setCpf(rs.getString("cpf"));
                 paciente.setEndereco(rs.getString("endereco"));
+                paciente.setBairro(rs.getString("bairro"));
+                paciente.setCidade(rs.getString("cidade"));
+                paciente.setEstado(rs.getString("estado"));
                 paciente.setAtivo(rs.getBoolean("ativo"));
                 pacientes.add(paciente);
             }

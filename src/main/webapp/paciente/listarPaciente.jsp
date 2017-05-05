@@ -28,6 +28,9 @@
                     <th>RG</th>
                     <th>CPF</th>
                     <th>Endereço</th>
+                    <th>Bairro</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
                     <th>Ativo</th>
                     <th colspan=2>Açao</th>
                 </tr>
@@ -44,6 +47,9 @@
                         <td><c:out value="${paciente.rg}" /></td>
                         <td><c:out value="${paciente.cpf}" /></td>
                         <td><c:out value="${paciente.endereco}" /></td>
+                        <td><c:out value="${paciente.bairro}" /></td>
+                        <td><c:out value="${paciente.cidade}" /></td>
+                        <td><c:out value="${paciente.estado}" /></td>
                         <td><c:out value="${paciente.ativo}" /></td>
                         <td><a href="editPaciente?id=<c:out value="${paciente.id}"/>">Update</a></td>
                         <td><a href="deletePaciente?id=<c:out value='${paciente.id}'/>">Delete</a></td>

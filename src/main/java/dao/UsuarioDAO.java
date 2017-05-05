@@ -33,8 +33,8 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public void cadastrarNovoUsuario(Usuario u) throws SQLException {
-        String sql = "Insert Into usuario (nome,sobrenome,login,email,senha,cargo,rg,cpf,endereco,ativo,perfil)"
-                + "Values(?,?,?,?,?,?,?,?,?,true,?)";
+        String sql = "Insert Into usuario (nome,sobrenome,login,email,senha,cargo,rg,cpf,endereco,bairro,cidade,estado,ativo,perfil)"
+                + "Values(?,?,?,?,?,?,?,?,?,?,?,?,true,?)";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
@@ -47,7 +47,10 @@ public class UsuarioDAO implements IUsuarioDAO {
             stmt.setString(7, u.getRg());
             stmt.setString(8, u.getCpf());
             stmt.setString(9, u.getEndereco());
-            stmt.setString(10, u.getPerfil().toString());
+            stmt.setString(10, u.getBairro());
+            stmt.setString(11, u.getCidade());
+            stmt.setString(12, u.getEstado());
+            stmt.setString(13, u.getPerfil().toString());
             //executa o código
             stmt.execute();
             stmt.close();
@@ -58,7 +61,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public void atualizarUsuario(Usuario u) throws SQLException {
         String sql = "Update usuario set nome = ? , sobrenome = ?, login = ?, email = ?, "
-                + "senha = ?, cargo = ?, rg = ?, cpf = ?, endereco = ?, perfil = ? where id=?";
+                + "senha = ?, cargo = ?, rg = ?, cpf = ?, endereco = ?, bairro = ?, cidade = ?, estado = ?, perfil = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setString(1, u.getNome());
@@ -70,8 +73,11 @@ public class UsuarioDAO implements IUsuarioDAO {
             stmt.setString(7, u.getRg());
             stmt.setString(8, u.getCpf());
             stmt.setString(9, u.getEndereco());
-            stmt.setString(10, u.getPerfil().toString());
-            stmt.setInt(11, u.getId());
+            stmt.setString(10, u.getBairro());
+            stmt.setString(11, u.getCidade());
+            stmt.setString(12, u.getEstado());
+            stmt.setString(13, u.getPerfil().toString());
+            stmt.setInt(14, u.getId());
             // executa o código sql
             stmt.executeUpdate();
             stmt.close();
@@ -101,6 +107,9 @@ public class UsuarioDAO implements IUsuarioDAO {
                 usuario.setRg(rs.getString("rg"));
                 usuario.setCpf(rs.getString("cpf"));
                 usuario.setEndereco(rs.getString("endereco"));
+                usuario.setBairro(rs.getString("bairro"));
+                usuario.setCidade(rs.getString("cidade"));
+                usuario.setEstado(rs.getString("estado"));
                 usuario.setAtivo(rs.getBoolean("ativo"));
                 usuario.setPerfil(PerfilAcesso.valueOf(rs.getString("perfil")));
                 usuarios.add(usuario);
@@ -136,6 +145,9 @@ public class UsuarioDAO implements IUsuarioDAO {
                 usuario.setRg(rsUsuario.getString("rg"));
                 usuario.setCpf(rsUsuario.getString("cpf"));
                 usuario.setEndereco(rsUsuario.getString("endereco"));
+                usuario.setBairro(rsUsuario.getString("bairro"));
+                usuario.setCidade(rsUsuario.getString("cidade"));
+                usuario.setEstado(rsUsuario.getString("estado"));
                 usuario.setAtivo(rsUsuario.getBoolean("ativo"));
                 usuario.setPerfil(PerfilAcesso.valueOf(rsUsuario.getString("perfil")));
             }
@@ -223,6 +235,9 @@ public class UsuarioDAO implements IUsuarioDAO {
                 usuarioAutenticado.setRg(rsUsuario.getString("rg"));
                 usuarioAutenticado.setCpf(rsUsuario.getString("cpf"));
                 usuarioAutenticado.setEndereco(rsUsuario.getString("endereco"));
+                usuarioAutenticado.setBairro(rsUsuario.getString("bairro"));
+                usuarioAutenticado.setCidade(rsUsuario.getString("cidade"));
+                usuarioAutenticado.setEstado(rsUsuario.getString("estado"));
                 usuarioAutenticado.setAtivo(rsUsuario.getBoolean("ativo"));
                 usuarioAutenticado.setPerfil(PerfilAcesso.valueOf(rsUsuario.getString("perfil")));
             }

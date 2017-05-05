@@ -118,7 +118,7 @@ public class AcessoAdministrativo implements Filter {
             if (usuario != null && usuario.getPerfil().equals(PerfilAcesso.ADMINISTRADOR)) {
                 chain.doFilter(request, response);
             } else {
-                ((HttpServletResponse) response).sendRedirect("../acessoNegado.jsp");
+                ((HttpServletResponse) response).sendRedirect("acessoNegado.jsp");
             }
 
         } catch (Throwable t) {

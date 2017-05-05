@@ -39,6 +39,9 @@ public class PacientesController {
         paciente.setRg(request.getParameter("rg"));
         paciente.setCpf(request.getParameter("cpf"));
         paciente.setEndereco(request.getParameter("endereco"));
+        paciente.setBairro(request.getParameter("bairro"));
+        paciente.setCidade(request.getParameter("cidade"));
+        paciente.setEstado(request.getParameter("estado"));
 
         dao.cadastrarNovoPaciente(paciente);
         response.sendRedirect("listPaciente");
@@ -87,6 +90,9 @@ public class PacientesController {
         paciente.setRg(request.getParameter("rg"));
         paciente.setCpf(request.getParameter("cpf"));
         paciente.setEndereco(request.getParameter("endereco"));
+        paciente.setBairro(request.getParameter("bairro"));
+        paciente.setCidade(request.getParameter("cidade"));
+        paciente.setEstado(request.getParameter("estado"));
         
         dao.atualizarPaciente(paciente);
         response.sendRedirect("listPaciente");
