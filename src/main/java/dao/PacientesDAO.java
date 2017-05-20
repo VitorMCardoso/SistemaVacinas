@@ -22,20 +22,20 @@ import model.PerfilAcesso;
  *
  * @author Kanec
  */
-public class PacientesDAO implements IPacientesDAO{
-    
+public class PacientesDAO implements IDao<Paciente> {
+
     private Connection conexao;
     Paciente paciente = new Paciente();
-    
+
     public PacientesDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
-    
+
     @Override
-    public void cadastrarNovoPaciente(Paciente p) throws SQLException {
+    public void cadastrar(Paciente p) throws SQLException {
         String sql = "Insert Into paciente (nome,sobrenome,login,email,senha,rg,cpf,endereco,bairro,cidade,estado,ativo)"
                 + "Values(?,?,?,?,?,?,?,?,?,?,?,true)";
-        
+
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setString(1, p.getNome());
@@ -53,11 +53,11 @@ public class PacientesDAO implements IPacientesDAO{
             stmt.execute();
             stmt.close();
         }
-        
+
     }
-    
+
     @Override
-    public void atualizarPaciente(Paciente p) throws SQLException {
+    public void atualizar(Paciente p) throws SQLException {
         String sql = "Update paciente set nome = ? , sobrenome = ?, login = ?, email = ?, "
                 + "senha = ?, rg = ?, cpf = ?, endereco = ?, bairro = ?, cidade = ?, estado = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -79,13 +79,13 @@ public class PacientesDAO implements IPacientesDAO{
             stmt.close();
         }
     }
-    
+
     @Override
-    public Paciente buscarPaciente(int pacienteID) throws SQLException {
-        
+    public Paciente buscar(int pacienteID) throws SQLException {
+
         String query = "SELECT * FROM paciente where id=" + pacienteID;
         try {
-            
+
             Statement st = conexao.createStatement();
 
             // execute the query, and get a java resultset
@@ -113,30 +113,17 @@ public class PacientesDAO implements IPacientesDAO{
         }
         return paciente;
     }
-    
+
     @Override
-    public void excluirPaciente(int pacienteID) throws SQLException { // implementação do método -remove-
+    public void excluir(int pacienteID) throws SQLException { // implementação do método -remove-
         String sql = "update paciente set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setLong(1, pacienteID);
         stmt.execute();
         stmt.close();
-        
+
     }
-    
-    @Override
-    public void resetarSenha(Paciente p) throws SQLException {
-        String sql = "Update paciente set senha = ? where id=?";
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            //seta os valores
-            stmt.setInt(1, 123);
-            stmt.setInt(2, p.getId());
-            // executa o código sql
-            stmt.execute();
-            stmt.close();
-        }
-    }
-    
+
     @Override
     public int selectID(Paciente p) throws SQLException {
         String query = "SELECT id FROM paciente where id=" + p.getId();
@@ -150,7 +137,7 @@ public class PacientesDAO implements IPacientesDAO{
         st.close();
         return id;
     }
-    
+
     @Override
     public boolean setAtivo(Paciente p) throws SQLException {
         String query = "SELECT ativo FROM paciente where id=" + p.getId();
@@ -200,8 +187,19 @@ public class PacientesDAO implements IPacientesDAO{
         return pacientes;
     }
 
-    @Override
-    public Paciente autenticaUsuario(Paciente p) throws SQLException {
+    public Paciente autentica(Paciente p) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void resetarSenha(Paciente p) throws SQLException {
+        String sql = "Update paciente set senha = ? where id=?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            //seta os valores
+            stmt.setInt(1, 123);
+            stmt.setInt(2, p.getId());
+            // executa o código sql
+            stmt.execute();
+            stmt.close();
+        }
     }
 }

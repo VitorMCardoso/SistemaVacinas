@@ -61,7 +61,7 @@ public class UsuarioController extends RelatorioController {
         } else {
             usuario.setPerfil(PerfilAcesso.COMUM);
         }
-        dao.cadastrarNovoUsuario(usuario);
+        dao.cadastrar(usuario);
         response.sendRedirect("list");
     }
 
@@ -83,7 +83,7 @@ public class UsuarioController extends RelatorioController {
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
-        dao.excluirUsuario(id);
+        dao.excluir(id);
         response.sendRedirect("list");
 
     }
@@ -93,7 +93,7 @@ public class UsuarioController extends RelatorioController {
         int id = Integer.parseInt(request.getParameter("id"));
         //Usuario usuarioLocalizado = dao.buscarUsuario(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin/usuarioForm.jsp");
-        request.setAttribute("usuario", dao.buscarUsuario(id));
+        request.setAttribute("usuario", dao.buscar(id));
         dispatcher.forward(request, response);
 
     }
@@ -128,7 +128,7 @@ public class UsuarioController extends RelatorioController {
             usuario.setPerfil(PerfilAcesso.COMUM);
         }
 
-        dao.atualizarUsuario(usuario);
+        dao.atualizar(usuario);
         response.sendRedirect("list");
     }
 

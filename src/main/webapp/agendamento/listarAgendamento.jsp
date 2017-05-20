@@ -35,9 +35,9 @@
 
                         <td><c:out value="${agendamento.id}" /></td>
                         <td><c:out value="${agendamento.dataDose}" /></td>
-                        <td><c:out value="${agendamento.quantidadeVac}" /></td>
-                        <td><c:out value="${agendamento.idPaciente}" /></td>
-                        <td><c:out value="${agendamento.idVacinas}" /></td>
+                        <td><c:out value="${agendamento.quantidade}" /></td>
+                        <td><c:out value="${agendamento.paciente}" /></td>
+                        <td><c:out value="${agendamento.vacinas}" /></td>
                         <td><c:out value="${agendamento.ativo}" /></td>
                         
                         <td><a href="editAgendamento?id=<c:out value="${agendamento.id}"/>">Update</a></td>

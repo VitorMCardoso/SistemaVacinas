@@ -43,7 +43,7 @@ public class AcessoController extends HttpServlet {
                 usuario.setLogin(request.getParameter("txtLogin"));
                 usuario.setSenha(request.getParameter("txtSenha"));
                 UsuarioDAO usuarioDAO = new UsuarioDAO();
-                Usuario usuarioAutenticado = usuarioDAO.autenticaUsuario(usuario);
+                Usuario usuarioAutenticado = usuarioDAO.autentica(usuario);
                 //se o usuario existe no banco de dados
                 if (usuarioAutenticado != null) {
                     //cria uma sessao para o usuario

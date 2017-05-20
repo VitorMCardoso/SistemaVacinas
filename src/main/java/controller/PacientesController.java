@@ -43,7 +43,7 @@ public class PacientesController {
         paciente.setCidade(request.getParameter("cidade"));
         paciente.setEstado(request.getParameter("estado"));
 
-        dao.cadastrarNovoPaciente(paciente);
+        dao.cadastrar(paciente);
         response.sendRedirect("listPaciente");
     }
 
@@ -64,7 +64,7 @@ public class PacientesController {
     public void deletarPaciente(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        dao.excluirPaciente(id);
+        dao.excluir(id);
         response.sendRedirect("listPaciente");
 
     }
@@ -73,7 +73,7 @@ public class PacientesController {
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("paciente/pacienteForm.jsp");
-        request.setAttribute("paciente", dao.buscarPaciente(id));
+        request.setAttribute("paciente", dao.buscar(id));
         dispatcher.forward(request, response);
 
     }
@@ -94,7 +94,7 @@ public class PacientesController {
         paciente.setCidade(request.getParameter("cidade"));
         paciente.setEstado(request.getParameter("estado"));
         
-        dao.atualizarPaciente(paciente);
+        dao.atualizar(paciente);
         response.sendRedirect("listPaciente");
     }
 }

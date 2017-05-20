@@ -24,7 +24,7 @@ import model.Vacinas;
  *
  * @author Kanec
  */
-public class AgendamentoDAO implements IAgendamentoDAO {
+public class AgendamentoDAO implements IDao<Agendamento> {
 
     private Connection conexao;
     private Agendamento agendamento = new Agendamento();
@@ -35,7 +35,7 @@ public class AgendamentoDAO implements IAgendamentoDAO {
     }
 
     @Override
-    public void cadastrarNovoAgendamento(Agendamento a) throws SQLException {
+    public void cadastrar(Agendamento a) throws SQLException {
         String sql = "Insert Into agendamento (dataDose, quantidadeVac, idPaciente, idVacinas, ativo) Values (?, ?, ?, ?, true)";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -53,7 +53,7 @@ public class AgendamentoDAO implements IAgendamentoDAO {
     }
 
     @Override
-    public void atualizarAgendamento(Agendamento a) throws SQLException {
+    public void atualizar(Agendamento a) throws SQLException {
         String sql = "Update agendamento set dataDose = ?, quantidadeVac = ?, "
                 + "idPaciente = ?, idVacinas = ? where id=?";
 
@@ -101,7 +101,7 @@ public class AgendamentoDAO implements IAgendamentoDAO {
     }
 
     @Override
-    public Agendamento buscarAgendamento(int agendamentoID) throws SQLException {
+    public Agendamento buscar(int agendamentoID) throws SQLException {
 
         String query = "SELECT * FROM agendamento where id=" + agendamentoID;
         try {
@@ -129,7 +129,7 @@ public class AgendamentoDAO implements IAgendamentoDAO {
     }
 
     @Override
-    public void excluirAgendamento(int idAgendamento) throws SQLException { // implementação do método -remove-
+    public void excluir(int idAgendamento) throws SQLException { // implementação do método -remove-
         String sql = "update agendamento set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, idAgendamento);

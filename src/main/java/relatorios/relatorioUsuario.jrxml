@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc302fed-3cfc-4bed-a4b0-d80e2d76aee9">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.0000000000000004"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="imagemLogo" class="java.lang.String">
@@ -22,7 +22,10 @@
      usuario.`cpf` AS usuario_cpf,
      usuario.`endereco` AS usuario_endereco,
      usuario.`ativo` AS usuario_ativo,
-     usuario.`perfil` AS usuario_perfil
+     usuario.`perfil` AS usuario_perfil,
+     usuario.`bairro` AS usuario_bairro,
+     usuario.`cidade` AS usuario_cidade,
+     usuario.`estado` AS usuario_estado
 FROM
      `usuario` usuario]]>
 	</queryString>
@@ -38,6 +41,9 @@ FROM
 	<field name="usuario_endereco" class="java.lang.String"/>
 	<field name="usuario_ativo" class="java.lang.Boolean"/>
 	<field name="usuario_perfil" class="java.lang.String"/>
+	<field name="usuario_bairro" class="java.lang.String"/>
+	<field name="usuario_cidade" class="java.lang.String"/>
+	<field name="usuario_estado" class="java.lang.String"/>
 	<group name="usuario_cargo">
 		<groupExpression><![CDATA[$F{usuario_cargo}]]></groupExpression>
 	</group>
@@ -96,44 +102,56 @@ FROM
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="29" y="9" width="34" height="20" uuid="b58a334c-57ae-4fc4-b38f-fab2062d08f9"/>
+				<reportElement x="24" y="9" width="34" height="20" uuid="b58a334c-57ae-4fc4-b38f-fab2062d08f9"/>
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="77" y="9" width="62" height="20" uuid="6cdc8024-7f2d-4620-a5f5-d44d2c347664"/>
+				<reportElement x="62" y="9" width="62" height="20" uuid="6cdc8024-7f2d-4620-a5f5-d44d2c347664"/>
 				<text><![CDATA[Sobrenome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="148" y="9" width="29" height="20" uuid="ec78af4d-b573-4bb7-b60d-88bf62673d09"/>
+				<reportElement x="129" y="9" width="29" height="20" uuid="ec78af4d-b573-4bb7-b60d-88bf62673d09"/>
 				<text><![CDATA[Login]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="189" y="9" width="58" height="20" uuid="0b0a8e69-0282-4961-99a9-d207107ecc8c"/>
+				<reportElement x="165" y="9" width="58" height="20" uuid="0b0a8e69-0282-4961-99a9-d207107ecc8c"/>
 				<text><![CDATA[Email]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="252" y="9" width="61" height="20" uuid="9376dd82-fddb-4131-b76e-f79b032c04cb"/>
+				<reportElement x="227" y="9" width="61" height="20" uuid="9376dd82-fddb-4131-b76e-f79b032c04cb"/>
 				<text><![CDATA[Cargo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="318" y="9" width="57" height="20" uuid="b3d7359f-81e2-4a3d-9230-97ef76cf1ac8"/>
+				<reportElement x="293" y="9" width="57" height="20" uuid="b3d7359f-81e2-4a3d-9230-97ef76cf1ac8"/>
 				<text><![CDATA[RG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="9" width="80" height="20" uuid="54920f4d-b926-4db8-9744-cc578e00cf04"/>
+				<reportElement x="356" y="9" width="80" height="20" uuid="54920f4d-b926-4db8-9744-cc578e00cf04"/>
 				<text><![CDATA[CPF]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="464" y="9" width="115" height="20" uuid="0b10583a-2e1f-461a-8ad1-15df28dc5624"/>
+				<reportElement x="439" y="9" width="73" height="20" uuid="0b10583a-2e1f-461a-8ad1-15df28dc5624"/>
 				<text><![CDATA[Endereço]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="597" y="9" width="136" height="20" uuid="9c5b1454-9b2a-43b8-b067-d253eed00a51"/>
+				<reportElement x="701" y="9" width="49" height="20" uuid="9c5b1454-9b2a-43b8-b067-d253eed00a51"/>
 				<text><![CDATA[Perfil]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="760" y="9" width="29" height="20" uuid="46ab72de-644c-40f0-945a-93c7c2ca0470"/>
 				<text><![CDATA[Ativo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="518" y="9" width="44" height="20" uuid="2344a912-9505-4981-9ff4-2c1912680162"/>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="586" y="9" width="37" height="20" uuid="0bf697e6-b554-46a3-8f3c-b667c2aef92d"/>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="649" y="9" width="46" height="20" uuid="8f845572-c8a5-47af-8246-c95dacaf84c4"/>
+				<text><![CDATA[Estado]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -147,44 +165,56 @@ FROM
 				<textFieldExpression><![CDATA[$F{usuario_id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="29" y="4" width="34" height="20" uuid="b6a1f7a0-6379-4a10-bc5e-b675f40d1127"/>
+				<reportElement x="24" y="4" width="34" height="20" uuid="b6a1f7a0-6379-4a10-bc5e-b675f40d1127"/>
 				<textFieldExpression><![CDATA[$F{usuario_nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="77" y="4" width="62" height="20" uuid="331a73ef-a96a-4b1d-b0fa-0e76cf612ec2"/>
+				<reportElement x="62" y="4" width="62" height="20" uuid="331a73ef-a96a-4b1d-b0fa-0e76cf612ec2"/>
 				<textFieldExpression><![CDATA[$F{usuario_sobrenome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="148" y="4" width="29" height="20" uuid="92cc76e3-1c67-4ca8-a443-19b322b67687"/>
+				<reportElement x="129" y="4" width="29" height="20" uuid="92cc76e3-1c67-4ca8-a443-19b322b67687"/>
 				<textFieldExpression><![CDATA[$F{usuario_login}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="189" y="4" width="58" height="20" uuid="e68a766d-e601-4cb2-a9da-dceb4ef4a980"/>
+				<reportElement x="165" y="4" width="58" height="20" uuid="e68a766d-e601-4cb2-a9da-dceb4ef4a980"/>
 				<textFieldExpression><![CDATA[$F{usuario_email}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="252" y="4" width="61" height="20" uuid="3dcf8ae7-5492-4789-9755-5497536ca099"/>
+				<reportElement x="227" y="4" width="61" height="20" uuid="3dcf8ae7-5492-4789-9755-5497536ca099"/>
 				<textFieldExpression><![CDATA[$F{usuario_cargo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="318" y="4" width="57" height="20" uuid="fbbc3356-7071-4878-9ca3-ce2aee89346c"/>
+				<reportElement x="293" y="4" width="57" height="20" uuid="fbbc3356-7071-4878-9ca3-ce2aee89346c"/>
 				<textFieldExpression><![CDATA[$F{usuario_rg}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="381" y="4" width="80" height="20" uuid="2d6772ad-c508-496b-a828-f1b0ba6b7d1d"/>
+				<reportElement x="356" y="4" width="80" height="20" uuid="2d6772ad-c508-496b-a828-f1b0ba6b7d1d"/>
 				<textFieldExpression><![CDATA[$F{usuario_cpf}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="464" y="4" width="115" height="20" uuid="c2e95034-3cff-47f6-9924-30a33b867463"/>
+				<reportElement x="439" y="4" width="73" height="20" uuid="c2e95034-3cff-47f6-9924-30a33b867463"/>
 				<textFieldExpression><![CDATA[$F{usuario_endereco}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="597" y="4" width="136" height="20" uuid="0e88f0b7-05ca-42f9-94a1-fc7472ffc99d"/>
+				<reportElement x="701" y="4" width="49" height="20" uuid="0e88f0b7-05ca-42f9-94a1-fc7472ffc99d"/>
 				<textFieldExpression><![CDATA[$F{usuario_perfil}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="760" y="4" width="29" height="20" uuid="4e2ae30f-db59-4367-9dee-b09c79884065"/>
 				<textFieldExpression><![CDATA[$F{usuario_ativo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="518" y="4" width="62" height="20" uuid="98648da5-36c2-4075-beb5-ead8893be996"/>
+				<textFieldExpression><![CDATA[$F{usuario_bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="586" y="4" width="47" height="20" uuid="a7cf51a6-9631-4f08-86fb-3ebed26dcedf"/>
+				<textFieldExpression><![CDATA[$F{usuario_cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="649" y="4" width="46" height="20" uuid="9f4c9d20-bac7-4860-8c90-bb860da8e48d"/>
+				<textFieldExpression><![CDATA[$F{usuario_estado}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -211,7 +241,7 @@ FROM
 					<categorySeries>
 						<seriesExpression><![CDATA["Cargo"]]></seriesExpression>
 						<categoryExpression><![CDATA[$F{usuario_cargo}]]></categoryExpression>
-						<valueExpression><![CDATA[$V{usuario_cargo_COUNT}]]></valueExpression>
+						<valueExpression><![CDATA[$V{Cargo_COUNT}]]></valueExpression>
 					</categorySeries>
 				</categoryDataset>
 				<bar3DPlot>
@@ -229,15 +259,15 @@ FROM
 			</stackedBar3DChart>
 			<stackedBar3DChart>
 				<chart>
-					<reportElement x="47" y="30" width="200" height="183" uuid="c023500d-a854-4b1e-a241-7649ddc1afe3"/>
+					<reportElement x="17" y="30" width="370" height="183" uuid="c023500d-a854-4b1e-a241-7649ddc1afe3"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<categoryDataset>
 					<categorySeries>
-						<seriesExpression><![CDATA["Dummy Series"]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{usuario_ativo}]]></categoryExpression>
+						<seriesExpression><![CDATA["Bairro"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{usuario_bairro}]]></categoryExpression>
 						<valueExpression><![CDATA[$V{usuario_ativo_COUNT}]]></valueExpression>
 					</categorySeries>
 				</categoryDataset>

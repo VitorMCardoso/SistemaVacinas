@@ -24,7 +24,7 @@ import model.Vacinas;
  *
  * @author Kanec
  */
-public class VacinasDAO implements IVacinasDAO {
+public class VacinasDAO implements IDao<Vacinas> {
 
     private Connection conexao;
     private Vacinas vacina = new Vacinas();
@@ -33,7 +33,7 @@ public class VacinasDAO implements IVacinasDAO {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
 
-    public void cadastrarNovaVacina(Vacinas v) throws SQLException {
+    public void cadastrar(Vacinas v) throws SQLException {
         String sql = "Insert Into vacinas (datavalidade, datafabricacao, nome, tipo, quantidade, lote, idlaboratorio)"
                 + "Values(?,?,?,?,?,?,?)";
 
@@ -54,7 +54,7 @@ public class VacinasDAO implements IVacinasDAO {
 
     }
 
-    public void atualizarVacina(Vacinas v) throws SQLException {
+    public void atualizar(Vacinas v) throws SQLException {
         String sql = "Update vacinas set datavalidade = ? , datafabricacao=?, nome = ?, tipo = ?, "
                 + "quantidade=?, lote=?, idlaboratorio = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -105,7 +105,7 @@ public class VacinasDAO implements IVacinasDAO {
     }
 
     @Override
-    public Vacinas buscarVacina(int usuarioID) throws SQLException {
+    public Vacinas buscar(int usuarioID) throws SQLException {
 
         String query = "SELECT * FROM vacinas where id=" + usuarioID;
         try {
@@ -147,7 +147,6 @@ public class VacinasDAO implements IVacinasDAO {
         return id;
     }
 
-    @Override
     public void descVacina(int quantidadeAgendamento, int idVacina) throws SQLException {
         String query = "Update vacinas set quantidade=quantidade-? where id =?";
         PreparedStatement stmt = conexao.prepareStatement(query);
@@ -157,7 +156,6 @@ public class VacinasDAO implements IVacinasDAO {
         stmt.close();
     }
 
-    @Override
     public void cresVacina(int quantidadeAgendamento, int idVacina) throws SQLException {
         String query = "Update vacinas set quantidade=quantidade-? where id =?";
         PreparedStatement stmt = conexao.prepareStatement(query);
@@ -166,4 +164,15 @@ public class VacinasDAO implements IVacinasDAO {
         stmt.executeUpdate();
         stmt.close();
     }
+
+    @Override
+    public void excluir(int id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean setAtivo(Vacinas t) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

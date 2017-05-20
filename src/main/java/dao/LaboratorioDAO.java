@@ -21,7 +21,7 @@ import model.Laboratorio;
  * @author vitor
  */
 
-public class LaboratorioDAO implements ILaboratorioDAO {
+public class LaboratorioDAO implements IDao<Laboratorio> {
 
     private Connection conexao;
     Laboratorio laboratorio = new Laboratorio();
@@ -31,7 +31,7 @@ public class LaboratorioDAO implements ILaboratorioDAO {
     }
 
     @Override
-    public void cadastrarNovoLaboratorio(Laboratorio l) throws SQLException {
+    public void cadastrar(Laboratorio l) throws SQLException {
         String sql = "Insert Into laboratorio (razaoSocial,cnpj,registroEstadual,nomeFantasia,telefone,site,"
                 + "cep,logradouro,numero,bairro,cidade,estado,ativo)"
                 + "Values(?,?,?,?,?,?,?,?,?,?,?,?,true)";
@@ -57,7 +57,7 @@ public class LaboratorioDAO implements ILaboratorioDAO {
     }
 
     @Override
-    public void atualizarLaboratorio(Laboratorio l) throws SQLException {
+    public void atualizar(Laboratorio l) throws SQLException {
         String sql = "Update laboratorio set razaoSocial = ? , cnpj = ?, registroEstadual = ?, nomeFantasia = ?, "
                 + "telefone = ?, site = ?, cep = ?, logradouro = ?, numero = ?, bairro = ?, cidade = ?, estado = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -119,7 +119,7 @@ public class LaboratorioDAO implements ILaboratorioDAO {
     }
 
     @Override
-    public Laboratorio buscarLaboratorio(int laboratorioID) throws SQLException {
+    public Laboratorio buscar(int laboratorioID) throws SQLException {
         String query = "SELECT * FROM laboratorio where id=" + laboratorioID;
         try {
 
@@ -154,7 +154,7 @@ public class LaboratorioDAO implements ILaboratorioDAO {
     }
 
     @Override
-    public void excluirLaboratorio(int laboratorioID) throws SQLException {
+    public void excluir(int laboratorioID) throws SQLException {
         String sql = "update laboratorio set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setLong(1, laboratorioID);

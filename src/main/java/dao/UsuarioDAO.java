@@ -22,7 +22,7 @@ import model.Cargo;
  *
  * @author vitor
  */
-public class UsuarioDAO implements IUsuarioDAO {
+public class UsuarioDAO implements IDao<Usuario> {
 
     private Connection conexao;
     Usuario usuario = new Usuario();
@@ -32,7 +32,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public void cadastrarNovoUsuario(Usuario u) throws SQLException {
+    public void cadastrar(Usuario u) throws SQLException {
         String sql = "Insert Into usuario (nome,sobrenome,login,email,senha,cargo,rg,cpf,endereco,bairro,cidade,estado,ativo,perfil)"
                 + "Values(?,?,?,?,?,?,?,?,?,?,?,?,true,?)";
 
@@ -59,7 +59,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public void atualizarUsuario(Usuario u) throws SQLException {
+    public void atualizar(Usuario u) throws SQLException {
         String sql = "Update usuario set nome = ? , sobrenome = ?, login = ?, email = ?, "
                 + "senha = ?, cargo = ?, rg = ?, cpf = ?, endereco = ?, bairro = ?, cidade = ?, estado = ?, perfil = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -122,7 +122,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public Usuario buscarUsuario(int usuarioID) throws SQLException {
+    public Usuario buscar(int usuarioID) throws SQLException {
        
         String query = "SELECT * FROM usuario where id=" + usuarioID;
         try {
@@ -159,26 +159,13 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public void excluirUsuario(int usuarioID) throws SQLException { // implementação do método -remove-
+    public void excluir(int usuarioID) throws SQLException { // implementação do método -remove-
         String sql = "update usuario set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setLong(1, usuarioID);
         stmt.execute();
         stmt.close();
 
-    }
-
-    @Override
-    public void resetarSenha(Usuario u) throws SQLException {
-        String sql = "Update usuario set senha = ? where id=?";
-        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
-            //seta os valores
-            stmt.setInt(1, 123);
-            stmt.setInt(2, u.getId());
-            // executa o código sql
-            stmt.execute();
-            stmt.close();
-        }
     }
 
     @Override
@@ -209,8 +196,7 @@ public class UsuarioDAO implements IUsuarioDAO {
         return ativo;
     }
 
-    @Override
-    public Usuario autenticaUsuario(Usuario u) throws SQLException {
+    public Usuario autentica(Usuario u) throws SQLException {
         Usuario usuarioAutenticado = null;
 
         String sql = "SELECT * FROM usuario WHERE login=? AND senha=?";
@@ -253,5 +239,17 @@ public class UsuarioDAO implements IUsuarioDAO {
             }
         }
         return usuarioAutenticado;
+    }
+    
+    public void resetarSenha(Usuario u) throws SQLException {
+        String sql = "Update usuario set senha = ? where id=?";
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            //seta os valores
+            stmt.setInt(1, 123);
+            stmt.setInt(2, u.getId());
+            // executa o código sql
+            stmt.execute();
+            stmt.close();
+        }
     }
 }

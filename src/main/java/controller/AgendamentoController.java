@@ -40,7 +40,7 @@ public class AgendamentoController {
         agendamento.setPaciente(Integer.valueOf(request.getParameter("idPaciente")));
         agendamento.setVacinas(Integer.valueOf(request.getParameter("idVacinas")));
 
-        dao.cadastrarNovoAgendamento(agendamento);
+        dao.cadastrar(agendamento);
         response.sendRedirect("listAgendamento");
     }
 
@@ -62,7 +62,7 @@ public class AgendamentoController {
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("agendamento/agendamentoForm.jsp");
-        request.setAttribute("agendamento", dao.buscarAgendamento(id));
+        request.setAttribute("agendamento", dao.buscar(id));
         dispatcher.forward(request, response);
 
     }
@@ -71,7 +71,7 @@ public class AgendamentoController {
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
-        dao.excluirAgendamento(id);
+        dao.excluir(id);
         response.sendRedirect("listAgendamento");
 
     }
@@ -86,7 +86,7 @@ public class AgendamentoController {
         agendamento.setPaciente(Integer.valueOf(request.getParameter("idPaciente")));
         agendamento.setVacinas(Integer.valueOf(request.getParameter("idVacinas")));
 
-        dao.atualizarAgendamento(agendamento);
+        dao.atualizar(agendamento);
         //daoVac.descVacina(Integer.valueOf(request.getParameter("quantidadeVac")), Integer.valueOf(request.getParameter("idVacinas")));
         response.sendRedirect("listAgendamento");
     }

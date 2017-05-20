@@ -41,7 +41,7 @@ public class VacinasController {
         vacina.setLote(request.getParameter("lote"));
         vacina.setIdLaboratorio(Integer.parseInt(request.getParameter("idLaboratorio")));
 
-        dao.cadastrarNovaVacina(vacina);
+        dao.cadastrar(vacina);
         response.sendRedirect("listVacina");
     }
 
@@ -73,7 +73,7 @@ public class VacinasController {
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("vacinas/vacinasForm.jsp");
-        request.setAttribute("vacina", dao.buscarVacina(id));
+        request.setAttribute("vacina", dao.buscar(id));
         dispatcher.forward(request, response);
 
     }
@@ -90,7 +90,7 @@ public class VacinasController {
         vacina.setLote(request.getParameter("lote"));
         vacina.setIdLaboratorio(Integer.parseInt(request.getParameter("idLaboratorio")));
 
-        dao.atualizarVacina(vacina);
+        dao.atualizar(vacina);
         response.sendRedirect("listVacina");
     }
 }

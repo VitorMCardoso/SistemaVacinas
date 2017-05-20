@@ -44,7 +44,7 @@ public class LaboratorioController {
         laboratorio.setCidade(request.getParameter("cidade"));
         laboratorio.setEstado(request.getParameter("estado"));
 
-        dao.cadastrarNovoLaboratorio(laboratorio);
+        dao.cadastrar(laboratorio);
         response.sendRedirect("listLaboratorio");
     }
     
@@ -65,7 +65,7 @@ public class LaboratorioController {
     public void deletarLaboratorio(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        dao.excluirLaboratorio(id);
+        dao.excluir(id);
         response.sendRedirect("listLaboratorio");
 
     }
@@ -74,7 +74,7 @@ public class LaboratorioController {
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("laboratorio/laboratorioForm.jsp");
-        request.setAttribute("laboratorio", dao.buscarLaboratorio(id));
+        request.setAttribute("laboratorio", dao.buscar(id));
         dispatcher.forward(request, response);
 
     }
@@ -96,7 +96,7 @@ public class LaboratorioController {
         laboratorio.setCidade(request.getParameter("cidade"));
         laboratorio.setEstado(request.getParameter("estado"));
         
-        dao.atualizarLaboratorio(laboratorio);
+        dao.atualizar(laboratorio);
         response.sendRedirect("listLaboratorio");
     }
 }
