@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Estado;
 import model.Paciente;
 import model.PerfilAcesso;
 
@@ -48,7 +49,7 @@ public class PacientesDAO implements IDao<Paciente> {
             stmt.setString(8, p.getEndereco());
             stmt.setString(9, p.getBairro());
             stmt.setString(10, p.getCidade());
-            stmt.setString(11, p.getEstado());
+            stmt.setString(11, p.getEstado().toString());
             //executa o código
             stmt.execute();
             stmt.close();
@@ -72,7 +73,7 @@ public class PacientesDAO implements IDao<Paciente> {
             stmt.setString(8, p.getEndereco());
             stmt.setString(9, p.getBairro());
             stmt.setString(10, p.getCidade());
-            stmt.setString(11, p.getEstado());
+            stmt.setString(11, p.getEstado().toString());
             stmt.setInt(12, p.getId());
             // executa o código sql
             stmt.executeUpdate();
@@ -104,7 +105,7 @@ public class PacientesDAO implements IDao<Paciente> {
                 paciente.setEndereco(rsPaciente.getString("endereco"));
                 paciente.setBairro(rsPaciente.getString("bairro"));
                 paciente.setCidade(rsPaciente.getString("cidade"));
-                paciente.setEstado(rsPaciente.getString("estado"));
+                paciente.setEstado(Estado.valueOf(rsPaciente.getString("estado")));
                 paciente.setAtivo(rsPaciente.getBoolean("ativo"));
             }
             st.close();
@@ -176,7 +177,7 @@ public class PacientesDAO implements IDao<Paciente> {
                 paciente.setEndereco(rs.getString("endereco"));
                 paciente.setBairro(rs.getString("bairro"));
                 paciente.setCidade(rs.getString("cidade"));
-                paciente.setEstado(rs.getString("estado"));
+                paciente.setEstado(Estado.valueOf(rs.getString("estado")));
                 paciente.setAtivo(rs.getBoolean("ativo"));
                 pacientes.add(paciente);
             }

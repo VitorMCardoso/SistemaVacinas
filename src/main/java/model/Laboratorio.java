@@ -22,13 +22,13 @@ public class Laboratorio {
     private String numero;
     private String bairro;
     private String cidade;
-    private String estado;
+    private Estado estado;
     private boolean ativo;
 
     public Laboratorio() {
     }
 
-    public Laboratorio(int id, String razaoSocial, String cnpj, String registroEstadual, String nomeFantasia, String telefone, String site, String cep, String logradouro, String numero, String bairro, String cidade, String estado, boolean ativo) {
+    public Laboratorio(int id, String razaoSocial, String cnpj, String registroEstadual, String nomeFantasia, String telefone, String site, String cep, String logradouro, String numero, String bairro, String cidade, Estado estado, boolean ativo) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
@@ -141,11 +141,11 @@ public class Laboratorio {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 

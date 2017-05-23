@@ -22,11 +22,11 @@ public class Paciente {
     private String endereco;
     private String bairro;
     private String cidade;
-    private String estado;
+    private Estado estado;
     private boolean ativo;
     private PerfilAcesso perfil;
 
-    public Paciente(int id, String nome, String sobrenome, String login, String email, String senha, String rg, String cpf, String endereco, String bairro, String cidade, String estado, boolean ativo, PerfilAcesso perfil) {
+    public Paciente(int id, String nome, String sobrenome, String login, String email, String senha, String rg, String cpf, String endereco, String bairro, String cidade, Estado estado, boolean ativo, PerfilAcesso perfil) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -135,11 +135,11 @@ public class Paciente {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
     

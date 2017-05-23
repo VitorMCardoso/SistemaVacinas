@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Estado;
 import model.Laboratorio;
 
 /**
@@ -49,7 +50,7 @@ public class LaboratorioDAO implements IDao<Laboratorio> {
             stmt.setString(9, l.getNumero());
             stmt.setString(10, l.getBairro());
             stmt.setString(11, l.getCidade());
-            stmt.setString(12, l.getEstado());
+            stmt.setString(12, l.getEstado().toString());
             //executa o código
             stmt.execute();
             stmt.close();
@@ -73,7 +74,7 @@ public class LaboratorioDAO implements IDao<Laboratorio> {
             stmt.setString(9, l.getNumero());
             stmt.setString(10, l.getBairro());
             stmt.setString(11, l.getCidade());
-            stmt.setString(12, l.getEstado());
+            stmt.setString(12, l.getEstado().toString());
             stmt.setInt(13, l.getId());
             // executa o código sql
             stmt.executeUpdate();
@@ -107,7 +108,7 @@ public class LaboratorioDAO implements IDao<Laboratorio> {
                 laboratorio.setNumero(rs.getString("numero"));
                 laboratorio.setBairro(rs.getString("bairro"));
                 laboratorio.setCidade(rs.getString("cidade"));
-                laboratorio.setEstado(rs.getString("estado"));
+                laboratorio.setEstado(Estado.valueOf(rs.getString("estado")));
                 laboratorio.setAtivo(rs.getBoolean("ativo"));
                 laboratorios.add(laboratorio);
             }
@@ -143,7 +144,7 @@ public class LaboratorioDAO implements IDao<Laboratorio> {
                 laboratorio.setNumero(rs.getString("numero"));
                 laboratorio.setBairro(rs.getString("bairro"));
                 laboratorio.setCidade(rs.getString("cidade"));
-                laboratorio.setEstado(rs.getString("estado"));
+                laboratorio.setEstado(Estado.valueOf(rs.getString("estado")));
                 laboratorio.setAtivo(rs.getBoolean("ativo"));
             }
             st.close();

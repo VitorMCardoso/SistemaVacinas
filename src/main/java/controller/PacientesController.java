@@ -13,6 +13,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Estado;
 import model.Paciente;
 
 /**
@@ -41,7 +42,62 @@ public class PacientesController {
         paciente.setEndereco(request.getParameter("endereco"));
         paciente.setBairro(request.getParameter("bairro"));
         paciente.setCidade(request.getParameter("cidade"));
-        paciente.setEstado(request.getParameter("estado"));
+        String estado = request.getParameter("optEstado");
+        if (estado.equalsIgnoreCase("AC")) {
+            paciente.setEstado(Estado.AC);
+        } else if (estado.equalsIgnoreCase("AL")) {
+            paciente.setEstado(Estado.AL);
+        } else if (estado.equalsIgnoreCase("AM")) {
+            paciente.setEstado(Estado.AM);
+        } else if (estado.equalsIgnoreCase("AP")) {
+            paciente.setEstado(Estado.AP);
+        } else if (estado.equalsIgnoreCase("BA")) {
+            paciente.setEstado(Estado.BA);
+        } else if (estado.equalsIgnoreCase("CE")) {
+            paciente.setEstado(Estado.CE);
+        } else if (estado.equalsIgnoreCase("DF")) {
+            paciente.setEstado(Estado.DF);
+        } else if (estado.equalsIgnoreCase("ES")) {
+            paciente.setEstado(Estado.ES);
+        } else if (estado.equalsIgnoreCase("GO")) {
+            paciente.setEstado(Estado.GO);
+        } else if (estado.equalsIgnoreCase("MA")) {
+            paciente.setEstado(Estado.MA);
+        } else if (estado.equalsIgnoreCase("MG")) {
+            paciente.setEstado(Estado.MG);
+        } else if (estado.equalsIgnoreCase("MS")) {
+            paciente.setEstado(Estado.MS);
+        } else if (estado.equalsIgnoreCase("MT")) {
+            paciente.setEstado(Estado.MT);
+        } else if (estado.equalsIgnoreCase("PA")) {
+            paciente.setEstado(Estado.PA);
+        } else if (estado.equalsIgnoreCase("PB")) {
+            paciente.setEstado(Estado.PB);
+        } else if (estado.equalsIgnoreCase("PE")) {
+            paciente.setEstado(Estado.PE);
+        } else if (estado.equalsIgnoreCase("PI")) {
+            paciente.setEstado(Estado.PI);
+        } else if (estado.equalsIgnoreCase("PR")) {
+            paciente.setEstado(Estado.PR);
+        } else if (estado.equalsIgnoreCase("RJ")) {
+            paciente.setEstado(Estado.RJ);
+        } else if (estado.equalsIgnoreCase("RN")) {
+            paciente.setEstado(Estado.RN);
+        } else if (estado.equalsIgnoreCase("RO")) {
+            paciente.setEstado(Estado.RO);
+        } else if (estado.equalsIgnoreCase("RR")) {
+            paciente.setEstado(Estado.RR);
+        } else if (estado.equalsIgnoreCase("RS")) {
+            paciente.setEstado(Estado.RS);
+        } else if (estado.equalsIgnoreCase("SC")) {
+            paciente.setEstado(Estado.SC);
+        } else if (estado.equalsIgnoreCase("SE")) {
+            paciente.setEstado(Estado.SE);
+        } else if (estado.equalsIgnoreCase("sp")) {
+            paciente.setEstado(Estado.SP);
+        } else {
+            paciente.setEstado(Estado.TO);
+        }
 
         dao.cadastrar(paciente);
         response.sendRedirect("listPaciente");
@@ -92,8 +148,63 @@ public class PacientesController {
         paciente.setEndereco(request.getParameter("endereco"));
         paciente.setBairro(request.getParameter("bairro"));
         paciente.setCidade(request.getParameter("cidade"));
-        paciente.setEstado(request.getParameter("estado"));
-        
+        String estado = request.getParameter("optEstado");
+        if (estado.equalsIgnoreCase("AC")) {
+            paciente.setEstado(Estado.AC);
+        } else if (estado.equalsIgnoreCase("AL")) {
+            paciente.setEstado(Estado.AL);
+        } else if (estado.equalsIgnoreCase("AM")) {
+            paciente.setEstado(Estado.AM);
+        } else if (estado.equalsIgnoreCase("AP")) {
+            paciente.setEstado(Estado.AP);
+        } else if (estado.equalsIgnoreCase("BA")) {
+            paciente.setEstado(Estado.BA);
+        } else if (estado.equalsIgnoreCase("CE")) {
+            paciente.setEstado(Estado.CE);
+        } else if (estado.equalsIgnoreCase("DF")) {
+            paciente.setEstado(Estado.DF);
+        } else if (estado.equalsIgnoreCase("ES")) {
+            paciente.setEstado(Estado.ES);
+        } else if (estado.equalsIgnoreCase("GO")) {
+            paciente.setEstado(Estado.GO);
+        } else if (estado.equalsIgnoreCase("MA")) {
+            paciente.setEstado(Estado.MA);
+        } else if (estado.equalsIgnoreCase("MG")) {
+            paciente.setEstado(Estado.MG);
+        } else if (estado.equalsIgnoreCase("MS")) {
+            paciente.setEstado(Estado.MS);
+        } else if (estado.equalsIgnoreCase("MT")) {
+            paciente.setEstado(Estado.MT);
+        } else if (estado.equalsIgnoreCase("PA")) {
+            paciente.setEstado(Estado.PA);
+        } else if (estado.equalsIgnoreCase("PB")) {
+            paciente.setEstado(Estado.PB);
+        } else if (estado.equalsIgnoreCase("PE")) {
+            paciente.setEstado(Estado.PE);
+        } else if (estado.equalsIgnoreCase("PI")) {
+            paciente.setEstado(Estado.PI);
+        } else if (estado.equalsIgnoreCase("PR")) {
+            paciente.setEstado(Estado.PR);
+        } else if (estado.equalsIgnoreCase("RJ")) {
+            paciente.setEstado(Estado.RJ);
+        } else if (estado.equalsIgnoreCase("RN")) {
+            paciente.setEstado(Estado.RN);
+        } else if (estado.equalsIgnoreCase("RO")) {
+            paciente.setEstado(Estado.RO);
+        } else if (estado.equalsIgnoreCase("RR")) {
+            paciente.setEstado(Estado.RR);
+        } else if (estado.equalsIgnoreCase("RS")) {
+            paciente.setEstado(Estado.RS);
+        } else if (estado.equalsIgnoreCase("SC")) {
+            paciente.setEstado(Estado.SC);
+        } else if (estado.equalsIgnoreCase("SE")) {
+            paciente.setEstado(Estado.SE);
+        } else if (estado.equalsIgnoreCase("sp")) {
+            paciente.setEstado(Estado.SP);
+        } else {
+            paciente.setEstado(Estado.TO);
+        }
+
         dao.atualizar(paciente);
         response.sendRedirect("listPaciente");
     }

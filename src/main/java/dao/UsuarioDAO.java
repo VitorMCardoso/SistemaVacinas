@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Cargo;
+import model.Estado;
 
 /**
  *
@@ -49,7 +50,7 @@ public class UsuarioDAO implements IDao<Usuario> {
             stmt.setString(9, u.getEndereco());
             stmt.setString(10, u.getBairro());
             stmt.setString(11, u.getCidade());
-            stmt.setString(12, u.getEstado());
+            stmt.setString(12, u.getEstado().toString());
             stmt.setString(13, u.getPerfil().toString());
             //executa o código
             stmt.execute();
@@ -75,7 +76,7 @@ public class UsuarioDAO implements IDao<Usuario> {
             stmt.setString(9, u.getEndereco());
             stmt.setString(10, u.getBairro());
             stmt.setString(11, u.getCidade());
-            stmt.setString(12, u.getEstado());
+            stmt.setString(12, u.getEstado().toString());
             stmt.setString(13, u.getPerfil().toString());
             stmt.setInt(14, u.getId());
             // executa o código sql
@@ -109,7 +110,7 @@ public class UsuarioDAO implements IDao<Usuario> {
                 usuario.setEndereco(rs.getString("endereco"));
                 usuario.setBairro(rs.getString("bairro"));
                 usuario.setCidade(rs.getString("cidade"));
-                usuario.setEstado(rs.getString("estado"));
+                usuario.setEstado(Estado.valueOf(rs.getString("estado")));
                 usuario.setAtivo(rs.getBoolean("ativo"));
                 usuario.setPerfil(PerfilAcesso.valueOf(rs.getString("perfil")));
                 usuarios.add(usuario);
@@ -147,7 +148,7 @@ public class UsuarioDAO implements IDao<Usuario> {
                 usuario.setEndereco(rsUsuario.getString("endereco"));
                 usuario.setBairro(rsUsuario.getString("bairro"));
                 usuario.setCidade(rsUsuario.getString("cidade"));
-                usuario.setEstado(rsUsuario.getString("estado"));
+                usuario.setEstado(Estado.valueOf(rsUsuario.getString("estado")));
                 usuario.setAtivo(rsUsuario.getBoolean("ativo"));
                 usuario.setPerfil(PerfilAcesso.valueOf(rsUsuario.getString("perfil")));
             }
@@ -223,7 +224,7 @@ public class UsuarioDAO implements IDao<Usuario> {
                 usuarioAutenticado.setEndereco(rsUsuario.getString("endereco"));
                 usuarioAutenticado.setBairro(rsUsuario.getString("bairro"));
                 usuarioAutenticado.setCidade(rsUsuario.getString("cidade"));
-                usuarioAutenticado.setEstado(rsUsuario.getString("estado"));
+                usuarioAutenticado.setEstado(Estado.valueOf(rsUsuario.getString("estado")));
                 usuarioAutenticado.setAtivo(rsUsuario.getBoolean("ativo"));
                 usuarioAutenticado.setPerfil(PerfilAcesso.valueOf(rsUsuario.getString("perfil")));
             }

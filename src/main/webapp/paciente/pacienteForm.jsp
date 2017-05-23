@@ -25,14 +25,14 @@
                 </c:if>
                 <table border="1" cellpadding="5">
                     <caption>
-                        
-                            <c:if test="${paciente != null}">
-                                <h3>Editar Paciente</h3>
-                            </c:if>
-                            <c:if test="${paciente == null}">
-                                <h3>Adicionar Novo Paciente</h3>
-                            </c:if>
-                       
+
+                        <c:if test="${paciente != null}">
+                            <h3>Editar Paciente</h3>
+                        </c:if>
+                        <c:if test="${paciente == null}">
+                            <h3>Adicionar Novo Paciente</h3>
+                        </c:if>
+
                     </caption>
                     <c:if test="${paciente != null}">
                         <tr>
@@ -125,9 +125,36 @@
                     <tr>
                         <th>Estado </th>
                         <td>
-                            <input type="text" name="estado" size="45"
-                                   value="<c:out value='${paciente.estado}' />"
-                                   />
+                            <select name="optEstado">
+                                <option>AC</option>
+                                <option>AL</option>
+                                <option>AM</option>
+                                <option>AP</option>
+                                <option>BA</option>
+                                <option>CE</option>
+                                <option>DF</option>
+                                <option>ES</option>
+                                <option>GO</option>
+                                <option>MA</option>
+                                <option>MG</option>
+                                <option>MS</option>
+                                <option>MT</option>
+                                <option>PA</option>
+                                <option>PB</option>
+                                <option>PE</option>
+                                <option>PI</option>
+                                <option>PR</option>
+                                <option>RJ</option>
+                                <option>RN</option>
+                                <option>RO</option>
+                                <option>RR</option>
+                                <option>RS</option>
+                                <option>SC</option>
+                                <option>SE</option>
+                                <option>SP</option>
+                                <option>TO</option>
+                                value="<c:out value='${paciente.estado}' />"
+                                <select/>
                         </td>
                     </tr>
                     <tr>
@@ -136,9 +163,9 @@
                         </td>
                     </tr>
                 </table><br>
-           
+
                 <div>
-                <a href="listPaciente">List All Paciente</a>
+                    <a href="listPaciente">List All Paciente</a>
                 </div>
             </form>
     </div>	
