@@ -104,7 +104,7 @@ public class UsuarioController extends RelatorioController {
             usuario.setEstado(Estado.SC);
         } else if (estado.equalsIgnoreCase("SE")) {
             usuario.setEstado(Estado.SE);
-        } else if (estado.equalsIgnoreCase("sp")) {
+        } else if (estado.equalsIgnoreCase("SP")) {
             usuario.setEstado(Estado.SP);
         } else {
             usuario.setEstado(Estado.TO);

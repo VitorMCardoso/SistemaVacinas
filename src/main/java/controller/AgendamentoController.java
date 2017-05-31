@@ -79,7 +79,7 @@ public class AgendamentoController {
     public void updateAgendamento(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         agendamento = new Agendamento();
-        daoVac.cresVacina(Integer.valueOf(request.getParameter("quantidadeVac")), Integer.valueOf(request.getParameter("idVacinas")));
+        //dao.setQuantidadePassada(Integer.valueOf(request.getParameter("id")), Integer.valueOf(request.getParameter("quantidadeVac")));
         agendamento.setId(Integer.valueOf(request.getParameter("id")));
         agendamento.setDataDose(java.sql.Date.valueOf(request.getParameter("dataDose")));
         agendamento.setQuantidade(Integer.valueOf(request.getParameter("quantidadeVac")));
@@ -87,7 +87,7 @@ public class AgendamentoController {
         agendamento.setVacinas(Integer.valueOf(request.getParameter("idVacinas")));
 
         dao.atualizar(agendamento);
-        //daoVac.descVacina(Integer.valueOf(request.getParameter("quantidadeVac")), Integer.valueOf(request.getParameter("idVacinas")));
+        
         response.sendRedirect("listAgendamento");
     }
 }

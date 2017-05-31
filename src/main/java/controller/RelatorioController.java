@@ -6,17 +6,25 @@
 package controller;
 
 import com.mysql.jdbc.Constants;
+import java.io.OutputStream;
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 
 /**
  *
@@ -32,7 +40,7 @@ public class RelatorioController {
         String relPath = sc.getRealPath("/");
         String imagemLogo = relPath + "resources/img/Logo.png";
         paramRel.put("imagemLogo", imagemLogo);
-        paramRel.put("nmSistema","NOme");
+        paramRel.put("nmSistema", "NOme");
         paramRel.put("REPORT_LOCALE", new Locale("pt", "BR"));
         JasperPrint print = null;
 

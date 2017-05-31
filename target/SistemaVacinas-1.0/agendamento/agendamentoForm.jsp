@@ -54,7 +54,7 @@
                         <th>Quantidade de Aplicaçoes </th>
                         <td>
                             <input type="text" name="quantidadeVac" size="45"
-                                   value="<c:out value='${agendamento.quantidadeVac}' />"
+                                   value="<c:out value='${agendamento.quantidade}' />"
                                    />
                         </td>
                     </tr>
@@ -62,7 +62,7 @@
                         <th>Id Paciente </th>
                         <td>
                             <input type="text" name="idPaciente" size="5"
-                                   value="<c:out value='${agendamento.idPaciente}' />"
+                                   value="<c:out value='${agendamento.paciente}' />"
                                    />
                         </td>
                     </tr>
@@ -70,7 +70,7 @@
                         <th>Id Vacinas </th>
                         <td>
                             <input type="text" name="idVacinas" size="45"
-                                   value="<c:out value='${agendamento.idVacinas}' />"
+                                   value="<c:out value='${agendamento.vacinas}' />"
                                    />
                         </td>
                     </tr>
