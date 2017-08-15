@@ -30,7 +30,7 @@
                                 Editar Usuario
                             </c:if>
                             <c:if test="${usuario == null}">
-                                Adicionar Novo Usario
+                                Adicionar Novo Usuario
                             </c:if>
                         </h2>
                     </caption>
