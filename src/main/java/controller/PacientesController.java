@@ -13,6 +13,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 import model.Estado;
 import model.Paciente;
 
@@ -27,6 +28,10 @@ public class PacientesController {
 
     public PacientesController() throws SQLException, IOException {
         this.dao = new PacientesDAO();
+    }
+
+    PacientesController(Config config) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void inserirPaciente(HttpServletRequest request, HttpServletResponse response)

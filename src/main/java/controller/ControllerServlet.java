@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 
 /**
  *
@@ -57,6 +59,18 @@ public class ControllerServlet extends HttpServlet {
 
         String action = request.getServletPath();
         try {
+            
+            // TESTE REFLECTION
+            Config config = new Config();
+            
+            PacientesController teste = new PacientesController(config); 
+            
+            String control = config.getProperty("/new");
+            
+            Object instance = Class.forName("br.com.sistemasvacinas" + control).getConstructor(Config.class, PacientesController.class).newInstance(config,teste);
+            Method method = new Method();
+            method.call("",instance);
+            
             switch (action) {
                 // Usuario Controller
                 case "/new":
