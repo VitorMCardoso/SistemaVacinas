@@ -61,7 +61,7 @@ public class ControllerServlet extends HttpServlet {
         try {
             
             // TESTE REFLECTION
-            Config config = new Config();
+           /* Config config = new Config();
             
             PacientesController teste = new PacientesController(config); 
             
@@ -69,7 +69,7 @@ public class ControllerServlet extends HttpServlet {
             
             Object instance = Class.forName("br.com.sistemasvacinas" + control).getConstructor(Config.class, PacientesController.class).newInstance(config,teste);
             Method method = new Method();
-            method.call("",instance);
+            method.call("",instance);*/
             
             switch (action) {
                 // Usuario Controller
