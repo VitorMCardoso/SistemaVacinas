@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.jstl.core.Config;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -59,18 +60,26 @@ public class ControllerServlet extends HttpServlet {
 
         String action = request.getServletPath();
         try {
-            
+
             // TESTE REFLECTION
-           /* Config config = new Config();
             
-            PacientesController teste = new PacientesController(config); 
+            action = "usuario/showNewForm";
             
-            String control = config.getProperty("/new");
+            String className = action.split("/")[0];
+            String methodName = action.split("/")[1];
             
-            Object instance = Class.forName("br.com.sistemasvacinas" + control).getConstructor(Config.class, PacientesController.class).newInstance(config,teste);
-            Method method = new Method();
-            method.call("",instance);*/
+            Object reflection = Class.forName(StringUtils.capitalize(className) + "Controller").newInstance();
+                   
             
+            Method method = reflection.getClass().getMethod(methodName);
+            method.invoke(reflection, request, response);
+            
+            
+            /*for(Method m: reflection.getClass().getMethods()){
+                m.getName();
+                m.invoke(reflection);
+            }*/
+
             switch (action) {
                 // Usuario Controller
                 case "/new":
