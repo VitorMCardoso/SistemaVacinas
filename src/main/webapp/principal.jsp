@@ -24,7 +24,7 @@
        
         <%}%>
         <p><a href="new"><button>Cadastro de Usuario</button></a></p>
-        <p><a href="list"><button>Manter Usuarios</button></a></p>
+        <p><a href="usuario/listarUsuario"><button>Manter Usuarios</button></a></p>
         
         <p><a href="newPaciente"><button>Cadastro de Paciente</button></a></p>
         <p><a href="listPaciente"><button>Manter Paciente</button></a></p>
