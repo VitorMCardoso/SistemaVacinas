@@ -7,8 +7,10 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.jstl.core.Config;
+import net.vidageek.mirror.dsl.Mirror;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -58,30 +61,37 @@ public class ControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String action = request.getServletPath();
         try {
 
             // TESTE REFLECTION
+            String action = request.getServletPath();
+            //String action = "usuario/showNewForm";
             
-            action = "usuario/showNewForm";
+
+            String className = action.split("/")[1];
+            String methodName = action.split("/")[2];
+            String classe = StringUtils.capitalize(className);
+            Class c = Class.forName("controller." + classe + "Controller");
+            Method test = (Method) new Mirror().on(c).invoke().method("listarUsuario").withArgs(request, response);
             
-            String className = action.split("/")[0];
-            String methodName = action.split("/")[1];
+            System.out.println(test);
             
-            Object reflection = Class.forName(StringUtils.capitalize(className) + "Controller").newInstance();
-                   
-            
-            Method method = reflection.getClass().getMethod(methodName);
+            //List<Method> l = new Mirror().on(c).reflectAll().methods();
+            //System.out.println(l);
+            //Object returnValue = new Mirror().on(className).invoke().method(methodName).withoutArgs();
+       
+            /*Object reflection = (StringUtils.capitalize(className) + "Controller");
+                     
+                Method method = reflection.getClass().getDeclaredMethod(methodName);
             method.invoke(reflection, request, response);
             
-            
-            /*for(Method m: reflection.getClass().getMethods()){
+            for(Method m: reflection.getClass().getMethods()){
                 m.getName();
                 m.invoke(reflection);
             }*/
 
-            switch (action) {
-                // Usuario Controller
+ /* switch (action) {
+                // Usuario Controller   
                 case "/new":
                     controllerUsuario.showNewForm(request, response);
                     break;
@@ -182,11 +192,7 @@ public class ControllerServlet extends HttpServlet {
                 default:
                     showPrincipalForm(request, response);
                     break;
-            }
-        } catch (SQLException ex) {
-            throw new ServletException(ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
         } catch (Exception ex) {
             Logger.getLogger(ControllerServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -216,5 +222,15 @@ public class ControllerServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    public static String upperCaseFirst(String value) {
+
+        // Convert String to char array.
+        char[] array = value.toCharArray();
+        // Modify first element in array.
+        array[0] = Character.toUpperCase(array[0]);
+        // Return string.
+        return new String(array);
+    }
 
 }

@@ -74,9 +74,15 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.0</version>
+            <version>3.6</version>
         </dependency>
-
+        
+        <!-- https://mvnrepository.com/artifact/net.vidageek/mirror -->
+        <dependency>
+            <groupId>net.vidageek</groupId>
+            <artifactId>mirror</artifactId>
+            <version>1.6.1</version>
+        </dependency>
                
     </dependencies>
 
@@ -89,6 +95,9 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
+                    <showWarnings>true</showWarnings>
+                    <debug>false</debug>
+                    <optimize>true</optimize>
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
