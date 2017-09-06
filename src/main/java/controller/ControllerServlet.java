@@ -65,14 +65,12 @@ public class ControllerServlet extends HttpServlet {
 
             // TESTE REFLECTION
             String action = request.getServletPath();
-            //String action = "usuario/showNewForm";
-            
-
             String className = action.split("/")[1];
             String methodName = action.split("/")[2];
             String classe = StringUtils.capitalize(className);
             Class c = Class.forName("controller." + classe + "Controller");
-            Method test = (Method) new Mirror().on(c).invoke().method("listarUsuario").withArgs(request, response);
+            
+            Object test = new Mirror().on(c.newInstance()).invoke().method(methodName).withArgs(request,response);
             
             System.out.println(test);
             
@@ -222,15 +220,4 @@ public class ControllerServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    public static String upperCaseFirst(String value) {
-
-        // Convert String to char array.
-        char[] array = value.toCharArray();
-        // Modify first element in array.
-        array[0] = Character.toUpperCase(array[0]);
-        // Return string.
-        return new String(array);
-    }
-
 }
