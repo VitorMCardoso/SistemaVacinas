@@ -105,20 +105,20 @@ public class PacientesController {
         }
 
         dao.cadastrar(paciente);
-        response.sendRedirect("listPaciente");
+        response.sendRedirect("listarPaciente");
     }
 
     public void listarPaciente(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Paciente> listPaciente = dao.listar();
         request.setAttribute("listarPaciente", listPaciente);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("paciente/listarPaciente.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listarPaciente.jsp");
         dispatcher.forward(request, response);
     }
 
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("paciente/pacienteForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("pacienteForm.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -126,14 +126,14 @@ public class PacientesController {
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         dao.excluir(id);
-        response.sendRedirect("listPaciente");
+        response.sendRedirect("listarPaciente");
 
     }
 
     public void editPacienteForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        RequestDispatcher dispatcher = request.getRequestDispatcher("paciente/pacienteForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("pacienteForm.jsp");
         request.setAttribute("paciente", dao.buscar(id));
         dispatcher.forward(request, response);
 
@@ -211,6 +211,6 @@ public class PacientesController {
         }
 
         dao.atualizar(paciente);
-        response.sendRedirect("listPaciente");
+        response.sendRedirect("listarPaciente");
     }
 }

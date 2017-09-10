@@ -23,20 +23,20 @@
         <h1>Menu de Opçoes</h1>
        
         <%}%>
-        <p><a href="new"><button>Cadastro de Usuario</button></a></p>
+        <p><a href="usuario/showNewForm"><button>Cadastro de Usuario</button></a></p>
         <p><a href="usuario/listarUsuario"><button>Manter Usuarios</button></a></p>
         
-        <p><a href="newPaciente"><button>Cadastro de Paciente</button></a></p>
-        <p><a href="listPaciente"><button>Manter Paciente</button></a></p>
+        <p><a href="pacientes/showNewForm"><button>Cadastro de Paciente</button></a></p>
+        <p><a href="pacientes/listarPaciente" ><button>Manter Paciente</button></a></p>
         
-        <p><a href="newLaboratorio"><button>Cadastro de Laboratorio</button></a></p>
-        <p><a href="listLaboratorio"><button>Manter Laboratorio</button></a></p>
+        <p><a href="laboratorio/showNewForm"><button>Cadastro de Laboratorio</button></a></p>
+        <p><a href="laboratorio/listarLaboratorio"><button>Manter Laboratorio</button></a></p>
         
-        <p><a href="newVacina"><button>Cadastro de Vacinas</button></a></p>
-        <p><a href="listVacina"><button>Manter Vacina</button></a></p>
+        <p><a href="vacinas/showNewForm"><button>Cadastro de Vacinas</button></a></p>
+        <p><a href="vacinas/listarVacina"><button>Manter Vacina</button></a></p>
         
-        <p><a href="newAgendamento"><button>Cadastro de Agendamento</button></a></p>
-        <p><a href="listAgendamento"><button>Manter Agendamento</button></a></p>
+        <p><a href="agendamento/showNewForm"><button>Cadastro de Agendamento</button></a></p>
+        <p><a href="agendamento/listarAgendamento"><button>Manter Agendamento</button></a></p>
         </div>
     </body>
 </html>

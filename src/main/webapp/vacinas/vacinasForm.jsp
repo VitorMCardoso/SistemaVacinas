@@ -21,7 +21,7 @@
             <form action="updateVacina" method="post">
             </c:if>
             <c:if test="${vacina == null}">
-                <form action="insertVacina" method="post">
+                <form action="inserirVacina" method="post">
                 </c:if>
                 <table border="1" cellpadding="5">
                     <caption>
@@ -105,7 +105,7 @@
                     </tr>
                 </table><br>
                 <div>
-                    <a href="listVacina">List All Vacinas</a>
+                    <a href="listarVacina">List All Vacinas</a>
                 </div>
             </form>
     </div>	

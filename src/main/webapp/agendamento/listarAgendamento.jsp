@@ -40,7 +40,7 @@
                         <td><c:out value="${agendamento.vacinas}" /></td>
                         <td><c:out value="${agendamento.ativo}" /></td>
                         
-                        <td><a href="editAgendamento?id=<c:out value="${agendamento.id}"/>">Update</a></td>
+                        <td><a href="editAgendamentoForm?id=<c:out value="${agendamento.id}"/>">Update</a></td>
                         <td><a href="deleteAgendamento?id=<c:out value='${agendamento.id}'/>">Delete</a></td>
 
                     </tr>
@@ -48,11 +48,11 @@
 
             </table><br>
 
-                <a href="newAgendamento">Adicionar Novo Agendamento</a>
+                <a href="showNewForm">Adicionar Novo Agendamento</a>
             &nbsp; &nbsp;
-                <a href="listAgendamento">List All Agendamento</a>
+                <a href="listarAgendamento">List All Agendamento</a>
             &nbsp; &nbsp;
-                <a href="principal">Home</a>
+                <a href="../principal.jsp">Home</a>
             </div>
         </center>
     </body>

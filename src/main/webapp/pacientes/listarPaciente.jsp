@@ -51,19 +51,19 @@
                         <td><c:out value="${paciente.cidade}" /></td>
                         <td><c:out value="${paciente.estado}" /></td>
                         <td><c:out value="${paciente.ativo}" /></td>
-                        <td><a href="editPaciente?id=<c:out value="${paciente.id}"/>">Update</a></td>
-                        <td><a href="deletePaciente?id=<c:out value='${paciente.id}'/>">Delete</a></td>
+                        <td><a href="editPacienteForm?id=<c:out value="${paciente.id}"/>">Update</a></td>
+                        <td><a href="deletarPaciente?id=<c:out value='${paciente.id}'/>">Delete</a></td>
 
                     </tr>
                 </c:forEach>
 
             </table><br>
             <div>
-                <a href="newPaciente">Adicionar Novo Paciente</a>
+                <a href="showNewForm">Adicionar Novo Paciente</a>
                 &nbsp; &nbsp;
-                <a href="listPaciente">List All Paciente</a>
+                <a href="listarPaciente">List All Paciente</a>
                 &nbsp; &nbsp;
-                <a href="principal">Home</a>
+                <a href="../principal.jsp">Home</a>
             </div>
         </center>
     </body>

@@ -116,20 +116,20 @@ public class UsuarioController extends RelatorioController {
             usuario.setPerfil(PerfilAcesso.COMUM);
         }
         dao.cadastrar(usuario);
-        response.sendRedirect("list");
+        response.sendRedirect("listarUsuario");
     }
 
     public void listarUsuario(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Usuario> listUsuario = dao.listar();
         request.setAttribute("listarUsuario", listUsuario);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/listarUsuario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listarUsuario.jsp");
         dispatcher.forward(request, response);
     }
 
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/usuarioForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioForm.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -138,7 +138,7 @@ public class UsuarioController extends RelatorioController {
         int id = Integer.parseInt(request.getParameter("id"));
 
         dao.excluir(id);
-        response.sendRedirect("list");
+        response.sendRedirect("listarUsuario");
 
     }
 
@@ -146,7 +146,7 @@ public class UsuarioController extends RelatorioController {
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         //Usuario usuarioLocalizado = dao.buscarUsuario(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/usuarioForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioForm.jsp");
         request.setAttribute("usuario", dao.buscar(id));
         dispatcher.forward(request, response);
 
@@ -238,7 +238,7 @@ public class UsuarioController extends RelatorioController {
         }
 
         dao.atualizar(usuario);
-        response.sendRedirect("list");
+        response.sendRedirect("listarUsuario");
     }
 
     public void relatorio() throws Exception {

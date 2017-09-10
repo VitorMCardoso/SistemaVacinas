@@ -41,27 +41,27 @@ public class AgendamentoController {
         agendamento.setVacinas(Integer.valueOf(request.getParameter("idVacinas")));
 
         dao.cadastrar(agendamento);
-        response.sendRedirect("listAgendamento");
+        response.sendRedirect("listarAgendamento");
     }
 
     public void listarAgendamento(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Agendamento> listAgendamento = dao.listar();
         request.setAttribute("listarAgendamentos", listAgendamento);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("agendamento/listarAgendamento.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listarAgendamento.jsp");
         dispatcher.forward(request, response);
     }
 
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("agendamento/agendamentoForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("agendamentoForm.jsp");
         dispatcher.forward(request, response);
     }
 
     public void editAgendamentoForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        RequestDispatcher dispatcher = request.getRequestDispatcher("agendamento/agendamentoForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("agendamentoForm.jsp");
         request.setAttribute("agendamento", dao.buscar(id));
         dispatcher.forward(request, response);
 
@@ -72,7 +72,7 @@ public class AgendamentoController {
         int id = Integer.parseInt(request.getParameter("id"));
 
         dao.excluir(id);
-        response.sendRedirect("listAgendamento");
+        response.sendRedirect("listarAgendamento");
 
     }
 
@@ -88,6 +88,6 @@ public class AgendamentoController {
 
         dao.atualizar(agendamento);
         
-        response.sendRedirect("listAgendamento");
+        response.sendRedirect("listarAgendamento");
     }
 }

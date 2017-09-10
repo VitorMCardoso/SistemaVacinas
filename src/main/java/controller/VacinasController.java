@@ -42,20 +42,20 @@ public class VacinasController {
         vacina.setIdLaboratorio(Integer.parseInt(request.getParameter("idLaboratorio")));
 
         dao.cadastrar(vacina);
-        response.sendRedirect("listVacina");
+        response.sendRedirect("listarVacina");
     }
 
     public void listarVacina(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Vacinas> listVacina = dao.listar();
         request.setAttribute("listarVacinas", listVacina);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("vacinas/listarVacinas.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listarVacinas.jsp");
         dispatcher.forward(request, response);
     }
 
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("vacinas/vacinasForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("vacinasForm.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -65,14 +65,14 @@ public class VacinasController {
         vacina = new Vacinas();
         vacina.setId(Integer.parseInt(request.getParameter("id")));
         dao.descVacina(5, vacina.getId());
-        response.sendRedirect("listVacina");
+        response.sendRedirect("listarVacina");
 
     }
 
     public void editVacinaForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        RequestDispatcher dispatcher = request.getRequestDispatcher("vacinas/vacinasForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("vacinasForm.jsp");
         request.setAttribute("vacina", dao.buscar(id));
         dispatcher.forward(request, response);
 
@@ -91,6 +91,6 @@ public class VacinasController {
         vacina.setIdLaboratorio(Integer.parseInt(request.getParameter("idLaboratorio")));
 
         dao.atualizar(vacina);
-        response.sendRedirect("listVacina");
+        response.sendRedirect("listarVacina");
     }
 }

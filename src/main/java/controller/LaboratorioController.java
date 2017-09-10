@@ -101,20 +101,20 @@ public class LaboratorioController {
         }
 
         dao.cadastrar(laboratorio);
-        response.sendRedirect("listLaboratorio");
+        response.sendRedirect("listarLaboratorio");
     }
 
     public void listarLaboratorio(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Laboratorio> listLaboratorio = dao.listar();
         request.setAttribute("listarLaboratorio", listLaboratorio);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("laboratorio/listarLaboratorio.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listarLaboratorio.jsp");
         dispatcher.forward(request, response);
     }
 
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("laboratorio/laboratorioForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("laboratorioForm.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -122,14 +122,14 @@ public class LaboratorioController {
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         dao.excluir(id);
-        response.sendRedirect("listLaboratorio");
+        response.sendRedirect("listarLaboratorio");
 
     }
 
     public void editLaboratorioForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        RequestDispatcher dispatcher = request.getRequestDispatcher("laboratorio/laboratorioForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("laboratorioForm.jsp");
         request.setAttribute("laboratorio", dao.buscar(id));
         dispatcher.forward(request, response);
 
@@ -208,6 +208,6 @@ public class LaboratorioController {
         }
 
         dao.atualizar(laboratorio);
-        response.sendRedirect("listLaboratorio");
+        response.sendRedirect("listarLaboratorio");
     }
 }

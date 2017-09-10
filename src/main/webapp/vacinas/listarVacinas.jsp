@@ -44,19 +44,19 @@
                         <td><c:out value="${vacina.lote}" /></td>
                         <td><c:out value="${vacina.idLaboratorio}" /></td>
                         
-                        <td><a href="editVacina?id=<c:out value="${vacina.id}"/>">Update</a></td>
-                        <td><a href="deleteVacina?id=<c:out value='${vacina.id}'/>">Delete</a></td>
+                        <td><a href="editVacinaForm?id=<c:out value="${vacina.id}"/>">Update</a></td>
+                        <td><a href="deletarVacina?id=<c:out value='${vacina.id}'/>">Delete</a></td>
 
                     </tr>
                 </c:forEach>
 
             </table><br>
             <div>
-                <a href="newVacina">Adicionar Nova Vacina</a>
+                <a href="showNewForm">Adicionar Nova Vacina</a>
             &nbsp; &nbsp;
-                <a href="listVacina">List All Vacinas</a>
+                <a href="listarVacina">List All Vacinas</a>
             &nbsp; &nbsp;
-                <a href="principal">Home</a>
+                <a href="../principal.jsp">Home</a>
             </div>
         </center>
     </body>

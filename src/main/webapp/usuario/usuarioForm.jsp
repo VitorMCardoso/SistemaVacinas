@@ -18,10 +18,10 @@
     </center>
     <div align="center">
         <c:if test="${usuario != null}">
-            <form action="update" method="post">
+            <form action="updateUsuario" method="post">
             </c:if>
             <c:if test="${usuario == null}">
-                <form action="insert" method="post">
+                <form action="inserirUsuario" method="post">
                 </c:if>
                 <table border="1" cellpadding="5">
                     <caption>
@@ -187,7 +187,7 @@
                     </tr>
                 </table><br>
                 <div>
-                    <a href="list">List All Usuarios</a>
+                    <a href="listarUsuario">List All Usuarios</a>
                 </div>
             </form>
     </div>	

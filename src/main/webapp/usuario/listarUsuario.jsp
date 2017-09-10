@@ -55,19 +55,19 @@
                         <td><c:out value="${usuario.estado}" /></td>
                         <td><c:out value="${usuario.ativo}" /></td>
                         <td><c:out value="${usuario.perfil}" /></td>
-                        <td><a href="edit?id=<c:out value="${usuario.id}"/>">Update</a></td>
-                        <td><a href="delete?id=<c:out value='${usuario.id}'/>">Delete</a></td>
+                        <td><a href="editUsuarioForm?id=<c:out value="${usuario.id}"/>">Update</a></td>
+                        <td><a href="deletarUsuario?id=<c:out value='${usuario.id}'/>">Delete</a></td>
 
                     </tr>
                 </c:forEach>
 
             </table><br>
             <div>
-                <a href="new">Adicionar Novo Usuario</a>
+                <a href="showNewForm">Adicionar Novo Usuario</a>
                 &nbsp; &nbsp;
-                <a href="list">List All Usuarios</a>
+                <a href="listarUsuario">List All Usuarios</a>
                 &nbsp; &nbsp;
-                <a href="principal">Home</a>
+                <a href="../principal.jsp">Home</a>
                 &nbsp; &nbsp;
                 <p><a href="relatorio"><button>Gerar Relatorio</button></a></p>
             </div>

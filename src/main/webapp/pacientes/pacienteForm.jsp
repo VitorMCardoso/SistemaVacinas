@@ -21,7 +21,7 @@
             <form action="updatePaciente" method="post">
             </c:if>
             <c:if test="${paciente == null}">
-                <form action="insertPaciente" method="post">
+                <form action="inserirPaciente" method="post">
                 </c:if>
                 <table border="1" cellpadding="5">
                     <caption>
@@ -165,7 +165,7 @@
                 </table><br>
 
                 <div>
-                    <a href="listPaciente">List All Paciente</a>
+                    <a href="listarPaciente">List All Paciente</a>
                 </div>
             </form>
     </div>	

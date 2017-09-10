@@ -55,19 +55,19 @@
                         <td><c:out value="${laboratorio.cidade}" /></td>
                         <td><c:out value="${laboratorio.estado}" /></td>
                         <td><c:out value="${laboratorio.ativo}" /></td>
-                        <td><a href="editLaboratorio?id=<c:out value="${laboratorio.id}"/>">Update</a></td>
-                        <td><a href="deleteLaboratorio?id=<c:out value='${laboratorio.id}'/>">Delete</a></td>
+                        <td><a href="editLaboratorioForm?id=<c:out value="${laboratorio.id}"/>">Update</a></td>
+                        <td><a href="deletarLaboratorio?id=<c:out value='${laboratorio.id}'/>">Delete</a></td>
 
                     </tr>
                 </c:forEach>
 
             </table><br>
             <div>
-                <a href="newLaboratorio">Adicionar Novo Laboratorio</a>
+                <a href="showNewForm">Adicionar Novo Laboratorio</a>
                 &nbsp; &nbsp;
-                <a href="listLaboratorio">List All Laboratorio</a>
+                <a href="listarLaboratorio">List All Laboratorio</a>
                 &nbsp; &nbsp;
-                <a href="principal">Home</a>
+                <a href="../principal.jsp">Home</a>
             </div>
         </center>
     </body>
