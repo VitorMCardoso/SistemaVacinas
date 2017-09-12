@@ -41,80 +41,16 @@ public class UsuarioController extends RelatorioController {
         usuario.setEmail(request.getParameter("email"));
         usuario.setSenha(request.getParameter("senha"));
         String cargo = request.getParameter("optCargo");
-        if (cargo.equalsIgnoreCase("gerente")) {
-            usuario.setCargo(Cargo.GERENTE);
-        } else if (cargo.equalsIgnoreCase("secretaria")) {
-            usuario.setCargo(Cargo.SECRETARIA);
-        } else {
-            usuario.setCargo(Cargo.ESTOQUISTA);
-        }
+        usuario.setCargo(Cargo.valueOf(cargo));
         usuario.setRg(request.getParameter("rg"));
         usuario.setCpf(request.getParameter("cpf"));
         usuario.setEndereco(request.getParameter("endereco"));
         usuario.setBairro(request.getParameter("bairro"));
         usuario.setCidade(request.getParameter("cidade"));
         String estado = request.getParameter("optEstado");
-        if (estado.equalsIgnoreCase("AC")) {
-            usuario.setEstado(Estado.AC);
-        } else if (estado.equalsIgnoreCase("AL")) {
-            usuario.setEstado(Estado.AL);
-        } else if (estado.equalsIgnoreCase("AM")) {
-            usuario.setEstado(Estado.AM);
-        } else if (estado.equalsIgnoreCase("AP")) {
-            usuario.setEstado(Estado.AP);
-        } else if (estado.equalsIgnoreCase("BA")) {
-            usuario.setEstado(Estado.BA);
-        } else if (estado.equalsIgnoreCase("CE")) {
-            usuario.setEstado(Estado.CE);
-        } else if (estado.equalsIgnoreCase("DF")) {
-            usuario.setEstado(Estado.DF);
-        } else if (estado.equalsIgnoreCase("ES")) {
-            usuario.setEstado(Estado.ES);
-        } else if (estado.equalsIgnoreCase("GO")) {
-            usuario.setEstado(Estado.GO);
-        } else if (estado.equalsIgnoreCase("MA")) {
-            usuario.setEstado(Estado.MA);
-        } else if (estado.equalsIgnoreCase("MG")) {
-            usuario.setEstado(Estado.MG);
-        } else if (estado.equalsIgnoreCase("MS")) {
-            usuario.setEstado(Estado.MS);
-        } else if (estado.equalsIgnoreCase("MT")) {
-            usuario.setEstado(Estado.MT);
-        } else if (estado.equalsIgnoreCase("PA")) {
-            usuario.setEstado(Estado.PA);
-        } else if (estado.equalsIgnoreCase("PB")) {
-            usuario.setEstado(Estado.PB);
-        } else if (estado.equalsIgnoreCase("PE")) {
-            usuario.setEstado(Estado.PE);
-        } else if (estado.equalsIgnoreCase("PI")) {
-            usuario.setEstado(Estado.PI);
-        } else if (estado.equalsIgnoreCase("PR")) {
-            usuario.setEstado(Estado.PR);
-        } else if (estado.equalsIgnoreCase("RJ")) {
-            usuario.setEstado(Estado.RJ);
-        } else if (estado.equalsIgnoreCase("RN")) {
-            usuario.setEstado(Estado.RN);
-        } else if (estado.equalsIgnoreCase("RO")) {
-            usuario.setEstado(Estado.RO);
-        } else if (estado.equalsIgnoreCase("RR")) {
-            usuario.setEstado(Estado.RR);
-        } else if (estado.equalsIgnoreCase("RS")) {
-            usuario.setEstado(Estado.RS);
-        } else if (estado.equalsIgnoreCase("SC")) {
-            usuario.setEstado(Estado.SC);
-        } else if (estado.equalsIgnoreCase("SE")) {
-            usuario.setEstado(Estado.SE);
-        } else if (estado.equalsIgnoreCase("SP")) {
-            usuario.setEstado(Estado.SP);
-        } else {
-            usuario.setEstado(Estado.TO);
-        }
+        usuario.setEstado(Estado.valueOf(estado));
         String perfil = request.getParameter("optPerfil");
-        if (perfil.equalsIgnoreCase("administrador")) {
-            usuario.setPerfil(PerfilAcesso.ADMINISTRADOR);
-        } else {
-            usuario.setPerfil(PerfilAcesso.COMUM);
-        }
+        usuario.setPerfil(PerfilAcesso.valueOf(perfil));
         dao.cadastrar(usuario);
         response.sendRedirect("listarUsuario");
     }
@@ -162,81 +98,16 @@ public class UsuarioController extends RelatorioController {
         usuario.setEmail(request.getParameter("email"));
         usuario.setSenha(request.getParameter("senha"));
         String cargo = request.getParameter("optCargo");
-        if (cargo.equalsIgnoreCase("gerente")) {
-            usuario.setCargo(Cargo.GERENTE);
-        } else if (cargo.equalsIgnoreCase("secretaria")) {
-            usuario.setCargo(Cargo.SECRETARIA);
-        } else {
-            usuario.setCargo(Cargo.ESTOQUISTA);
-        }
+        usuario.setCargo(Cargo.valueOf(cargo));
         usuario.setRg(request.getParameter("rg"));
         usuario.setCpf(request.getParameter("cpf"));
         usuario.setEndereco(request.getParameter("endereco"));
         usuario.setBairro(request.getParameter("bairro"));
         usuario.setCidade(request.getParameter("cidade"));
         String estado = request.getParameter("optEstado");
-        if (estado.equalsIgnoreCase("AC")) {
-            usuario.setEstado(Estado.AC);
-        } else if (estado.equalsIgnoreCase("AL")) {
-            usuario.setEstado(Estado.AL);
-        } else if (estado.equalsIgnoreCase("AM")) {
-            usuario.setEstado(Estado.AM);
-        } else if (estado.equalsIgnoreCase("AP")) {
-            usuario.setEstado(Estado.AP);
-        } else if (estado.equalsIgnoreCase("BA")) {
-            usuario.setEstado(Estado.BA);
-        } else if (estado.equalsIgnoreCase("CE")) {
-            usuario.setEstado(Estado.CE);
-        } else if (estado.equalsIgnoreCase("DF")) {
-            usuario.setEstado(Estado.DF);
-        } else if (estado.equalsIgnoreCase("ES")) {
-            usuario.setEstado(Estado.ES);
-        } else if (estado.equalsIgnoreCase("GO")) {
-            usuario.setEstado(Estado.GO);
-        } else if (estado.equalsIgnoreCase("MA")) {
-            usuario.setEstado(Estado.MA);
-        } else if (estado.equalsIgnoreCase("MG")) {
-            usuario.setEstado(Estado.MG);
-        } else if (estado.equalsIgnoreCase("MS")) {
-            usuario.setEstado(Estado.MS);
-        } else if (estado.equalsIgnoreCase("MT")) {
-            usuario.setEstado(Estado.MT);
-        } else if (estado.equalsIgnoreCase("PA")) {
-            usuario.setEstado(Estado.PA);
-        } else if (estado.equalsIgnoreCase("PB")) {
-            usuario.setEstado(Estado.PB);
-        } else if (estado.equalsIgnoreCase("PE")) {
-            usuario.setEstado(Estado.PE);
-        } else if (estado.equalsIgnoreCase("PI")) {
-            usuario.setEstado(Estado.PI);
-        } else if (estado.equalsIgnoreCase("PR")) {
-            usuario.setEstado(Estado.PR);
-        } else if (estado.equalsIgnoreCase("RJ")) {
-            usuario.setEstado(Estado.RJ);
-        } else if (estado.equalsIgnoreCase("RN")) {
-            usuario.setEstado(Estado.RN);
-        } else if (estado.equalsIgnoreCase("RO")) {
-            usuario.setEstado(Estado.RO);
-        } else if (estado.equalsIgnoreCase("RR")) {
-            usuario.setEstado(Estado.RR);
-        } else if (estado.equalsIgnoreCase("RS")) {
-            usuario.setEstado(Estado.RS);
-        } else if (estado.equalsIgnoreCase("SC")) {
-            usuario.setEstado(Estado.SC);
-        } else if (estado.equalsIgnoreCase("SE")) {
-            usuario.setEstado(Estado.SE);
-        } else if (estado.equalsIgnoreCase("SP")) {
-            usuario.setEstado(Estado.SP);
-        } else {
-            usuario.setEstado(Estado.TO);
-        }
+        usuario.setEstado(Estado.valueOf(estado));
         String perfil = request.getParameter("optPerfil");
-        if (perfil.equalsIgnoreCase("administrador")) {
-            usuario.setPerfil(PerfilAcesso.ADMINISTRADOR);
-        } else {
-            usuario.setPerfil(PerfilAcesso.COMUM);
-        }
-
+        usuario.setPerfil(PerfilAcesso.valueOf(perfil));
         dao.atualizar(usuario);
         response.sendRedirect("listarUsuario");
     }

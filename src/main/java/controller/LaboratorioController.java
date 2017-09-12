@@ -44,62 +44,7 @@ public class LaboratorioController {
         laboratorio.setBairro(request.getParameter("bairro"));
         laboratorio.setCidade(request.getParameter("cidade"));
         String estado = request.getParameter("optEstado");
-        if (estado.equalsIgnoreCase("AC")) {
-            laboratorio.setEstado(Estado.AC);
-        } else if (estado.equalsIgnoreCase("AL")) {
-            laboratorio.setEstado(Estado.AL);
-        } else if (estado.equalsIgnoreCase("AM")) {
-            laboratorio.setEstado(Estado.AM);
-        } else if (estado.equalsIgnoreCase("AP")) {
-            laboratorio.setEstado(Estado.AP);
-        } else if (estado.equalsIgnoreCase("BA")) {
-            laboratorio.setEstado(Estado.BA);
-        } else if (estado.equalsIgnoreCase("CE")) {
-            laboratorio.setEstado(Estado.CE);
-        } else if (estado.equalsIgnoreCase("DF")) {
-            laboratorio.setEstado(Estado.DF);
-        } else if (estado.equalsIgnoreCase("ES")) {
-            laboratorio.setEstado(Estado.ES);
-        } else if (estado.equalsIgnoreCase("GO")) {
-            laboratorio.setEstado(Estado.GO);
-        } else if (estado.equalsIgnoreCase("MA")) {
-            laboratorio.setEstado(Estado.MA);
-        } else if (estado.equalsIgnoreCase("MG")) {
-            laboratorio.setEstado(Estado.MG);
-        } else if (estado.equalsIgnoreCase("MS")) {
-            laboratorio.setEstado(Estado.MS);
-        } else if (estado.equalsIgnoreCase("MT")) {
-            laboratorio.setEstado(Estado.MT);
-        } else if (estado.equalsIgnoreCase("PA")) {
-            laboratorio.setEstado(Estado.PA);
-        } else if (estado.equalsIgnoreCase("PB")) {
-            laboratorio.setEstado(Estado.PB);
-        } else if (estado.equalsIgnoreCase("PE")) {
-            laboratorio.setEstado(Estado.PE);
-        } else if (estado.equalsIgnoreCase("PI")) {
-            laboratorio.setEstado(Estado.PI);
-        } else if (estado.equalsIgnoreCase("PR")) {
-            laboratorio.setEstado(Estado.PR);
-        } else if (estado.equalsIgnoreCase("RJ")) {
-            laboratorio.setEstado(Estado.RJ);
-        } else if (estado.equalsIgnoreCase("RN")) {
-            laboratorio.setEstado(Estado.RN);
-        } else if (estado.equalsIgnoreCase("RO")) {
-            laboratorio.setEstado(Estado.RO);
-        } else if (estado.equalsIgnoreCase("RR")) {
-            laboratorio.setEstado(Estado.RR);
-        } else if (estado.equalsIgnoreCase("RS")) {
-            laboratorio.setEstado(Estado.RS);
-        } else if (estado.equalsIgnoreCase("SC")) {
-            laboratorio.setEstado(Estado.SC);
-        } else if (estado.equalsIgnoreCase("SE")) {
-            laboratorio.setEstado(Estado.SE);
-        } else if (estado.equalsIgnoreCase("sp")) {
-            laboratorio.setEstado(Estado.SP);
-        } else {
-            laboratorio.setEstado(Estado.TO);
-        }
-
+        laboratorio.setEstado(Estado.valueOf(estado));
         dao.cadastrar(laboratorio);
         response.sendRedirect("listarLaboratorio");
     }
@@ -151,62 +96,7 @@ public class LaboratorioController {
         laboratorio.setBairro(request.getParameter("bairro"));
         laboratorio.setCidade(request.getParameter("cidade"));
         String estado = request.getParameter("optEstado");
-        if (estado.equalsIgnoreCase("AC")) {
-            laboratorio.setEstado(Estado.AC);
-        } else if (estado.equalsIgnoreCase("AL")) {
-            laboratorio.setEstado(Estado.AL);
-        } else if (estado.equalsIgnoreCase("AM")) {
-            laboratorio.setEstado(Estado.AM);
-        } else if (estado.equalsIgnoreCase("AP")) {
-            laboratorio.setEstado(Estado.AP);
-        } else if (estado.equalsIgnoreCase("BA")) {
-            laboratorio.setEstado(Estado.BA);
-        } else if (estado.equalsIgnoreCase("CE")) {
-            laboratorio.setEstado(Estado.CE);
-        } else if (estado.equalsIgnoreCase("DF")) {
-            laboratorio.setEstado(Estado.DF);
-        } else if (estado.equalsIgnoreCase("ES")) {
-            laboratorio.setEstado(Estado.ES);
-        } else if (estado.equalsIgnoreCase("GO")) {
-            laboratorio.setEstado(Estado.GO);
-        } else if (estado.equalsIgnoreCase("MA")) {
-            laboratorio.setEstado(Estado.MA);
-        } else if (estado.equalsIgnoreCase("MG")) {
-            laboratorio.setEstado(Estado.MG);
-        } else if (estado.equalsIgnoreCase("MS")) {
-            laboratorio.setEstado(Estado.MS);
-        } else if (estado.equalsIgnoreCase("MT")) {
-            laboratorio.setEstado(Estado.MT);
-        } else if (estado.equalsIgnoreCase("PA")) {
-            laboratorio.setEstado(Estado.PA);
-        } else if (estado.equalsIgnoreCase("PB")) {
-            laboratorio.setEstado(Estado.PB);
-        } else if (estado.equalsIgnoreCase("PE")) {
-            laboratorio.setEstado(Estado.PE);
-        } else if (estado.equalsIgnoreCase("PI")) {
-            laboratorio.setEstado(Estado.PI);
-        } else if (estado.equalsIgnoreCase("PR")) {
-            laboratorio.setEstado(Estado.PR);
-        } else if (estado.equalsIgnoreCase("RJ")) {
-            laboratorio.setEstado(Estado.RJ);
-        } else if (estado.equalsIgnoreCase("RN")) {
-            laboratorio.setEstado(Estado.RN);
-        } else if (estado.equalsIgnoreCase("RO")) {
-            laboratorio.setEstado(Estado.RO);
-        } else if (estado.equalsIgnoreCase("RR")) {
-            laboratorio.setEstado(Estado.RR);
-        } else if (estado.equalsIgnoreCase("RS")) {
-            laboratorio.setEstado(Estado.RS);
-        } else if (estado.equalsIgnoreCase("SC")) {
-            laboratorio.setEstado(Estado.SC);
-        } else if (estado.equalsIgnoreCase("SE")) {
-            laboratorio.setEstado(Estado.SE);
-        } else if (estado.equalsIgnoreCase("sp")) {
-            laboratorio.setEstado(Estado.SP);
-        } else {
-            laboratorio.setEstado(Estado.TO);
-        }
-
+        laboratorio.setEstado(Estado.valueOf(estado));
         dao.atualizar(laboratorio);
         response.sendRedirect("listarLaboratorio");
     }
