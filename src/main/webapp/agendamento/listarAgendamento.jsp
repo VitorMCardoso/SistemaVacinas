@@ -4,6 +4,7 @@
     Author     : vitor
 --%>
 
+<%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -28,7 +29,8 @@
                     <th>Ativo</th>
                     <th colspan=2>Açao</th>
                 </tr>
-
+                <% Date hoje = new Date();%>
+                <c:set var="data" value="<%= new java.sql.Date(hoje.getTime())%>"/>
 
                 <c:forEach var="agendamento" items="${listarAgendamentos}" >
                     <tr>
@@ -39,21 +41,29 @@
                         <td><c:out value="${agendamento.paciente}" /></td>
                         <td><c:out value="${agendamento.vacinas}" /></td>
                         <td><c:out value="${agendamento.ativo}" /></td>
-                        
-                        <td><a href="editAgendamentoForm?id=<c:out value="${agendamento.id}"/>">Update</a></td>
-                        <td><a href="deleteAgendamento?id=<c:out value='${agendamento.id}'/>">Delete</a></td>
 
+                        <c:choose>
+                            <c:when test="${agendamento.dataDose} == ${data})">
+                                <td><a href="editAgendamentoForm?id=<c:out value="${agendamento.id}"/>">Confirmar</a></td>
+                            </c:when>
+                            <c:otherwise>
+                                <c:out value="${data}"/>
+                                <td><a>Fora da Data</a></td>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <td><a href="deletarAgendamento?id=<c:out value='${agendamento.id}'/>">Delete</a></td>
                     </tr>
                 </c:forEach>
 
             </table><br>
 
-                <a href="showNewForm">Adicionar Novo Agendamento</a>
+            <a href="showNewForm">Adicionar Novo Agendamento</a>
             &nbsp; &nbsp;
-                <a href="listarAgendamento">List All Agendamento</a>
+            <a href="listarAgendamento">List All Agendamento</a>
             &nbsp; &nbsp;
-                <a href="../principal.jsp">Home</a>
-            </div>
-        </center>
-    </body>
+            <a href="../principal.jsp">Home</a>
+        </div>
+    </center>
+</body>
 </html>

@@ -19,19 +19,16 @@ public class Vacinas {
     private String nome;
     private String tipo;
     private int quantidade;
-    private String lote;
-    private int idLaboratorio;
+    private int idLote;
 
-    public Vacinas(int id, Date dataValidade, Date dataFabricacao, String nome,
-            String tipo, int quantidade, String lote, int idLaboratorio) {
+    public Vacinas(int id, Date dataValidade, Date dataFabricacao, String nome, String tipo, int quantidade, int idLote) {
         this.id = id;
         this.dataValidade = dataValidade;
         this.dataFabricacao = dataFabricacao;
         this.nome = nome;
         this.tipo = tipo;
         this.quantidade = quantidade;
-        this.lote = lote;
-        this.idLaboratorio = idLaboratorio;
+        this.idLote = idLote;
     }
 
     public Vacinas() {
@@ -86,20 +83,12 @@ public class Vacinas {
         this.quantidade = quantidade;
     }
 
-    public String getLote() {
-        return lote;
+    public int getIdLote() {
+        return idLote;
     }
 
-    public void setLote(String lote) {
-        this.lote = lote;
-    }
-
-    public int getIdLaboratorio() {
-        return idLaboratorio;
-    }
-
-    public void setIdLaboratorio(int idLaboratorio) {
-        this.idLaboratorio = idLaboratorio;
+    public void setIdLote(int idLote) {
+        this.idLote = idLote;
     }
 
 }

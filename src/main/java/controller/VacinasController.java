@@ -38,8 +38,7 @@ public class VacinasController {
         vacina.setNome(request.getParameter("nome"));
         vacina.setTipo(request.getParameter("tipo"));
         vacina.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
-        vacina.setLote(request.getParameter("lote"));
-        vacina.setIdLaboratorio(Integer.parseInt(request.getParameter("idLaboratorio")));
+        vacina.setIdLote(Integer.parseInt(request.getParameter("idLote")));
 
         dao.cadastrar(vacina);
         response.sendRedirect("listarVacina");
@@ -87,8 +86,7 @@ public class VacinasController {
         vacina.setNome(request.getParameter("nome"));
         vacina.setTipo(request.getParameter("tipo"));
         vacina.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
-        vacina.setLote(request.getParameter("lote"));
-        vacina.setIdLaboratorio(Integer.parseInt(request.getParameter("idLaboratorio")));
+        vacina.setIdLote(Integer.parseInt(request.getParameter("idLote")));
 
         dao.atualizar(vacina);
         response.sendRedirect("listarVacina");

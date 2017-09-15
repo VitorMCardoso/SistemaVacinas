@@ -34,8 +34,8 @@ public class VacinasDAO implements IDao<Vacinas> {
     }
 
     public void cadastrar(Vacinas v) throws SQLException {
-        String sql = "Insert Into vacinas (datavalidade, datafabricacao, nome, tipo, quantidade, lote, idlaboratorio)"
-                + "Values(?,?,?,?,?,?,?)";
+        String sql = "Insert Into vacinas (datavalidade, datafabricacao, nome, tipo, quantidade, idLote)"
+                + "Values(?,?,?,?,?,?)";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
@@ -44,8 +44,7 @@ public class VacinasDAO implements IDao<Vacinas> {
             stmt.setString(3, v.getNome());
             stmt.setString(4, v.getTipo());
             stmt.setInt(5, v.getQuantidade());
-            stmt.setString(6, v.getLote());
-            stmt.setInt(7, v.getIdLaboratorio());
+            stmt.setInt(6, v.getIdLote());
 
             //executa o código
             stmt.execute();
@@ -56,7 +55,7 @@ public class VacinasDAO implements IDao<Vacinas> {
 
     public void atualizar(Vacinas v) throws SQLException {
         String sql = "Update vacinas set datavalidade = ? , datafabricacao=?, nome = ?, tipo = ?, "
-                + "quantidade=?, lote=?, idlaboratorio = ? where id=?";
+                + "quantidade=?, idlote = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setDate(1, (java.sql.Date) v.getDataValidade());
@@ -64,9 +63,8 @@ public class VacinasDAO implements IDao<Vacinas> {
             stmt.setString(3, v.getNome());
             stmt.setString(4, v.getTipo());
             stmt.setInt(5, v.getQuantidade());
-            stmt.setString(6, v.getLote());
-            stmt.setInt(7, v.getIdLaboratorio());
-            stmt.setInt(8, v.getId());
+            stmt.setInt(6, v.getIdLote());
+            stmt.setInt(7, v.getId());
             // executa o código sql
             stmt.execute();
             stmt.close();
@@ -93,8 +91,7 @@ public class VacinasDAO implements IDao<Vacinas> {
                 vacina.setNome(rs.getString("nome"));
                 vacina.setTipo(rs.getString("tipo"));
                 vacina.setQuantidade(Integer.valueOf(rs.getString("quantidade")));
-                vacina.setLote(rs.getString("lote"));
-                vacina.setIdLaboratorio(Integer.valueOf(rs.getString("idLaboratorio")));
+                vacina.setIdLote(Integer.valueOf(rs.getString("idLote")));
                 vacinas.add(vacina);
             }
             st.close();
@@ -124,8 +121,7 @@ public class VacinasDAO implements IDao<Vacinas> {
                 vacina.setNome(rs.getString("nome"));
                 vacina.setTipo(rs.getString("tipo"));
                 vacina.setQuantidade(Integer.valueOf(rs.getString("quantidade")));
-                vacina.setLote(rs.getString("lote"));
-                vacina.setIdLaboratorio(Integer.valueOf(rs.getString("idLaboratorio")));
+                vacina.setIdLote(Integer.valueOf(rs.getString("idLote")));
             }
             st.close();
         } catch (SQLException e) {
@@ -157,7 +153,7 @@ public class VacinasDAO implements IDao<Vacinas> {
     }
 
     public void cresVacina(int quantidadeAgendamento, int idVacina) throws SQLException {
-        String query = "Update vacinas set quantidade=quantidade-? where id =?";
+        String query = "Update vacinas set quantidade=quantidade+? where id =?";
         PreparedStatement stmt = conexao.prepareStatement(query);
         stmt.setInt(1, quantidadeAgendamento);
         stmt.setInt(2, idVacina);

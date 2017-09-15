@@ -8,6 +8,7 @@ package controller;
 import dao.AgendamentoDAO;
 import dao.VacinasDAO;
 import java.io.IOException;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -24,12 +25,10 @@ import model.Agendamento;
 public class AgendamentoController {
 
     private final AgendamentoDAO dao;
-    private final VacinasDAO daoVac;
     private Agendamento agendamento;
 
     public AgendamentoController() throws SQLException, IOException {
         this.dao = new AgendamentoDAO();
-        this.daoVac = new VacinasDAO();
     }
 
     public void inserirAgendamento(HttpServletRequest request, HttpServletResponse response)
@@ -70,16 +69,16 @@ public class AgendamentoController {
     public void deletarAgendamento(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-
-        dao.excluir(id);
+        int quantidade = Integer.parseInt(request.getParameter("quantidadeVac"));
+        int idVacinas = Integer.parseInt(request.getParameter("idVacinas"));
+        dao.excluirAgendamento(id,quantidade,idVacinas);
         response.sendRedirect("listarAgendamento");
 
     }
-
+  
     public void updateAgendamento(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         agendamento = new Agendamento();
-        //dao.setQuantidadePassada(Integer.valueOf(request.getParameter("id")), Integer.valueOf(request.getParameter("quantidadeVac")));
         agendamento.setId(Integer.valueOf(request.getParameter("id")));
         agendamento.setDataDose(java.sql.Date.valueOf(request.getParameter("dataDose")));
         agendamento.setQuantidade(Integer.valueOf(request.getParameter("quantidadeVac")));

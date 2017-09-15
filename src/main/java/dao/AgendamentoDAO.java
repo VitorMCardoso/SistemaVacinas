@@ -137,6 +137,16 @@ public class AgendamentoDAO implements IDao<Agendamento> {
         stmt.close();
 
     }
+    
+    public void excluirAgendamento(int idAgendamento,int quantidadeVacinas, int idVacina) throws SQLException { // implementação do método -remove-
+        String sql = "update agendamento set ativo=false where id=?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setInt(1, idAgendamento);
+        vacinasDAO.cresVacina(quantidadeVacinas, idVacina);
+        stmt.execute();
+        stmt.close();
+
+    }
 
     @Override
     public int selectID(Agendamento a) throws SQLException {
@@ -164,16 +174,5 @@ public class AgendamentoDAO implements IDao<Agendamento> {
         }
         st.close();
         return ativo;
-    }
-    
-    
-    public void setQuantidadePassada(int quantidadeVacPassada, int idAgendamento) throws SQLException {
-        String sql = "update agendamento set quantidadeVac=? where id=?";
-        PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setInt(1, quantidadeVacPassada);
-        stmt.setInt(2, idAgendamento);
-        stmt.execute();
-        stmt.close();
-
     }
 }

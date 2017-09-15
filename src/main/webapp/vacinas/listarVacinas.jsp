@@ -26,8 +26,7 @@
                     <th>Nome</th>
                     <th>Tipo</th>
                     <th>Quantidade</th>
-                    <th>Lote</th>
-                    <th>Id Laboratorio</th>
+                    <th>Id Lote</th>
                     <th colspan=2>Açao</th>
                 </tr>
 
@@ -41,8 +40,7 @@
                         <td><c:out value="${vacina.nome}" /></td>
                         <td><c:out value="${vacina.tipo}" /></td>
                         <td><c:out value="${vacina.quantidade}" /></td>
-                        <td><c:out value="${vacina.lote}" /></td>
-                        <td><c:out value="${vacina.idLaboratorio}" /></td>
+                        <td><c:out value="${vacina.idLote}" /></td>
                         
                         <td><a href="editVacinaForm?id=<c:out value="${vacina.id}"/>">Update</a></td>
                         <td><a href="deletarVacina?id=<c:out value='${vacina.id}'/>">Delete</a></td>

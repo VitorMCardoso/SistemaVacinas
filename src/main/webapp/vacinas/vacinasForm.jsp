@@ -83,18 +83,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Lote </th>
+                        <th>Id Lote </th>
                         <td>
-                            <input type="text" name="lote" size="9"
-                                   value="<c:out value='${vacina.lote}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Id Laboratorio </th>
-                        <td>
-                            <input type="text" name="idLaboratorio" size="11"
-                                   value="<c:out value='${vacina.idLaboratorio}' />"
+                            <input type="text" name="idLote" size="11"
+                                   value="<c:out value='${vacina.idLote}' />"
                                    />
                         </td>
                     </tr>
