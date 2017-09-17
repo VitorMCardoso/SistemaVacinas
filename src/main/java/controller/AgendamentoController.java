@@ -35,9 +35,9 @@ public class AgendamentoController {
             throws SQLException, IOException {
         agendamento = new Agendamento();
         agendamento.setDataDose(java.sql.Date.valueOf(request.getParameter("dataDose")));
-        agendamento.setQuantidade(Integer.valueOf(request.getParameter("quantidadeVac")));
-        agendamento.setPaciente(Integer.valueOf(request.getParameter("idPaciente")));
-        agendamento.setVacinas(Integer.valueOf(request.getParameter("idVacinas")));
+        agendamento.setQuantidadeVac(Integer.valueOf(request.getParameter("quantidadeVac")));
+        agendamento.setIdPaciente(Integer.valueOf(request.getParameter("idPaciente")));
+        agendamento.setIdVacinas(Integer.valueOf(request.getParameter("idVacinas")));
 
         dao.cadastrar(agendamento);
         response.sendRedirect("listarAgendamento");
@@ -81,9 +81,9 @@ public class AgendamentoController {
         agendamento = new Agendamento();
         agendamento.setId(Integer.valueOf(request.getParameter("id")));
         agendamento.setDataDose(java.sql.Date.valueOf(request.getParameter("dataDose")));
-        agendamento.setQuantidade(Integer.valueOf(request.getParameter("quantidadeVac")));
-        agendamento.setPaciente(Integer.valueOf(request.getParameter("idPaciente")));
-        agendamento.setVacinas(Integer.valueOf(request.getParameter("idVacinas")));
+        agendamento.setQuantidadeVac(Integer.valueOf(request.getParameter("quantidadeVac")));
+        agendamento.setIdPaciente(Integer.valueOf(request.getParameter("idPaciente")));
+        agendamento.setIdVacinas(Integer.valueOf(request.getParameter("idVacinas")));
 
         dao.atualizar(agendamento);
         

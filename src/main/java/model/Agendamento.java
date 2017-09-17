@@ -48,27 +48,27 @@ public class Agendamento {
         this.dataDose = dataDose;
     }
 
-    public int getQuantidade() {
+    public int getQuantidadeVac() {
         return quantidadeVac;
     }
 
-    public void setQuantidade(int quantidadeVac) {
+    public void setQuantidadeVac(int quantidadeVac) {
         this.quantidadeVac = quantidadeVac;
     }
-    
-    public int getPaciente() {
+
+    public int getIdPaciente() {
         return idPaciente;
     }
 
-    public void setPaciente(int idPaciente) {
+    public void setIdPaciente(int idPaciente) {
         this.idPaciente = idPaciente;
     }
 
-    public int getVacinas() {
+    public int getIdVacinas() {
         return idVacinas;
     }
 
-    public void setVacinas(int idVacinas) {
+    public void setIdVacinas(int idVacinas) {
         this.idVacinas = idVacinas;
     }
 
