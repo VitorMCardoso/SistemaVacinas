@@ -37,6 +37,9 @@
         
         <p><a href="agendamento/showNewForm"><button>Cadastro de Agendamento</button></a></p>
         <p><a href="agendamento/listar"><button>Manter Agendamento</button></a></p>
+        
+        <p><a href="pedido/showNewForm"><button>Cadastro de Pedido de Compra</button></a></p>
+        <p><a href="pedido/listar"><button>Manter Pedido de Compra</button></a></p>
         </div>
     </body>
 </html>

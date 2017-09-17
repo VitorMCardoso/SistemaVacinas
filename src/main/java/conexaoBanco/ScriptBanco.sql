@@ -109,17 +109,15 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE novosPedidos
-(
-  id int auto_increment,
-  quantidade varchar (100)NOT NULL,
-  dataPedido date NOT NULL,
-  idLaboratorio int NOT NULL,
-  idUsuario int NOT NULL,
-  idVacinas int NOT NULL,
-  CONSTRAINT pk_novosPedidos_id PRIMARY KEY (id),
-  CONSTRAINT fk_laboratorioPed_id FOREIGN KEY (idLaboratorio) REFERENCES laboratorio (id) on delete cascade on update cascade,
-  CONSTRAINT fk_usuarioPed_id FOREIGN KEY (idUsuario) REFERENCES usuario (id) on delete cascade on update cascade,
-  CONSTRAINT fk_vacinasPed_id FOREIGN KEY (idVacinas) REFERENCES vacinas (id) on delete cascade on update cascade
-);
+CREATE TABLE `pedidoCompra` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data` date NOT NULL,
+  `quantidadeVac` int(11) NOT NULL,
+  `idLaboratorio` int(11) NOT NULL,
+  `idVacinas` int(11) NOT NULL,
+  `ativo` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`idLaboratorio`) REFERENCES `laboratorio` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`idVacinas`) REFERENCES `vacinas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
