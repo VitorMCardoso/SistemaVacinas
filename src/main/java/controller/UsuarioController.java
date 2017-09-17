@@ -53,7 +53,7 @@ public class UsuarioController extends RelatorioController implements IControlle
         String perfil = request.getParameter("optPerfil");
         usuario.setPerfil(PerfilAcesso.valueOf(perfil));
         dao.cadastrar(usuario);
-        response.sendRedirect("listarUsuario");
+        response.sendRedirect("listar");
     }
 
     @Override
@@ -78,7 +78,7 @@ public class UsuarioController extends RelatorioController implements IControlle
         int id = Integer.parseInt(request.getParameter("id"));
 
         dao.excluir(id);
-        response.sendRedirect("listarUsuario");
+        response.sendRedirect("listar");
 
     }
 
@@ -115,7 +115,7 @@ public class UsuarioController extends RelatorioController implements IControlle
         String perfil = request.getParameter("optPerfil");
         usuario.setPerfil(PerfilAcesso.valueOf(perfil));
         dao.atualizar(usuario);
-        response.sendRedirect("listarUsuario");
+        response.sendRedirect("listar");
     }
 
     public void relatorio() throws Exception {

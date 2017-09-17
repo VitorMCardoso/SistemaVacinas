@@ -184,17 +184,12 @@ public class UsuarioDAO implements IDao<Usuario> {
     }
 
     @Override
-    public boolean setAtivo(Usuario u) throws SQLException {
-        String query = "SELECT ativo FROM usuario where id=" + u.getId();
-        Statement st = conexao.createStatement();
-        boolean ativo = true;
-        // execute the query, and get a java resultset
-        ResultSet rs = st.executeQuery(query);
-        while (rs.next()) {
-            ativo = rs.getBoolean("ativo");
-        }
-        st.close();
-        return ativo;
+    public void setAtivo(int usuarioID) throws SQLException {
+        String sql = "update usuario set ativo=true where id=?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setLong(1, usuarioID);
+        stmt.execute();
+        stmt.close();
     }
 
     public Usuario autentica(Usuario u) throws SQLException {

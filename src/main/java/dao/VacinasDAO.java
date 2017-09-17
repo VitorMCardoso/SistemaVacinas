@@ -167,7 +167,7 @@ public class VacinasDAO implements IDao<Vacinas> {
     }
 
     @Override
-    public boolean setAtivo(Vacinas t) throws SQLException {
+    public void setAtivo(int id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

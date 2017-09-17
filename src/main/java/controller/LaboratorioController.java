@@ -47,7 +47,7 @@ public class LaboratorioController implements IController{
         String estado = request.getParameter("optEstado");
         laboratorio.setEstado(Estado.valueOf(estado));
         dao.cadastrar(laboratorio);
-        response.sendRedirect("listarLaboratorio");
+        response.sendRedirect("listar");
     }
 
     @Override
@@ -104,6 +104,6 @@ public class LaboratorioController implements IController{
         String estado = request.getParameter("optEstado");
         laboratorio.setEstado(Estado.valueOf(estado));
         dao.atualizar(laboratorio);
-        response.sendRedirect("listarLaboratorio");
+        response.sendRedirect("listar");
     }
 }

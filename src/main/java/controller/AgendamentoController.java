@@ -41,7 +41,7 @@ public class AgendamentoController implements IController{
         agendamento.setIdVacinas(Integer.valueOf(request.getParameter("idVacinas")));
 
         dao.cadastrar(agendamento);
-        response.sendRedirect("listarAgendamento");
+        response.sendRedirect("listar");
     }
 
     @Override
@@ -77,7 +77,7 @@ public class AgendamentoController implements IController{
         int quantidade = Integer.parseInt(request.getParameter("quantidadeVac"));
         int idVacinas = Integer.parseInt(request.getParameter("idVacinas"));
         dao.excluirAgendamento(id,quantidade,idVacinas);
-        response.sendRedirect("listarAgendamento");
+        response.sendRedirect("listar");
 
     }
   
@@ -93,6 +93,6 @@ public class AgendamentoController implements IController{
 
         dao.atualizar(agendamento);
         
-        response.sendRedirect("listarAgendamento");
+        response.sendRedirect("listar");
     }
 }

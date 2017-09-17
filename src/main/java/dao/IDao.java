@@ -27,6 +27,6 @@ public interface IDao <T>{
 
     public int selectID(T t) throws SQLException;
 
-    public boolean setAtivo(T t) throws SQLException;
+    public void setAtivo(int id) throws SQLException;
 
 }

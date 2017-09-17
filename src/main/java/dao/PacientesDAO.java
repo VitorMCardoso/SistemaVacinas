@@ -140,17 +140,12 @@ public class PacientesDAO implements IDao<Paciente> {
     }
 
     @Override
-    public boolean setAtivo(Paciente p) throws SQLException {
-        String query = "SELECT ativo FROM paciente where id=" + p.getId();
-        Statement st = conexao.createStatement();
-        boolean ativo = true;
-        // execute the query, and get a java resultset
-        ResultSet rs = st.executeQuery(query);
-        while (rs.next()) {
-            ativo = rs.getBoolean("ativo");
-        }
-        st.close();
-        return ativo;
+    public void setAtivo(int pacienteID) throws SQLException {
+        String sql = "update paciente set ativo=true where id=?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setLong(1, pacienteID);
+        stmt.execute();
+        stmt.close();
     }
 
     @Override

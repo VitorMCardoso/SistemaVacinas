@@ -42,7 +42,7 @@ public class VacinasController implements IController{
         vacina.setIdLote(Integer.parseInt(request.getParameter("idLote")));
 
         dao.cadastrar(vacina);
-        response.sendRedirect("listarVacina");
+        response.sendRedirect("listar");
     }
 
     @Override
@@ -67,7 +67,7 @@ public class VacinasController implements IController{
         vacina = new Vacinas();
         vacina.setId(Integer.parseInt(request.getParameter("id")));
         dao.descVacina(5, vacina.getId());
-        response.sendRedirect("listarVacina");
+        response.sendRedirect("listar");
 
     }
 
@@ -94,7 +94,7 @@ public class VacinasController implements IController{
         vacina.setIdLote(Integer.parseInt(request.getParameter("idLote")));
 
         dao.atualizar(vacina);
-        response.sendRedirect("listarVacina");
+        response.sendRedirect("listar");
     }
 
     @Override

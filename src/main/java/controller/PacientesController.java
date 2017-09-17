@@ -51,7 +51,7 @@ public class PacientesController implements IController {
         String estado = request.getParameter("optEstado");
         paciente.setEstado(Estado.valueOf(estado));
         dao.cadastrar(paciente);
-        response.sendRedirect("listarPaciente");
+        response.sendRedirect("listar");
     }
 
     @Override
@@ -75,7 +75,7 @@ public class PacientesController implements IController {
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         dao.excluir(id);
-        response.sendRedirect("listarPaciente");
+        response.sendRedirect("listar");
 
     }
 
@@ -107,6 +107,6 @@ public class PacientesController implements IController {
         String estado = request.getParameter("optEstado");
         paciente.setEstado(Estado.valueOf(estado));
         dao.atualizar(paciente);
-        response.sendRedirect("listarPaciente");
+        response.sendRedirect("listar");
     }
 }

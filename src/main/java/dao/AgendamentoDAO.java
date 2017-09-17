@@ -164,16 +164,11 @@ public class AgendamentoDAO implements IDao<Agendamento> {
     }
 
     @Override
-    public boolean setAtivo(Agendamento a) throws SQLException {
-        String query = "SELECT ativo FROM agendamento where id=" + a.getId();
-        Statement st = conexao.createStatement();
-        boolean ativo = true;
-        // execute the query, and get a java resultset
-        ResultSet rs = st.executeQuery(query);
-        while (rs.next()) {
-            ativo = rs.getBoolean("ativo");
-        }
-        st.close();
-        return ativo;
+    public void setAtivo(int idAgendamento) throws SQLException {
+        String sql = "update agendamento set ativo=true where id=?";
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setInt(1, idAgendamento);
+        stmt.execute();
+        stmt.close();
     }
 }
