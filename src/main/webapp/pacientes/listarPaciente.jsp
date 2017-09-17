@@ -51,8 +51,8 @@
                         <td><c:out value="${paciente.cidade}" /></td>
                         <td><c:out value="${paciente.estado}" /></td>
                         <td><c:out value="${paciente.ativo}" /></td>
-                        <td><a href="editPacienteForm?id=<c:out value="${paciente.id}"/>">Update</a></td>
-                        <td><a href="deletarPaciente?id=<c:out value='${paciente.id}'/>">Delete</a></td>
+                        <td><a href="editForm?id=<c:out value="${paciente.id}"/>">Update</a></td>
+                        <td><a href="deletar?id=<c:out value='${paciente.id}'/>">Delete</a></td>
 
                     </tr>
                 </c:forEach>
@@ -61,7 +61,7 @@
             <div>
                 <a href="showNewForm">Adicionar Novo Paciente</a>
                 &nbsp; &nbsp;
-                <a href="listarPaciente">List All Paciente</a>
+                <a href="listar">List All Paciente</a>
                 &nbsp; &nbsp;
                 <a href="../principal.jsp">Home</a>
             </div>

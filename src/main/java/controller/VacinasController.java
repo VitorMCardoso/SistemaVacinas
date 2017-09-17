@@ -21,7 +21,7 @@ import model.Vacinas;
  *
  * @author vitor
  */
-public class VacinasController {
+public class VacinasController implements IController{
 
     private final VacinasDAO dao;
     private Vacinas vacina;
@@ -30,7 +30,8 @@ public class VacinasController {
         this.dao = new VacinasDAO();
     }
 
-    public void inserirVacina(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void inserir(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         vacina = new Vacinas();
         vacina.setDataValidade(java.sql.Date.valueOf(request.getParameter("dataValidade")));
@@ -44,7 +45,8 @@ public class VacinasController {
         response.sendRedirect("listarVacina");
     }
 
-    public void listarVacina(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void listar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Vacinas> listVacina = dao.listar();
         request.setAttribute("listarVacinas", listVacina);
@@ -52,6 +54,7 @@ public class VacinasController {
         dispatcher.forward(request, response);
     }
 
+    @Override
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("vacinasForm.jsp");
@@ -68,7 +71,8 @@ public class VacinasController {
 
     }
 
-    public void editVacinaForm(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void editForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("vacinasForm.jsp");
@@ -77,7 +81,8 @@ public class VacinasController {
 
     }
 
-    public void updateVacina(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void atualizar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         vacina = new Vacinas();
         vacina.setId(Integer.parseInt(request.getParameter("id")));
@@ -90,5 +95,10 @@ public class VacinasController {
 
         dao.atualizar(vacina);
         response.sendRedirect("listarVacina");
+    }
+
+    @Override
+    public void deletar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

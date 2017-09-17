@@ -55,8 +55,8 @@
                         <td><c:out value="${usuario.estado}" /></td>
                         <td><c:out value="${usuario.ativo}" /></td>
                         <td><c:out value="${usuario.perfil}" /></td>
-                        <td><a href="editUsuarioForm?id=<c:out value="${usuario.id}"/>">Update</a></td>
-                        <td><a href="deletarUsuario?id=<c:out value='${usuario.id}'/>">Delete</a></td>
+                        <td><a href="editForm?id=<c:out value="${usuario.id}"/>">Update</a></td>
+                        <td><a href="deletar?id=<c:out value='${usuario.id}'/>">Delete</a></td>
 
                     </tr>
                 </c:forEach>
@@ -65,7 +65,7 @@
             <div>
                 <a href="showNewForm">Adicionar Novo Usuario</a>
                 &nbsp; &nbsp;
-                <a href="listarUsuario">List All Usuarios</a>
+                <a href="listar">List All Usuarios</a>
                 &nbsp; &nbsp;
                 <a href="../principal.jsp">Home</a>
                 &nbsp; &nbsp;

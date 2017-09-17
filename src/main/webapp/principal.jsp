@@ -24,19 +24,19 @@
        
         <%}%>
         <p><a href="usuario/showNewForm"><button>Cadastro de Usuario</button></a></p>
-        <p><a href="usuario/listarUsuario"><button>Manter Usuarios</button></a></p>
+        <p><a href="usuario/listar"><button>Manter Usuarios</button></a></p>
         
         <p><a href="pacientes/showNewForm"><button>Cadastro de Paciente</button></a></p>
-        <p><a href="pacientes/listarPaciente" ><button>Manter Paciente</button></a></p>
+        <p><a href="pacientes/listar" ><button>Manter Paciente</button></a></p>
         
         <p><a href="laboratorio/showNewForm"><button>Cadastro de Laboratorio</button></a></p>
-        <p><a href="laboratorio/listarLaboratorio"><button>Manter Laboratorio</button></a></p>
+        <p><a href="laboratorio/listar"><button>Manter Laboratorio</button></a></p>
         
         <p><a href="vacinas/showNewForm"><button>Cadastro de Vacinas</button></a></p>
-        <p><a href="vacinas/listarVacina"><button>Manter Vacina</button></a></p>
+        <p><a href="vacinas/listar"><button>Manter Vacina</button></a></p>
         
         <p><a href="agendamento/showNewForm"><button>Cadastro de Agendamento</button></a></p>
-        <p><a href="agendamento/listarAgendamento"><button>Manter Agendamento</button></a></p>
+        <p><a href="agendamento/listar"><button>Manter Agendamento</button></a></p>
         </div>
     </body>
 </html>

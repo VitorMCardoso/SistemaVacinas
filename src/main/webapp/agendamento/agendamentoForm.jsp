@@ -18,10 +18,10 @@
     </center>
     <div align="center">
         <c:if test="${agendamento != null}">
-            <form action="updateAgendamento" method="post">
+            <form action="atualizar" method="post">
             </c:if>
             <c:if test="${agendamento == null}">
-                <form action="inserirAgendamento" method="post">
+                <form action="inserir" method="post">
                 </c:if>
                 <table border="1" cellpadding="5">
                     <caption>
@@ -80,7 +80,7 @@
                     </tr>
                 </table><br>
                 <div>
-                    <a href="listarAgendamento">List All Agendamento</a>
+                    <a href="listar">List All Agendamento</a>
                 </div>
             </form>
     </div>	

@@ -20,7 +20,7 @@ import model.Laboratorio;
  *
  * @author vitor
  */
-public class LaboratorioController {
+public class LaboratorioController implements IController{
 
     private LaboratorioDAO dao;
     private Laboratorio laboratorio;
@@ -29,7 +29,8 @@ public class LaboratorioController {
         this.dao = new LaboratorioDAO();
     }
 
-    public void inserirLaboratorio(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void inserir(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         laboratorio = new Laboratorio();
         laboratorio.setRazaoSocial(request.getParameter("razaoSocial"));
@@ -49,7 +50,8 @@ public class LaboratorioController {
         response.sendRedirect("listarLaboratorio");
     }
 
-    public void listarLaboratorio(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void listar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Laboratorio> listLaboratorio = dao.listar();
         request.setAttribute("listarLaboratorio", listLaboratorio);
@@ -57,13 +59,15 @@ public class LaboratorioController {
         dispatcher.forward(request, response);
     }
 
+    @Override
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("laboratorioForm.jsp");
         dispatcher.forward(request, response);
     }
 
-    public void deletarLaboratorio(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void deletar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         dao.excluir(id);
@@ -71,7 +75,8 @@ public class LaboratorioController {
 
     }
 
-    public void editLaboratorioForm(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void editForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("laboratorioForm.jsp");
@@ -80,7 +85,8 @@ public class LaboratorioController {
 
     }
 
-    public void updateLaboratorio(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void atualizar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         laboratorio = new Laboratorio();
         laboratorio.setId(Integer.parseInt(request.getParameter("id")));

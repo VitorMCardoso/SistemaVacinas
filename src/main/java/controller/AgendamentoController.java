@@ -22,7 +22,7 @@ import model.Agendamento;
  *
  * @author vitor
  */
-public class AgendamentoController {
+public class AgendamentoController implements IController{
 
     private final AgendamentoDAO dao;
     private Agendamento agendamento;
@@ -31,7 +31,8 @@ public class AgendamentoController {
         this.dao = new AgendamentoDAO();
     }
 
-    public void inserirAgendamento(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void inserir(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         agendamento = new Agendamento();
         agendamento.setDataDose(java.sql.Date.valueOf(request.getParameter("dataDose")));
@@ -43,7 +44,8 @@ public class AgendamentoController {
         response.sendRedirect("listarAgendamento");
     }
 
-    public void listarAgendamento(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void listar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Agendamento> listAgendamento = dao.listar();
         request.setAttribute("listarAgendamentos", listAgendamento);
@@ -51,13 +53,15 @@ public class AgendamentoController {
         dispatcher.forward(request, response);
     }
 
+    @Override
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("agendamentoForm.jsp");
         dispatcher.forward(request, response);
     }
 
-    public void editAgendamentoForm(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void editForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("agendamentoForm.jsp");
@@ -66,7 +70,8 @@ public class AgendamentoController {
 
     }
 
-    public void deletarAgendamento(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void deletar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         int quantidade = Integer.parseInt(request.getParameter("quantidadeVac"));
@@ -76,7 +81,8 @@ public class AgendamentoController {
 
     }
   
-    public void updateAgendamento(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void atualizar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         agendamento = new Agendamento();
         agendamento.setId(Integer.valueOf(request.getParameter("id")));

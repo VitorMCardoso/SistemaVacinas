@@ -23,7 +23,7 @@ import model.Usuario;
  *
  * @author vitor
  */
-public class UsuarioController extends RelatorioController {
+public class UsuarioController extends RelatorioController implements IController{
 
     private final UsuarioDAO dao;
     private Usuario usuario;
@@ -32,7 +32,8 @@ public class UsuarioController extends RelatorioController {
         this.dao = new UsuarioDAO();
     }
 
-    public void inserirUsuario(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void inserir(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         usuario = new Usuario();
         usuario.setNome(request.getParameter("nome"));
@@ -55,7 +56,8 @@ public class UsuarioController extends RelatorioController {
         response.sendRedirect("listarUsuario");
     }
 
-    public void listarUsuario(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void listar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Usuario> listUsuario = dao.listar();
         request.setAttribute("listarUsuario", listUsuario);
@@ -63,13 +65,15 @@ public class UsuarioController extends RelatorioController {
         dispatcher.forward(request, response);
     }
 
+    @Override
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("usuarioForm.jsp");
         dispatcher.forward(request, response);
     }
 
-    public void deletarUsuario(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void deletar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
@@ -78,7 +82,8 @@ public class UsuarioController extends RelatorioController {
 
     }
 
-    public void editUsuarioForm(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void editForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         //Usuario usuarioLocalizado = dao.buscarUsuario(id);
@@ -88,7 +93,8 @@ public class UsuarioController extends RelatorioController {
 
     }
 
-    public void updateUsuario(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void atualizar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         usuario = new Usuario();
         usuario.setId(Integer.parseInt(request.getParameter("id")));

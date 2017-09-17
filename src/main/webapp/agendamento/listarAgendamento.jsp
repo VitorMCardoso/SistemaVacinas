@@ -45,7 +45,7 @@
                     
                         <c:choose>
                             <c:when test="${agendamento.dataDose == hoje}">
-                                <td><a href="editAgendamentoForm?id=<c:out value="${agendamento.id}"/>">Confirmar</a></td>
+                                <td><a href="editForm?id=<c:out value="${agendamento.id}"/>">Confirmar</a></td>
                             </c:when>
                             <c:otherwise>
                                 <c:out value="${data}"/></br>
@@ -55,7 +55,7 @@
                             </c:otherwise>
                         </c:choose>
 
-                        <td><a href="deletarAgendamento?id=<c:out value='${agendamento.id}'/>">Delete</a></td>
+                        <td><a href="deletar?id=<c:out value='${agendamento.id}'/>">Delete</a></td>
                     </tr>
                 </c:forEach>
 
@@ -63,7 +63,7 @@
 
             <a href="showNewForm">Adicionar Novo Agendamento</a>
             &nbsp; &nbsp;
-            <a href="listarAgendamento">List All Agendamento</a>
+            <a href="listar">List All Agendamento</a>
             &nbsp; &nbsp;
             <a href="../principal.jsp">Home</a>
         </div>

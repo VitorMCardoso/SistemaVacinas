@@ -21,7 +21,7 @@ import model.Paciente;
  *
  * @author vitor
  */
-public class PacientesController {
+public class PacientesController implements IController {
 
     private PacientesDAO dao;
     private Paciente paciente;
@@ -34,7 +34,8 @@ public class PacientesController {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void inserirPaciente(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void inserir(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         paciente = new Paciente();
         paciente.setNome(request.getParameter("nome"));
@@ -53,7 +54,8 @@ public class PacientesController {
         response.sendRedirect("listarPaciente");
     }
 
-    public void listarPaciente(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void listar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException, ClassNotFoundException {
         List<Paciente> listPaciente = dao.listar();
         request.setAttribute("listarPaciente", listPaciente);
@@ -61,13 +63,15 @@ public class PacientesController {
         dispatcher.forward(request, response);
     }
 
+    @Override
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("pacienteForm.jsp");
         dispatcher.forward(request, response);
     }
 
-    public void deletarPaciente(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void deletar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         dao.excluir(id);
@@ -75,7 +79,8 @@ public class PacientesController {
 
     }
 
-    public void editPacienteForm(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void editForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("pacienteForm.jsp");
@@ -84,7 +89,8 @@ public class PacientesController {
 
     }
 
-    public void updatePaciente(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    public void atualizar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         paciente = new Paciente();
         paciente.setId(Integer.parseInt(request.getParameter("id")));
