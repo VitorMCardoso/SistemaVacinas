@@ -40,7 +40,7 @@
                         <td><c:out value="${pedido.idVacinas}" /></td>
                         <td><c:out value="${pedido.ativo}" /></td>
 
-                        <td><a href="confirmar?id=<c:out value="${pedido.id}"/>">Confirmar</a></td>
+                        <td><a href="confirmar?id=<c:out value='${pedido.id}'/>&quantidadeVac=<c:out value='${pedido.quantidadeVac}'/>">Confirmar</a></td>
                         <td><a href="deletar?id=<c:out value='${pedido.id}'/>">Delete</a></td>
                     </tr>
                 </c:forEach>

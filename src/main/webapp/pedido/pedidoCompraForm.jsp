@@ -26,10 +26,10 @@
                 <table border="1" cellpadding="5">
                     <caption>
                         <h2>
-                            <c:if test="${agendamento != null}">
+                            <c:if test="${pedido != null}">
                                 Editar Pedido de Compra
                             </c:if>
-                            <c:if test="${agendamento == null}">
+                            <c:if test="${pedido == null}">
                                 Adicionar Novo Pedido de Compra
                             </c:if>
                         </h2>
@@ -53,7 +53,7 @@
                     <tr>
                         <th>Quantidade de Vacinas </th>
                         <td>
-                            <input type="text" name="quantidadeVac" size="45"
+                                <input type="text" name="quantidadeVac" size="45"
                                    value="<c:out value='${pedido.quantidadeVac}' />"
                                    />
                         </td>
