@@ -22,7 +22,6 @@ public class ConectaBancoDeDados {
     //Início da classe de conexão//
     public static String status = "Não conectou...";
 
-
 //Método Construtor da Classe//
     public ConectaBancoDeDados() {
 
@@ -34,7 +33,7 @@ public class ConectaBancoDeDados {
         Connection connection = null;          //atributo do tipo Connection
         try {
 
-            /*Properties prop = new Properties();
+            Properties prop = new Properties();
             InputStream inputStream = ConectaBancoDeDados.class.getClassLoader().getResourceAsStream("db.properties");
             prop.load(inputStream);
 // Carregando o JDBC Driver padrão
@@ -42,22 +41,9 @@ public class ConectaBancoDeDados {
             Class.forName(driverName);
 
 // Configurando a nossa conexão com um banco de dados//
-            String serverName = prop.getProperty("serverName");    //caminho do servidor do BD
-            String mydatabase = prop.getProperty("mydatabase");       //nome do seu banco de dados
             String url = prop.getProperty("url");
             String username = prop.getProperty("username");        //nome de um usuário de seu BD      
-            String password = prop.getProperty("password"); */     //sua senha de acesso
-            
-// Carregando o JDBC Driver padrão            
-            String driverName = "com.mysql.jdbc.Driver"; 
-            Class.forName(driverName); 
- 
-// Configurando a nossa conexão com um banco de dados// 
-            String serverName = "localhost";    //caminho do servidor do BD 
-            String mydatabase = "sgv";       //nome do seu banco de dados 
-            String url = "jdbc:mysql://" + serverName + "/" + mydatabase; 
-            String username = "root";        //nome de um usuário de seu BD       
-            String password = "root";      //sua senha de acesso
+            String password = prop.getProperty("password");     //sua senha de acesso
             connection = DriverManager.getConnection(url, username, password);
 
             //Testa sua conexão//  
