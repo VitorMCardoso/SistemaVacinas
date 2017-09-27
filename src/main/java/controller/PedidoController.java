@@ -73,7 +73,7 @@ public class PedidoController implements IController {
     }
     
     public void confirmar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("idVacinas"));
         int quantidade = Integer.parseInt(request.getParameter("quantidadeVac"));
         daoVacinas.cresVacina(quantidade, id);
         response.sendRedirect("listar");

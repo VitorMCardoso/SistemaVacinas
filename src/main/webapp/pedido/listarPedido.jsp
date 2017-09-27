@@ -40,16 +40,16 @@
                         <td><c:out value="${pedido.idVacinas}" /></td>
                         <td><c:out value="${pedido.ativo}" /></td>
 
-                        <td><a href="confirmar?id=<c:out value='${pedido.id}'/>&quantidadeVac=<c:out value='${pedido.quantidadeVac}'/>">Confirmar</a></td>
+                        <td><a href="confirmar?idVacinas=<c:out value='${pedido.idVacinas}'/>&quantidadeVac=<c:out value='${pedido.quantidadeVac}'/>">Confirmar</a></td>
                         <td><a href="deletar?id=<c:out value='${pedido.id}'/>">Delete</a></td>
                     </tr>
                 </c:forEach>
 
             </table><br>
 
-            <a href="showNewForm">Adicionar Novo Agendamento</a>
+            <a href="showNewForm">Adicionar Novo Pedido</a>
             &nbsp; &nbsp;
-            <a href="listar">List All Agendamento</a>
+            <a href="listar">List All Pedido</a>
             &nbsp; &nbsp;
             <a href="../principal.jsp">Home</a>
         </div>

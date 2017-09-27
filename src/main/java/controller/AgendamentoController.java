@@ -74,7 +74,7 @@ public class AgendamentoController implements IController{
     public void deletar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        int quantidade = Integer.parseInt(request.getParameter("quantidadeVac"));
+        int quantidade = Integer.valueOf(request.getParameter("quantidadeVac"));
         int idVacinas = Integer.parseInt(request.getParameter("idVacinas"));
         dao.excluirAgendamento(id,quantidade,idVacinas);
         response.sendRedirect("listar");

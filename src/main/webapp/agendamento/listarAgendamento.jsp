@@ -43,19 +43,12 @@
                         <td><c:out value="${agendamento.idVacinas}" /></td>
                         <td><c:out value="${agendamento.ativo}" /></td>
                     
-                        <c:choose>
-                            <c:when test="${agendamento.dataDose == hoje}">
-                                <td><a href="editForm?id=<c:out value="${agendamento.id}"/>">Confirmar</a></td>
-                            </c:when>
-                            <c:otherwise>
-                                <c:out value="${data}"/></br>
-                                <c:out value="${agendamento.dataDose}"/></br>
-                                <c:out value="${hoje}"/></br>
-                                <td><a>Fora da Data</a></td>
-                            </c:otherwise>
-                        </c:choose>
+                       
+                        <td><a href="editForm?id=<c:out value='${agendamento.id}'/>&quantidadeVac=<c:out value='${agendamento.quantidadeVac}'/>&idVacinas=<c:out value='${agendamento.idVacinas}'/>">Atualizar</a></td>
+                            
 
-                        <td><a href="deletar?id=<c:out value='${agendamento.id}'/>">Delete</a></td>
+                        <td><a href="deletar?id=<c:out value='${agendamento.id}'/>&quantidadeVac=<c:out value='${agendamento.quantidadeVac}'/>&idVacinas=<c:out value='${agendamento.idVacinas}'/>">Delete</a></td>
+                        
                     </tr>
                 </c:forEach>
 

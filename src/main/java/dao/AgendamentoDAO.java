@@ -126,9 +126,10 @@ public class AgendamentoDAO implements IDao<Agendamento> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        vacinasDAO.cresVacina(agendamento.getQuantidadeVac(), agendamento.getIdVacinas());
         return agendamento;
     }
-
+    
     @Override
     public void excluir(int idAgendamento) throws SQLException { // implementação do método -remove-
         String sql = "update agendamento set ativo=false where id=?";
