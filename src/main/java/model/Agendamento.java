@@ -15,20 +15,19 @@ public class Agendamento {
     private int id;
     private Date dataDose;
     private int quantidadeVac;
-    private int idPaciente;
-    private int idVacinas;
+    private Paciente paciente;
+    private Vacinas vacinas;
     private boolean ativo;
 
     public Agendamento() {
     }
 
-    public Agendamento(int id, Date dataDose, int quantidadeVac, int idPaciente, int idVacinas, boolean ativo) {
+    public Agendamento(int id, Date dataDose, int quantidadeVac, Paciente paciente, Vacinas vacinas, boolean ativo) {
         this.id = id;
         this.dataDose = dataDose;
-        //teste
         this.quantidadeVac = quantidadeVac;
-        this.idPaciente = idPaciente;
-        this.idVacinas = idVacinas;
+        this.paciente = paciente;
+        this.vacinas = vacinas;
         this.ativo = ativo;
     }
 
@@ -56,20 +55,20 @@ public class Agendamento {
         this.quantidadeVac = quantidadeVac;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
-    public int getIdVacinas() {
-        return idVacinas;
+    public Vacinas getVacinas() {
+        return vacinas;
     }
 
-    public void setIdVacinas(int idVacinas) {
-        this.idVacinas = idVacinas;
+    public void setVacinas(Vacinas vacinas) {
+        this.vacinas = vacinas;
     }
 
     public boolean isAtivo() {

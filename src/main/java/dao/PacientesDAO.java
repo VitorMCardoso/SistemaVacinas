@@ -26,7 +26,7 @@ import model.PerfilAcesso;
 public class PacientesDAO implements IDao<Paciente> {
 
     private Connection conexao;
-    Paciente paciente = new Paciente();
+    public Paciente paciente = new Paciente();
 
     public PacientesDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();

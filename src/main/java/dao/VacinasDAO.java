@@ -27,7 +27,7 @@ import model.Vacinas;
 public class VacinasDAO implements IDao<Vacinas> {
 
     private Connection conexao;
-    private Vacinas vacina = new Vacinas();
+    public Vacinas vacina = new Vacinas();
 
     public VacinasDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();

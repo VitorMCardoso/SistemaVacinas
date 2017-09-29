@@ -30,24 +30,27 @@
                     <th>Ativo</th>
                     <th colspan=2>Açao</th>
                 </tr>
-                <% Date hoje = new Date();%>
+                <% Date hoje = new Date();
+               
+                %>
                 <c:set var="data" value="<%= new java.sql.Date(hoje.getTime())%>"/>
 
                 <c:forEach var="agendamento" items="${listarAgendamentos}" >
                     <tr>
+                        <%  %>
 
                         <td><c:out value="${agendamento.id}" /></td>
                         <td><c:out value="${agendamento.dataDose}" /></td>
                         <td><c:out value="${agendamento.quantidadeVac}" /></td>
-                        <td><c:out value="${agendamento.idPaciente}" /></td>
-                        <td><c:out value="${agendamento.idVacinas}" /></td>
+                        <td><c:out value="${agendamento.paciente.id}" /></td>
+                        <td><c:out value="${agendamento.vacinas.id}" /></td>
                         <td><c:out value="${agendamento.ativo}" /></td>
                     
                        
-                        <td><a href="editForm?id=<c:out value='${agendamento.id}'/>&quantidadeVac=<c:out value='${agendamento.quantidadeVac}'/>&idVacinas=<c:out value='${agendamento.idVacinas}'/>">Atualizar</a></td>
+                        <td><a href="editForm?id=<c:out value='${agendamento.id}'/>&quantidadeVac=<c:out value='${agendamento.quantidadeVac}'/>&idVacinas=<c:out value='${agendamento.vacinas.id}'/>">Atualizar</a></td>
                             
 
-                        <td><a href="deletar?id=<c:out value='${agendamento.id}'/>&quantidadeVac=<c:out value='${agendamento.quantidadeVac}'/>&idVacinas=<c:out value='${agendamento.idVacinas}'/>">Delete</a></td>
+                        <td><a href="deletar?id=<c:out value='${agendamento.id}'/>&quantidadeVac=<c:out value='${agendamento.quantidadeVac}'/>&idVacinas=<c:out value='${agendamento.vacinas.id}'/>">Delete</a></td>
                         
                     </tr>
                 </c:forEach>
