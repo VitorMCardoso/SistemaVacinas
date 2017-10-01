@@ -36,11 +36,12 @@
                         <td><c:out value="${pedido.id}" /></td>
                         <td><c:out value="${pedido.data}" /></td>
                         <td><c:out value="${pedido.quantidadeVac}" /></td>
-                        <td><c:out value="${pedido.idLaboratorio}" /></td>
-                        <td><c:out value="${pedido.idVacinas}" /></td>
+                        <td><c:out value="${pedido.laboratorio.id}" /></td>
+                        <td><c:out value="${pedido.vacinas.id}" /></td>
                         <td><c:out value="${pedido.ativo}" /></td>
 
-                        <td><a href="confirmar?idVacinas=<c:out value='${pedido.idVacinas}'/>&quantidadeVac=<c:out value='${pedido.quantidadeVac}'/>">Confirmar</a></td>
+                        <td><a href="confirmar?idVacinas=<c:out value='${pedido.vacinas.id}'/>&quantidadeVac=<c:out value='${pedido.quantidadeVac}'/>">Confirmar</a></td>
+                        <td><a href="editForm?id=<c:out value='${pedido.id}'/>">Atualizar</a></td>
                         <td><a href="deletar?id=<c:out value='${pedido.id}'/>">Delete</a></td>
                     </tr>
                 </c:forEach>

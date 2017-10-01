@@ -15,19 +15,19 @@ public class PedidoCompra {
     private int id;
     private Date data;
     private int quantidadeVac;
-    private int idLaboratorio;
-    private int idVacinas;
+    private Laboratorio laboratorio;
+    private Vacinas vacinas;
     private boolean ativo;
 
     public PedidoCompra() {
     }
 
-    public PedidoCompra(int id, Date data, int quantidadeVac, int idLaboratorio, int idVacinas, boolean ativo) {
+    public PedidoCompra(int id, Date data, int quantidadeVac, Laboratorio laboratorio, Vacinas vacinas, boolean ativo) {
         this.id = id;
         this.data = data;
         this.quantidadeVac = quantidadeVac;
-        this.idLaboratorio = idLaboratorio;
-        this.idVacinas = idVacinas;
+        this.laboratorio = laboratorio;
+        this.vacinas = vacinas;
         this.ativo = ativo;
     }
 
@@ -55,20 +55,20 @@ public class PedidoCompra {
         this.quantidadeVac = quantidadeVac;
     }
 
-    public int getIdLaboratorio() {
-        return idLaboratorio;
+    public Laboratorio getLaboratorio() {
+        return laboratorio;
     }
 
-    public void setIdLaboratorio(int idLaboratorio) {
-        this.idLaboratorio = idLaboratorio;
+    public void setLaboratorio(Laboratorio laboratorio) {
+        this.laboratorio = laboratorio;
     }
 
-    public int getIdVacinas() {
-        return idVacinas;
+    public Vacinas getVacinas() {
+        return vacinas;
     }
 
-    public void setIdVacinas(int idVacinas) {
-        this.idVacinas = idVacinas;
+    public void setVacinas(Vacinas vacinas) {
+        this.vacinas = vacinas;
     }
 
     public boolean isAtivo() {

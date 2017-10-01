@@ -6,6 +6,7 @@
 package controller;
 
 import dao.AgendamentoDAO;
+import dao.PacientesDAO;
 import dao.VacinasDAO;
 import java.io.IOException;
 import static java.lang.System.out;
@@ -19,36 +20,39 @@ import model.Agendamento;
 import model.Paciente;
 import model.Vacinas;
 
-
 /**
  *
  * @author vitor
  */
-public class AgendamentoController implements IController{
+public class AgendamentoController implements IController {
 
-    private AgendamentoDAO dao;
-    private Agendamento agendamento;
-    private Paciente paciente;
-    private Vacinas vacinas;
+    private final AgendamentoDAO dao;
+    private final PacientesDAO pacientesDAO;
+    private final VacinasDAO vacinasDAO;
+    private final Agendamento agendamento;
 
     public AgendamentoController() throws SQLException, IOException {
         this.dao = new AgendamentoDAO();
+        this.pacientesDAO = new PacientesDAO();
+        this.vacinasDAO = new VacinasDAO();
+        this.agendamento = new Agendamento();
     }
 
     @Override
     public void inserir(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        agendamento = new Agendamento();
-        paciente = new Paciente();
-        vacinas = new Vacinas();
+
         agendamento.setDataDose(java.sql.Date.valueOf(request.getParameter("dataDose")));
         agendamento.setQuantidadeVac(Integer.valueOf(request.getParameter("quantidadeVac")));
-        paciente.setId(Integer.valueOf(request.getParameter("idPaciente")));
-        agendamento.setPaciente(paciente);
-        vacinas.setId(Integer.valueOf(request.getParameter("idVacinas")));
-        agendamento.setVacinas(vacinas);
+        this.pacientesDAO.paciente.setId(Integer.valueOf(request.getParameter("idPaciente")));
+        pacientesDAO.buscar(this.pacientesDAO.paciente.getId());
+        agendamento.setPaciente(this.pacientesDAO.paciente);
+        this.vacinasDAO.vacina.setId(Integer.valueOf(request.getParameter("idVacinas")));
+        vacinasDAO.buscar(this.vacinasDAO.vacina.getId());
+        agendamento.setVacinas(vacinasDAO.vacina);
 
         dao.cadastrar(agendamento);
+        vacinasDAO.descVacina(agendamento.getQuantidadeVac(), agendamento.getVacinas().getId());
         response.sendRedirect("listar");
     }
 
@@ -72,8 +76,11 @@ public class AgendamentoController implements IController{
     public void editForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
+        int quantidade = Integer.valueOf(request.getParameter("quantidadeVac"));
+        int idVacinas = Integer.parseInt(request.getParameter("idVacinas"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("agendamentoForm.jsp");
         request.setAttribute("agendamento", dao.buscar(id));
+        vacinasDAO.cresVacina(quantidade, idVacinas);
         dispatcher.forward(request, response);
 
     }
@@ -84,26 +91,28 @@ public class AgendamentoController implements IController{
         int id = Integer.parseInt(request.getParameter("id"));
         int quantidade = Integer.valueOf(request.getParameter("quantidadeVac"));
         int idVacinas = Integer.parseInt(request.getParameter("idVacinas"));
-        dao.excluirAgendamento(id,quantidade,idVacinas);
+        dao.excluirAgendamento(id, quantidade, idVacinas);
+        vacinasDAO.cresVacina(quantidade, idVacinas);
         response.sendRedirect("listar");
 
     }
-  
+
     @Override
     public void atualizar(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        agendamento = new Agendamento();
-        paciente = new Paciente();
-        vacinas = new Vacinas();
         agendamento.setDataDose(java.sql.Date.valueOf(request.getParameter("dataDose")));
         agendamento.setQuantidadeVac(Integer.valueOf(request.getParameter("quantidadeVac")));
-        paciente.setId(Integer.valueOf(request.getParameter("idPaciente")));
-        agendamento.setPaciente(paciente);
-        vacinas.setId(Integer.valueOf(request.getParameter("idVacinas")));
-        agendamento.setVacinas(vacinas);
+        this.pacientesDAO.paciente.setId(Integer.valueOf(request.getParameter("idPaciente")));
+        pacientesDAO.buscar(this.pacientesDAO.paciente.getId());
+        agendamento.setPaciente(this.pacientesDAO.paciente);
+        this.vacinasDAO.vacina.setId(Integer.valueOf(request.getParameter("idVacinas")));
+        vacinasDAO.buscar(this.vacinasDAO.vacina.getId());
+        //vacinasDAO.cresVacina(agendamento.getQuantidadeVac(), this.vacinasDAO.vacina.getId());
+        agendamento.setVacinas(vacinasDAO.vacina);
 
         dao.atualizar(agendamento);
-        
+        vacinasDAO.descVacina(agendamento.getQuantidadeVac(), agendamento.getVacinas().getId());
+
         response.sendRedirect("listar");
     }
 }

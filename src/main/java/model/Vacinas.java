@@ -35,6 +35,10 @@ public class Vacinas {
 
     }
 
+    public Vacinas(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

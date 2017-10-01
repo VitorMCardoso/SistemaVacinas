@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.LaboratorioDAO;
 import dao.PedidoCompraDAO;
 import dao.VacinasDAO;
 import java.io.IOException;
@@ -14,7 +15,9 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Laboratorio;
 import model.PedidoCompra;
+import model.Vacinas;
 
 /**
  *
@@ -23,21 +26,28 @@ import model.PedidoCompra;
 public class PedidoController implements IController {
 
     private final PedidoCompraDAO dao;
-    private final VacinasDAO daoVacinas;
-    private PedidoCompra pedidoCompra;
+    private final VacinasDAO vacinasDAO;
+    private final LaboratorioDAO laboratorioDAO;
+    private final PedidoCompra pedidoCompra;
 
     public PedidoController() throws SQLException, IOException {
         this.dao = new PedidoCompraDAO();
-        this.daoVacinas = new VacinasDAO();
+        this.vacinasDAO = new VacinasDAO();
+        this.laboratorioDAO = new LaboratorioDAO();
+        this.pedidoCompra = new PedidoCompra();
     }
 
     @Override
     public void inserir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        pedidoCompra = new PedidoCompra();
+
         pedidoCompra.setData(java.sql.Date.valueOf(request.getParameter("data")));
         pedidoCompra.setQuantidadeVac(Integer.valueOf(request.getParameter("quantidadeVac")));
-        pedidoCompra.setIdLaboratorio(Integer.valueOf(request.getParameter("idLaboratorio")));
-        pedidoCompra.setIdVacinas(Integer.valueOf(request.getParameter("idVacinas")));
+        this.laboratorioDAO.laboratorio.setId(Integer.valueOf(request.getParameter("idLaboratorio")));
+        laboratorioDAO.buscar(this.laboratorioDAO.laboratorio.getId());
+        pedidoCompra.setLaboratorio(this.laboratorioDAO.laboratorio);
+        this.vacinasDAO.vacina.setId(Integer.valueOf(request.getParameter("idVacinas")));
+        vacinasDAO.buscar(this.vacinasDAO.vacina.getId());
+        pedidoCompra.setVacinas(vacinasDAO.vacina);
 
         dao.cadastrar(pedidoCompra);
         response.sendRedirect("listar");
@@ -71,22 +81,26 @@ public class PedidoController implements IController {
         dao.excluir(id);
         response.sendRedirect("listar");
     }
-    
+
     public void confirmar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("idVacinas"));
         int quantidade = Integer.parseInt(request.getParameter("quantidadeVac"));
-        daoVacinas.cresVacina(quantidade, id);
+        vacinasDAO.cresVacina(quantidade, id);
         response.sendRedirect("listar");
     }
 
     @Override
     public void atualizar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        pedidoCompra = new PedidoCompra();
+        
         pedidoCompra.setId(Integer.valueOf(request.getParameter("id")));
         pedidoCompra.setData(java.sql.Date.valueOf(request.getParameter("data")));
         pedidoCompra.setQuantidadeVac(Integer.valueOf(request.getParameter("quantidadeVac")));
-        pedidoCompra.setIdLaboratorio(Integer.valueOf(request.getParameter("idLaboratorio")));
-        pedidoCompra.setIdVacinas(Integer.valueOf(request.getParameter("idVacinas")));
+        this.laboratorioDAO.laboratorio.setId(Integer.valueOf(request.getParameter("idLaboratorio")));
+        laboratorioDAO.buscar(this.laboratorioDAO.laboratorio.getId());
+        pedidoCompra.setLaboratorio(this.laboratorioDAO.laboratorio);
+        this.vacinasDAO.vacina.setId(Integer.valueOf(request.getParameter("idVacinas")));
+        vacinasDAO.buscar(this.vacinasDAO.vacina.getId());
+        pedidoCompra.setVacinas(vacinasDAO.vacina);
 
         dao.atualizar(pedidoCompra);
 

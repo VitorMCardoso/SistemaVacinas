@@ -47,6 +47,10 @@ public class Paciente {
 
     }
 
+    public Paciente(int id) {
+       this.id = id;
+    }
+
     public int getId() {
         return id;
     }

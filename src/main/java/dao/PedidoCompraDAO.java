@@ -15,23 +15,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Agendamento;
+import model.Laboratorio;
 import model.PedidoCompra;
+import model.Vacinas;
 
 /**
  *
  * @author vitor
  */
-public class PedidoCompraDAO implements IDao<PedidoCompra>{
-    
+public class PedidoCompraDAO implements IDao<PedidoCompra> {
+
     private Connection conexao;
     private PedidoCompra pedidoCompra = new PedidoCompra();
 
-    public PedidoCompraDAO() throws SQLException, IOException{
+    public PedidoCompraDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
-    
-    
 
     @Override
     public void cadastrar(PedidoCompra p) throws SQLException {
@@ -41,8 +43,8 @@ public class PedidoCompraDAO implements IDao<PedidoCompra>{
             //seta os valores
             stmt.setDate(1, new java.sql.Date(p.getData().getTime()));
             stmt.setInt(2, p.getQuantidadeVac());
-            stmt.setInt(3, p.getIdLaboratorio());
-            stmt.setInt(4, p.getIdVacinas());
+            stmt.setInt(3, p.getLaboratorio().getId());
+            stmt.setInt(4, p.getVacinas().getId());
             //executa o código
             stmt.execute();
             stmt.close();
@@ -58,8 +60,8 @@ public class PedidoCompraDAO implements IDao<PedidoCompra>{
             //seta os valores
             stmt.setDate(1, new java.sql.Date(p.getData().getTime()));
             stmt.setInt(2, p.getQuantidadeVac());
-            stmt.setInt(3, p.getIdLaboratorio());
-            stmt.setInt(4, p.getIdVacinas());
+            stmt.setInt(3, p.getLaboratorio().getId());
+            stmt.setInt(4, p.getVacinas().getId());
             stmt.setInt(5, p.getId());
             //executa o código
             stmt.executeUpdate();
@@ -77,15 +79,15 @@ public class PedidoCompraDAO implements IDao<PedidoCompra>{
             try (Statement st = conexao.createStatement()) {
                 // execute the query, and get a java resultset
                 ResultSet rs = st.executeQuery(query);
-                
+
                 // iterate through the java resultset
                 while (rs.next()) {
                     PedidoCompra pedidoCompra = new PedidoCompra();
                     pedidoCompra.setId(rs.getInt("id"));
                     pedidoCompra.setData(java.sql.Date.valueOf(rs.getString("data")));
                     pedidoCompra.setQuantidadeVac(rs.getInt("quantidadeVac"));
-                    pedidoCompra.setIdLaboratorio(rs.getInt("idLaboratorio"));
-                    pedidoCompra.setIdVacinas(rs.getInt("idVacinas"));
+                    pedidoCompra.setLaboratorio(new Laboratorio(rs.getInt("idLaboratorio")));
+                    pedidoCompra.setVacinas(new Vacinas(rs.getInt("idVacinas")));
                     pedidoCompra.setAtivo(rs.getBoolean("ativo"));
                     pedidoCompras.add(pedidoCompra);
                 }
@@ -112,8 +114,8 @@ public class PedidoCompraDAO implements IDao<PedidoCompra>{
                 pedidoCompra.setId(Integer.valueOf(rs.getString("id")));
                 pedidoCompra.setData(java.sql.Date.valueOf(rs.getString("data")));
                 pedidoCompra.setQuantidadeVac(Integer.valueOf(rs.getString("quantidadeVac")));
-                pedidoCompra.setIdLaboratorio(Integer.valueOf(rs.getString("idLaboratorio")));
-                pedidoCompra.setIdVacinas(Integer.valueOf(rs.getString("idVacinas")));
+                pedidoCompra.setLaboratorio(new Laboratorio(rs.getInt("idLaboratorio")));
+                pedidoCompra.setVacinas(new Vacinas(rs.getInt("idVacinas")));
                 pedidoCompra.setAtivo(Boolean.valueOf(rs.getString("ativo")));
             }
             st.close();
@@ -154,5 +156,5 @@ public class PedidoCompraDAO implements IDao<PedidoCompra>{
         stmt.execute();
         stmt.close();
     }
-    
+
 }

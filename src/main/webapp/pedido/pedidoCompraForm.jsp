@@ -62,7 +62,7 @@
                         <th>Id Laboratorio </th>
                         <td>
                             <input type="text" name="idLaboratorio" size="5"
-                                   value="<c:out value='${pedido.idLaboratorio}' />"
+                                   value="<c:out value='${pedido.laboratorio.id}' />"
                                    />
                         </td>
                     </tr>
@@ -70,7 +70,7 @@
                         <th>Id Vacinas </th>
                         <td>
                             <input type="text" name="idVacinas" size="45"
-                                   value="<c:out value='${pedido.idVacinas}' />"
+                                   value="<c:out value='${pedido.vacinas.id}' />"
                                    />
                         </td>
                     </tr>

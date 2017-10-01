@@ -44,6 +44,10 @@ public class Laboratorio {
         this.estado = estado;
         this.ativo = ativo;
     }
+
+    public Laboratorio(int id) {
+        this.id = id;
+    }
     
     public int getId() {
         return id;

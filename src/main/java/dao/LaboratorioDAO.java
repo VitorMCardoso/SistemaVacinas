@@ -24,7 +24,7 @@ import model.Laboratorio;
 public class LaboratorioDAO implements IDao<Laboratorio> {
 
     private Connection conexao;
-    Laboratorio laboratorio = new Laboratorio();
+    public Laboratorio laboratorio = new Laboratorio();
 
     public LaboratorioDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();

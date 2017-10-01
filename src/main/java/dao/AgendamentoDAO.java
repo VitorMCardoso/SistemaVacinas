@@ -30,8 +30,6 @@ public class AgendamentoDAO implements IDao<Agendamento> {
 
     private Connection conexao;
     private Agendamento agendamento = new Agendamento();
-    private VacinasDAO vacinasDAO = new VacinasDAO();
-    private PacientesDAO pacientesDAO = new PacientesDAO();
 
     public AgendamentoDAO() throws SQLException, IOException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
@@ -40,17 +38,13 @@ public class AgendamentoDAO implements IDao<Agendamento> {
     @Override
     public void cadastrar(Agendamento a) throws SQLException {
         String sql = "Insert Into agendamento (dataDose, quantidadeVac, idPaciente, idVacinas, ativo) Values (?, ?, ?, ?, true)";
-        pacientesDAO.buscar(a.getPaciente().getId());
-        a.setPaciente(pacientesDAO.paciente);
-        vacinasDAO.buscar(a.getVacinas().getId());
-        a.setVacinas(vacinasDAO.vacina);
+        
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setDate(1, new java.sql.Date(a.getDataDose().getTime()));
             stmt.setInt(2, a.getQuantidadeVac());
             stmt.setInt(3, a.getPaciente().getId());
             stmt.setInt(4, a.getVacinas().getId());
-            vacinasDAO.descVacina(a.getQuantidadeVac(), a.getVacinas().getId());
             //executa o código
             stmt.execute();
             stmt.close();
@@ -62,10 +56,6 @@ public class AgendamentoDAO implements IDao<Agendamento> {
     public void atualizar(Agendamento a) throws SQLException {
         String sql = "Update agendamento set dataDose = ?, quantidadeVac = ?, "
                 + "idPaciente = ?, idVacinas = ? where id=?";
-        pacientesDAO.buscar(a.getPaciente().getId());
-        a.setPaciente(pacientesDAO.paciente);
-        vacinasDAO.buscar(a.getVacinas().getId());
-        a.setVacinas(vacinasDAO.vacina);
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
@@ -74,7 +64,6 @@ public class AgendamentoDAO implements IDao<Agendamento> {
             stmt.setInt(3, a.getPaciente().getId());
             stmt.setInt(4, a.getVacinas().getId());
             stmt.setInt(5, a.getId());
-            vacinasDAO.descVacina(a.getQuantidadeVac(), a.getVacinas().getId());
             //executa o código
             stmt.executeUpdate();
             stmt.close();
@@ -96,18 +85,14 @@ public class AgendamentoDAO implements IDao<Agendamento> {
                 // iterate through the java resultset
                 while (rs.next()) {
                     Agendamento agendamento = new Agendamento();
-                    pacientesDAO = new PacientesDAO();
-                    vacinasDAO = new VacinasDAO();
                     agendamento.setId(rs.getInt("id"));
                     agendamento.setDataDose(java.sql.Date.valueOf(rs.getString("dataDose")));
                     agendamento.setQuantidadeVac(rs.getInt("quantidadeVac"));
-                    agendamento.setPaciente(pacientesDAO.buscar(rs.getInt("idPaciente")));
-                    agendamento.setVacinas(vacinasDAO.buscar(rs.getInt("idVacinas")));
+                    agendamento.setPaciente(new Paciente(rs.getInt("idPaciente")));
+                    agendamento.setVacinas(new Vacinas(rs.getInt("idVacinas")));
                     agendamento.setAtivo(rs.getBoolean("ativo"));
                     agendamentos.add(agendamento);
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(AgendamentoDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -132,15 +117,15 @@ public class AgendamentoDAO implements IDao<Agendamento> {
                 agendamento.setId(Integer.valueOf(rs.getString("id")));
                 agendamento.setDataDose(java.sql.Date.valueOf(rs.getString("dataDose")));
                 agendamento.setQuantidadeVac(Integer.valueOf(rs.getString("quantidadeVac")));
-                agendamento.setPaciente(pacientesDAO.buscar(rs.getInt("idPaciente")));
-                agendamento.setVacinas(vacinasDAO.buscar(rs.getInt("idVacinas")));
+                agendamento.setPaciente(new Paciente(rs.getInt("idPaciente")));
+                agendamento.setVacinas(new Vacinas(rs.getInt("idVacinas")));
                 agendamento.setAtivo(Boolean.valueOf(rs.getString("ativo")));
             }
             st.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        vacinasDAO.cresVacina(agendamento.getQuantidadeVac(), 1);
+        //vacinasDAO.cresVacina(agendamento.getQuantidadeVac(), 1);
         return agendamento;
     }
 
@@ -156,7 +141,6 @@ public class AgendamentoDAO implements IDao<Agendamento> {
 
     public void excluirAgendamento(int idAgendamento, int quantidadeVacinas, int idVacina) throws SQLException { // implementação do método -remove-
         String sql = "update agendamento set ativo=false where id=?";
-        vacinasDAO.cresVacina(quantidadeVacinas, idVacina);
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setInt(1, idAgendamento);
             stmt.executeUpdate();
