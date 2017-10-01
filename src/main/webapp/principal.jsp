@@ -40,6 +40,9 @@
         
         <p><a href="pedido/showNewForm"><button>Cadastro de Pedido de Compra</button></a></p>
         <p><a href="pedido/listar"><button>Manter Pedido de Compra</button></a></p>
+        
+        <p><a href="lote/showNewForm"><button>Cadastro de Lote</button></a></p>
+        <p><a href="lote/listar"><button>Manter Lote</button></a></p>
         </div>
     </body>
 </html>

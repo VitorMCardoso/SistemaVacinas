@@ -21,12 +21,8 @@
 
                 <tr>
                     <th>Id</th>
-                    <th>Data de Validade</th>
-                    <th>Data de Fabricaçao</th>
                     <th>Nome</th>
                     <th>Tipo</th>
-                    <th>Quantidade</th>
-                    <th>Id Lote</th>
                     <th colspan=2>Açao</th>
                 </tr>
 
@@ -35,12 +31,8 @@
                     <tr>
 
                         <td><c:out value="${vacina.id}" /></td>
-                        <td><c:out value="${vacina.dataValidade}" /></td>
-                        <td><c:out value="${vacina.dataFabricacao}" /></td>
                         <td><c:out value="${vacina.nome}" /></td>
                         <td><c:out value="${vacina.tipo}" /></td>
-                        <td><c:out value="${vacina.quantidade}" /></td>
-                        <td><c:out value="${vacina.idLote}" /></td>
                         
                         <td><a href="editForm?id=<c:out value="${vacina.id}"/>">Update</a></td>
                         <td><a href="deletar?id=<c:out value='${vacina.id}'/>">Delete</a></td>

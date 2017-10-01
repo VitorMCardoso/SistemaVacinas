@@ -69,7 +69,7 @@ public class LoteVacinasDAO implements IDao<LoteVacinas>{
     @Override
     public List<LoteVacinas> listar() throws SQLException, ClassNotFoundException {
         List<LoteVacinas> loteVacinas = new ArrayList<LoteVacinas>();
-        String query = "SELECT * FROM LoteVacinas";
+        String query = "SELECT * FROM loteVacinas";
         try {
 
             Statement st = conexao.createStatement();

@@ -43,22 +43,6 @@
                         </tr>
                     </c:if>
                     <tr>
-                        <th>Data de Validade </th>
-                        <td>
-                            <input type="text" name="dataValidade" size="45"
-                                   value="<c:out value='${vacina.dataValidade}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Data de Fabricaçao </th>
-                        <td>
-                            <input type="text" name="dataFabricacao" size="45"
-                                   value="<c:out value='${vacina.dataFabricacao}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
                         <th>Nome </th>
                         <td>
                             <input type="text" name="nome" size="5"
@@ -71,22 +55,6 @@
                         <td>
                             <input type="text" name="tipo" size="45"
                                    value="<c:out value='${vacina.tipo}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Quantidade </th>
-                        <td>
-                            <input type="text" name="quantidade" size="45"
-                                   value="<c:out value='${vacina.quantidade}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Id Lote </th>
-                        <td>
-                            <input type="text" name="idLote" size="11"
-                                   value="<c:out value='${vacina.idLote}' />"
                                    />
                         </td>
                     </tr>
