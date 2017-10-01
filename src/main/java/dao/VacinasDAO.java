@@ -34,17 +34,13 @@ public class VacinasDAO implements IDao<Vacinas> {
     }
 
     public void cadastrar(Vacinas v) throws SQLException {
-        String sql = "Insert Into vacinas (datavalidade, datafabricacao, nome, tipo, quantidade, idLote)"
-                + "Values(?,?,?,?,?,?)";
+        String sql = "Insert Into vacinas (nome, tipo)"
+                + "Values(?,?)";
 
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
-            stmt.setDate(1, new java.sql.Date(v.getDataValidade().getTime()));
-            stmt.setDate(2, new java.sql.Date(v.getDataFabricacao().getTime()));
-            stmt.setString(3, v.getNome());
-            stmt.setString(4, v.getTipo());
-            stmt.setInt(5, v.getQuantidade());
-            stmt.setInt(6, v.getIdLote());
+            stmt.setString(1, v.getNome());
+            stmt.setString(2, v.getTipo());
 
             //executa o código
             stmt.execute();
@@ -54,17 +50,13 @@ public class VacinasDAO implements IDao<Vacinas> {
     }
 
     public void atualizar(Vacinas v) throws SQLException {
-        String sql = "Update vacinas set datavalidade = ? , datafabricacao=?, nome = ?, tipo = ?, "
-                + "quantidade=?, idlote = ? where id=?";
+        String sql = "Update vacinas set nome = ?, tipo = ? "
+                + "where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
-            stmt.setDate(1, (java.sql.Date) v.getDataValidade());
-            stmt.setDate(2, (java.sql.Date) v.getDataFabricacao());
-            stmt.setString(3, v.getNome());
-            stmt.setString(4, v.getTipo());
-            stmt.setInt(5, v.getQuantidade());
-            stmt.setInt(6, v.getIdLote());
-            stmt.setInt(7, v.getId());
+            stmt.setString(1, v.getNome());
+            stmt.setString(2, v.getTipo());
+            stmt.setInt(3, v.getId());
             // executa o código sql
             stmt.execute();
             stmt.close();
@@ -86,12 +78,8 @@ public class VacinasDAO implements IDao<Vacinas> {
             while (rs.next()) {
                 Vacinas vacina = new Vacinas();
                 vacina.setId(Integer.valueOf(rs.getString("id")));
-                vacina.setDataValidade(java.sql.Date.valueOf(rs.getString("dataValidade")));
-                vacina.setDataFabricacao(java.sql.Date.valueOf(rs.getString("dataFabricacao")));
                 vacina.setNome(rs.getString("nome"));
                 vacina.setTipo(rs.getString("tipo"));
-                vacina.setQuantidade(Integer.valueOf(rs.getString("quantidade")));
-                vacina.setIdLote(Integer.valueOf(rs.getString("idLote")));
                 vacinas.add(vacina);
             }
             st.close();
@@ -116,12 +104,8 @@ public class VacinasDAO implements IDao<Vacinas> {
             if (rs.next()) {
 
                 vacina.setId(Integer.valueOf(rs.getString("id")));
-                vacina.setDataValidade(java.sql.Date.valueOf(rs.getString("dataValidade")));
-                vacina.setDataFabricacao(java.sql.Date.valueOf(rs.getString("dataFabricacao")));
                 vacina.setNome(rs.getString("nome"));
                 vacina.setTipo(rs.getString("tipo"));
-                vacina.setQuantidade(Integer.valueOf(rs.getString("quantidade")));
-                vacina.setIdLote(Integer.valueOf(rs.getString("idLote")));
             }
             st.close();
         } catch (SQLException e) {
@@ -142,25 +126,7 @@ public class VacinasDAO implements IDao<Vacinas> {
         st.close();
         return id;
     }
-
-    public void descVacina(int quantidadeAgendamento, int idVacina) throws SQLException {
-        String query = "Update vacinas set quantidade=quantidade-? where id =?";
-        PreparedStatement stmt = conexao.prepareStatement(query);
-        stmt.setInt(1, quantidadeAgendamento);
-        stmt.setInt(2, idVacina);
-        stmt.executeUpdate();
-        stmt.close();
-    }
-
-    public void cresVacina(int quantidadeAgendamento, int idVacina) throws SQLException {
-        String query = "Update vacinas set quantidade=quantidade+? where id =?";
-        PreparedStatement stmt = conexao.prepareStatement(query);
-        stmt.setInt(1, quantidadeAgendamento);
-        stmt.setInt(2, idVacina);
-        stmt.executeUpdate();
-        stmt.close();
-    }
-
+    
     @Override
     public void excluir(int id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

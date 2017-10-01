@@ -1,4 +1,4 @@
-<%-- 
+    <%-- 
     Document   : listarPedido
     Created on : Sep 17, 2017, 7:52:19 PM
     Author     : vitor
@@ -40,7 +40,7 @@
                         <td><c:out value="${pedido.vacinas.id}" /></td>
                         <td><c:out value="${pedido.ativo}" /></td>
 
-                        <td><a href="confirmar?idVacinas=<c:out value='${pedido.vacinas.id}'/>&quantidadeVac=<c:out value='${pedido.quantidadeVac}'/>">Confirmar</a></td>
+                        <td><a href="confirmar?idVacinas=<c:out value='${pedido.vacinas.id}'/>&idLaboratorio=<c:out value='${pedido.laboratorio.id}'/>&quantidadeVac=<c:out value='${pedido.quantidadeVac}'/>">Confirmar</a></td>
                         <td><a href="editForm?id=<c:out value='${pedido.id}'/>">Atualizar</a></td>
                         <td><a href="deletar?id=<c:out value='${pedido.id}'/>">Delete</a></td>
                     </tr>

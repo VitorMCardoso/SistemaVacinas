@@ -6,6 +6,7 @@
 package controller;
 
 import dao.LaboratorioDAO;
+import dao.LoteVacinasDAO;
 import dao.PedidoCompraDAO;
 import dao.VacinasDAO;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Laboratorio;
+import model.LoteVacinas;
 import model.PedidoCompra;
 import model.Vacinas;
 
@@ -29,11 +31,13 @@ public class PedidoController implements IController {
     private final VacinasDAO vacinasDAO;
     private final LaboratorioDAO laboratorioDAO;
     private final PedidoCompra pedidoCompra;
+    private final LoteVacinasDAO loteVacinasDAO;
 
     public PedidoController() throws SQLException, IOException {
         this.dao = new PedidoCompraDAO();
         this.vacinasDAO = new VacinasDAO();
         this.laboratorioDAO = new LaboratorioDAO();
+        this.loteVacinasDAO = new LoteVacinasDAO();
         this.pedidoCompra = new PedidoCompra();
     }
 
@@ -83,9 +87,22 @@ public class PedidoController implements IController {
     }
 
     public void confirmar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("idVacinas"));
-        int quantidade = Integer.parseInt(request.getParameter("quantidadeVac"));
-        vacinasDAO.cresVacina(quantidade, id);
+        
+        loteVacinasDAO.loteVacinas.setQuantidadeVac(Integer.parseInt(request.getParameter("quantidadeVac")));
+        
+        //OBJECT LABORATORIO SET
+        this.loteVacinasDAO.loteVacinas.setLaboratorio(new Laboratorio(Integer.valueOf(request.getParameter("idLaboratorio"))));
+        laboratorioDAO.buscar(this.loteVacinasDAO.loteVacinas.getLaboratorio().getId());
+        loteVacinasDAO.loteVacinas.setLaboratorio(laboratorioDAO.laboratorio);
+        
+        //OBJECT VACINAS SET
+        this.loteVacinasDAO.loteVacinas.setVacina(new Vacinas(Integer.valueOf(request.getParameter("idVacinas"))));
+        vacinasDAO.buscar(this.loteVacinasDAO.loteVacinas.getVacina().getId());
+        loteVacinasDAO.loteVacinas.setVacina(vacinasDAO.vacina);
+        
+        
+        loteVacinasDAO.cadastrar(loteVacinasDAO.loteVacinas);
+        
         response.sendRedirect("listar");
     }
 

@@ -34,13 +34,8 @@ public class VacinasController implements IController{
     public void inserir(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         vacina = new Vacinas();
-        vacina.setDataValidade(java.sql.Date.valueOf(request.getParameter("dataValidade")));
-        vacina.setDataFabricacao(java.sql.Date.valueOf(request.getParameter("dataFabricacao")));
         vacina.setNome(request.getParameter("nome"));
         vacina.setTipo(request.getParameter("tipo"));
-        vacina.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
-        vacina.setIdLote(Integer.parseInt(request.getParameter("idLote")));
-
         dao.cadastrar(vacina);
         response.sendRedirect("listar");
     }
@@ -66,7 +61,7 @@ public class VacinasController implements IController{
         int id = Integer.parseInt(request.getParameter("id"));
         vacina = new Vacinas();
         vacina.setId(Integer.parseInt(request.getParameter("id")));
-        dao.descVacina(5, vacina.getId());
+        //dao.descVacina(5, vacina.getId());
         response.sendRedirect("listar");
 
     }
@@ -86,13 +81,8 @@ public class VacinasController implements IController{
             throws SQLException, IOException {
         vacina = new Vacinas();
         vacina.setId(Integer.parseInt(request.getParameter("id")));
-        vacina.setDataValidade(java.sql.Date.valueOf(request.getParameter("dataValidade")));
-        vacina.setDataFabricacao(java.sql.Date.valueOf(request.getParameter("dataFabricacao")));
         vacina.setNome(request.getParameter("nome"));
         vacina.setTipo(request.getParameter("tipo"));
-        vacina.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
-        vacina.setIdLote(Integer.parseInt(request.getParameter("idLote")));
-
         dao.atualizar(vacina);
         response.sendRedirect("listar");
     }
