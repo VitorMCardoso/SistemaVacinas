@@ -82,7 +82,7 @@ public class DataValFabDAO implements IDao<DataValFab> {
                 DataValFab dataValFab = new DataValFab();
                 dataValFab.setId(Integer.valueOf(rs.getString("id")));
                 dataValFab.setDataValidade(java.sql.Date.valueOf(rs.getString("dataValidade")));
-                dataValFab.setDataFabricacao(java.sql.Date.valueOf(rs.getString("dataValidade")));
+                dataValFab.setDataFabricacao(java.sql.Date.valueOf(rs.getString("dataFabricacao")));
                 dataValFab.setLote(new LoteVacinas(rs.getInt("idLote")));
                 dataValFabs.add(dataValFab);
             }

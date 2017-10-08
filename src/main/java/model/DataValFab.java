@@ -14,7 +14,7 @@ import java.util.Date;
 public class DataValFab {
     private int id;
     private Date dataValidade;
-    private Date dataFabricacao;
+    private Date dataFabricacao;    
     private LoteVacinas lote;
 
     public DataValFab(int id, Date dataValidade, Date dataFabricacao, LoteVacinas lote) {

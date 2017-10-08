@@ -43,6 +43,9 @@
         
         <p><a href="lote/showNewForm"><button>Cadastro de Lote</button></a></p>
         <p><a href="lote/listar"><button>Manter Lote</button></a></p>
+        
+        <p><a href="data/showNewForm"><button>Cadastro de Data</button></a></p>
+        <p><a href="data/listar"><button>Manter Data</button></a></p>
         </div>
     </body>
 </html>
