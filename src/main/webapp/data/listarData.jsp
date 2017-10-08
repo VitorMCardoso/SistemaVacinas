@@ -27,7 +27,7 @@
                     <th>Id Lote</th>
                     <th colspan=2>Açao</th>
                 </tr>
-
+//
                 <c:forEach var="data" items="${listarDatas}" >
                     <tr>
 
