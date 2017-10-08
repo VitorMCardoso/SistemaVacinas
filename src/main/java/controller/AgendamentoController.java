@@ -47,7 +47,7 @@ public class AgendamentoController implements IController {
 
         agendamento.setDataDose(java.sql.Date.valueOf(request.getParameter("dataDose")));
         agendamento.setQuantidadeVac(Integer.valueOf(request.getParameter("quantidadeVac")));
-        
+        //
         //OBJECT PACIENTE SET
         this.pacientesDAO.paciente.setId(Integer.valueOf(request.getParameter("idPaciente")));
         pacientesDAO.buscar(this.pacientesDAO.paciente.getId());
