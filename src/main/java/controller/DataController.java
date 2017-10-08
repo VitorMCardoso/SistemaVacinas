@@ -40,7 +40,7 @@ public class DataController implements IController {
         dataValFab.setDataFabricacao(java.sql.Date.valueOf(request.getParameter("dataFabricacao")));
 
         // OBJECT LOTE SET
-        dataValFab.setLote(new LoteVacinas(Integer.valueOf(request.getParameter("lote"))));
+        dataValFab.setLote(new LoteVacinas(Integer.valueOf(request.getParameter("idLote"))));
         loteVacinasDAO.buscar(this.dataValFab.getLote().getId());
         dataValFab.setLote(loteVacinasDAO.loteVacinas);
 
@@ -82,7 +82,7 @@ public class DataController implements IController {
         dataValFab.setDataFabricacao(java.sql.Date.valueOf(request.getParameter("dataFabricacao")));
 
         // OBJECT LOTE SET
-        dataValFab.setLote(new LoteVacinas(Integer.valueOf(request.getParameter("lote"))));
+        dataValFab.setLote(new LoteVacinas(Integer.valueOf(request.getParameter("idLote"))));
         loteVacinasDAO.buscar(this.dataValFab.getLote().getId());
         dataValFab.setLote(loteVacinasDAO.loteVacinas);
 

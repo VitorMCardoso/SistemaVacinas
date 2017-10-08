@@ -53,7 +53,7 @@
                     <tr>
                         <th>Data de Validade </th>
                         <td>
-                            <input type="text" name="dataValidade" size="5"
+                            <input type="text" name="dataValidade" size="45"
                                    value="<c:out value='${data.dataValidade}' />"
                                    />
                         </td>

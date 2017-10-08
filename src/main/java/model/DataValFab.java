@@ -16,7 +16,7 @@ public class DataValFab {
     private Date dataValidade;
     private Date dataFabricacao;    
     private LoteVacinas lote;
-
+    
     public DataValFab(int id, Date dataValidade, Date dataFabricacao, LoteVacinas lote) {
         this.id = id;
         this.dataValidade = dataValidade;
