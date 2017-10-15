@@ -8,25 +8,7 @@
  * Created: Mar 24, 2017
  */
 
-CREATE TABLE `paciente` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(20) NOT NULL,
-  `sobrenome` varchar(20) NOT NULL,
-  `login` varchar(20) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `senha` varchar(20) NOT NULL,
-  `rg` varchar(15) NOT NULL,
-  `cpf` varchar(15) NOT NULL,
-  `endereco` varchar(30) NOT NULL,
-  `bairro` varchar(50) NOT NULL,
-  `cidade` varchar(50) NOT NULL,
-  `estado` varchar(50) NOT NULL,
-  `ativo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
-
- CREATE TABLE `agendamento` (
+CREATE TABLE `agendamento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dataDose` date NOT NULL,
   `quantidadeVac` int(11) NOT NULL,
@@ -38,37 +20,17 @@ CREATE TABLE `paciente` (
   KEY `fk_vacinas_id` (`idVacinas`),
   CONSTRAINT `fk_paciente_id` FOREIGN KEY (`idPaciente`) REFERENCES `paciente` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_vacinas_id` FOREIGN KEY (`idVacinas`) REFERENCES `vacinas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-SELECT * FROM sgv.usuario;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1
 
-select * from agendamento;
-
-
-CREATE TABLE `vacinas` (
+CREATE TABLE `dataValFab` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `dataValidade` date NOT NULL,
-  `dataFabricacao` date NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `tipo` varchar(100) NOT NULL,
-  `quantidade` int(5) NOT NULL,
-  `lote` varchar(25) NOT NULL,
-  `idLaboratorio` int(11) DEFAULT NULL,
+  `dataValidade` date DEFAULT NULL,
+  `dataFabricacao` varchar(45) DEFAULT NULL,
+  `idLote` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_vacinasLab_id` (`idLaboratorio`),
-  CONSTRAINT `fk_vacinasLab_id` FOREIGN KEY (`idLaboratorio`) REFERENCES `laboratorio` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
-
-CREATE TABLE virtualizacao
-(
-id int auto_increment,
-dataCriacao date NOT NULL,
-dataAtualizacao date NOT NULL,
-idPaciente int NOT NULL,
-CONSTRAINT pk_virtualizacao_id PRIMARY KEY (id),
-CONSTRAINT fk_pacienteVirt_id FOREIGN KEY (idPaciente) REFERENCES paciente (id) on delete cascade on update cascade
-);
-
+  KEY `dataValFab___fkLote` (`idLote`),
+  CONSTRAINT `dataValFab___fkLote` FOREIGN KEY (`idLote`) REFERENCES `loteVacinas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
 
 CREATE TABLE `laboratorio` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -86,8 +48,51 @@ CREATE TABLE `laboratorio` (
   `estado` varchar(50) NOT NULL,
   `ativo` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1
 
+CREATE TABLE `loteVacinas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `quantidadeVac` int(11) DEFAULT NULL,
+  `idLaboratorio` int(11) DEFAULT NULL,
+  `idVacinas` int(11) DEFAULT NULL,
+  `ativo` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idLaboratorio` (`idLaboratorio`),
+  KEY `fk_Vacinas_1_idx` (`idVacinas`),
+  CONSTRAINT `fk_Vacinas_1` FOREIGN KEY (`idVacinas`) REFERENCES `vacinas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `loteVacinas_ibfk_1` FOREIGN KEY (`idLaboratorio`) REFERENCES `laboratorio` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1
+
+CREATE TABLE `paciente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(20) NOT NULL,
+  `sobrenome` varchar(20) NOT NULL,
+  `login` varchar(20) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `senha` varchar(20) NOT NULL,
+  `rg` varchar(15) NOT NULL,
+  `cpf` varchar(15) NOT NULL,
+  `endereco` varchar(30) NOT NULL,
+  `bairro` varchar(50) NOT NULL,
+  `cidade` varchar(50) NOT NULL,
+  `estado` varchar(50) NOT NULL,
+  `ativo` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
+
+CREATE TABLE `pedidoCompra` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data` date NOT NULL,
+  `quantidadeVac` int(11) NOT NULL,
+  `idLaboratorio` int(11) NOT NULL,
+  `idVacinas` int(11) NOT NULL,
+  `ativo` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idLaboratorio` (`idLaboratorio`),
+  KEY `idVacinas` (`idVacinas`),
+  CONSTRAINT `pedidoCompra_ibfk_1` FOREIGN KEY (`idLaboratorio`) REFERENCES `laboratorio` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `pedidoCompra_ibfk_2` FOREIGN KEY (`idVacinas`) REFERENCES `vacinas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1
 
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -106,18 +111,12 @@ CREATE TABLE `usuario` (
   `ativo` tinyint(1) NOT NULL,
   `perfil` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1
 
-
-CREATE TABLE `pedidoCompra` (
+CREATE TABLE `vacinas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `data` date NOT NULL,
-  `quantidadeVac` int(11) NOT NULL,
-  `idLaboratorio` int(11) NOT NULL,
-  `idVacinas` int(11) NOT NULL,
-  `ativo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`idLaboratorio`) REFERENCES `laboratorio` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`idVacinas`) REFERENCES `vacinas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `nome` varchar(100) NOT NULL,
+  `tipo` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1
 
