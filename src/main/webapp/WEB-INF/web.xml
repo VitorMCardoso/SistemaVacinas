@@ -10,7 +10,7 @@
     </filter>
     <filter-mapping>
         <filter-name>AcessoAdministrativo</filter-name>
-        <url-pattern>/new</url-pattern>
+        <url-pattern>/usuario/showNewForm</url-pattern>
         <url-pattern>/list</url-pattern>
     </filter-mapping>
     <filter-mapping>
